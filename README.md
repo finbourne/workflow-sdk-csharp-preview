@@ -1,48 +1,26 @@
+# LUSID<sup>®</sup> Workflow SDK C# (Preview)
 ![LUSID by Finbourne](https://content.finbourne.com/LUSID_repo.png)
 
-# ${REPO_NAME}
+This is the C# SDK (Preview) for the Workflow application, part of the [LUSID by FINBOURNE](https://www.finbourne.com/lusid-technology) platform. To use it you'll need a LUSID account. [Sign up for free at lusid.com](https://www.lusid.com/app/signup).
 
-## Getting Started
+Workflow provides functionality for automating the LUSID platform.
 
-## Contributing
+For more details on other applications in the LUSID platform, see [Understanding all the applications in the LUSID platform](https://support.lusid.com/knowledgebase/article/KA-01787/en-us).
 
-We welcome community participation in our tools. For information on contributing see our article [here](/finbourne/${REPO_NAME}/docs)
+[C# SDK Extensions](https://github.com/finbourne/workflow-sdk-extensions-csharp) to accompany this SDK are available. These provides the user with additional extensions to make it easy to configure and use the API endpoints.
 
-## Reporting Issues
-If you encounter any issues please report these the Github [issues page](https://github.com/finbourne/${REPO_NAME}/issues).
+## Installation
 
----
-
-# TODOs
-
-- [ ] update repo name in template
-- [ ] set up [GitHub Actions](https://docs.github.com/en/actions) automated build
-- [ ] set up [SonarCloud](https://sonarcloud.io/organizations/finbourne/projects) build
-- [ ] add quickstart install documentation to the README
-- [ ] add setup/install documentation to the Wiki
-
-## Update repo name
-
-Update the `${REPO_NAME}` to the repo name in the following:
-* `README.md`
-* `.github/bug_report.md`
-
-## Add badges
-* version
-* build status
-* GitHub Actions
-* SonarCloud build
-
-e.g.
-
-![PyPI](https://img.shields.io/pypi/v/lusidtools?color=blue)
-[![Build Status](https://travis-ci.org/finbourne/lusid-python-tools.svg?branch=master)](https://travis-ci.org/finbourne/lusid-python-tools)
-![](https://github.com/finbourne/lusid-python-tools/workflows/commit-hook/badge.svg)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=finbourne_lusid-python-tools&metric=alert_status)](https://sonarcloud.io/dashboard?id=finbourne_lusid-python-tools)
+The NuGet package for the FINBOURNE Workflow service SDK (Preview) can installed from https://www.nuget.org/packages/Finbourne.Workflow.Sdk.Preview using the following:
 
 ```
-![PyPI](https://img.shields.io/pypi/v/lusidtools?color=blue)
-[![Build Status](https://travis-ci.org/finbourne/lusid-python-tools.svg?branch=master)](https://travis-ci.org/finbourne/lusid-python-tools)
-![](https://github.com/finbourne/lusid-python-tools/workflows/commit-hook/badge.svg)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=finbourne_lusid-python-tools&metric=alert_status)](https://sonarcloud.io/dashboard?id=finbourne_lusid-python-tools)
+$ dotnet add package Finbourne.Workflow.Sdk.Preview
 ```
+
+This C# SDK (Preview) supports `Production`, `Early Access`, `Beta` and `Experimental` API endpoints. For more details on API endpoint categories, see [Documentation - Release Lifecycle](https://www.lusid.com/app/resources/documentation/lifecycle). To find out which category an API endpoint falls into, see [FINBOURNE Workflow API Documentation](https://www.lusid.com/workflow/swagger/index.html).
+
+## Build Status 
+
+| branch | status |
+| --- | --- |
+| `master` |  ![Nuget](https://img.shields.io/nuget/v/Finbourne.Workflow.Sdk.Preview?color=blue) [![Build](https://github.com/finbourne/workflow-sdk-csharp-preview/actions/workflow/build.yaml/badge.svg?branch=master)](https://github.com/finbourne/workflow-sdk-csharp-preview/actions/workflow/build.yaml) |
