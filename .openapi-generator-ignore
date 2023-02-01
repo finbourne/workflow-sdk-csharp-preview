@@ -1,0 +1,7 @@
+*.sln
+**/*.csproj
+**/*.Sdk.Tests/**
+appveyor.yml
+.gitignore
+**/.gitignore
+

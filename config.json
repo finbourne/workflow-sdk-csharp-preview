@@ -1,0 +1,11 @@
+{ 
+    "packageName": "Finbourne.Workflow.Sdk", 
+    "sourceFolder": ".", 
+    "targetFramework": "netstandard2.0", 
+    "useDateTimeOffset": true, 
+    "netCoreProjectFile": true, 
+    "returnICollection": true, 
+    "packageVersion": "0.0.0" 
+}
+
+
