@@ -27,41 +27,26 @@ using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
-    /// Defines the Outputs for a Task
+    /// A request to Transit a Task by invoking a Trigger
     /// </summary>
-    [DataContract(Name = "Output")]
-    public partial class Output : IEquatable<Output>
+    [DataContract(Name = "TransitTaskInstanceRequest")]
+    public partial class TransitTaskInstanceRequest : IEquatable<TransitTaskInstanceRequest>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="Output" /> class.
+        /// Initializes a new instance of the <see cref="TransitTaskInstanceRequest" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected Output() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="Output" /> class.
-        /// </summary>
-        /// <param name="name">The Name of this Output (required).</param>
-        /// <param name="schema">schema (required).</param>
-        public Output(string name = default(string), OutputSchema schema = default(OutputSchema))
+        /// <param name="fields">Defines the fields associated with the Trigger.</param>
+        public TransitTaskInstanceRequest(List<FieldInstance> fields = default(List<FieldInstance>))
         {
-            // to ensure "name" is required (not null)
-            this.Name = name ?? throw new ArgumentNullException("name is a required property for Output and cannot be null");
-            // to ensure "schema" is required (not null)
-            this.Schema = schema ?? throw new ArgumentNullException("schema is a required property for Output and cannot be null");
+            this.Fields = fields;
         }
 
         /// <summary>
-        /// The Name of this Output
+        /// Defines the fields associated with the Trigger
         /// </summary>
-        /// <value>The Name of this Output</value>
-        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = false)]
-        public string Name { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Schema
-        /// </summary>
-        [DataMember(Name = "schema", IsRequired = true, EmitDefaultValue = false)]
-        public OutputSchema Schema { get; set; }
+        /// <value>Defines the fields associated with the Trigger</value>
+        [DataMember(Name = "fields", EmitDefaultValue = true)]
+        public List<FieldInstance> Fields { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -70,9 +55,8 @@ namespace Finbourne.Workflow.Sdk.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class Output {\n");
-            sb.Append("  Name: ").Append(Name).Append("\n");
-            sb.Append("  Schema: ").Append(Schema).Append("\n");
+            sb.Append("class TransitTaskInstanceRequest {\n");
+            sb.Append("  Fields: ").Append(Fields).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -93,29 +77,25 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as Output);
+            return this.Equals(input as TransitTaskInstanceRequest);
         }
 
         /// <summary>
-        /// Returns true if Output instances are equal
+        /// Returns true if TransitTaskInstanceRequest instances are equal
         /// </summary>
-        /// <param name="input">Instance of Output to be compared</param>
+        /// <param name="input">Instance of TransitTaskInstanceRequest to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(Output input)
+        public bool Equals(TransitTaskInstanceRequest input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Name == input.Name ||
-                    (this.Name != null &&
-                    this.Name.Equals(input.Name))
-                ) && 
-                (
-                    this.Schema == input.Schema ||
-                    (this.Schema != null &&
-                    this.Schema.Equals(input.Schema))
+                    this.Fields == input.Fields ||
+                    this.Fields != null &&
+                    input.Fields != null &&
+                    this.Fields.SequenceEqual(input.Fields)
                 );
         }
 
@@ -128,10 +108,8 @@ namespace Finbourne.Workflow.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Name != null)
-                    hashCode = hashCode * 59 + this.Name.GetHashCode();
-                if (this.Schema != null)
-                    hashCode = hashCode * 59 + this.Schema.GetHashCode();
+                if (this.Fields != null)
+                    hashCode = hashCode * 59 + this.Fields.GetHashCode();
                 return hashCode;
             }
         }

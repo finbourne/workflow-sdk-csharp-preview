@@ -1,12 +1,11 @@
-# Finbourne.Workflow.Sdk.Model.FieldInstance
-A Task Definition/Task Instance Field instance
+# Finbourne.Workflow.Sdk.Model.TransitTaskInstanceRequest
+A request to Transit a Task by invoking a Trigger
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The flattened path of a field, eg: investments.bonds.usd.tbill | 
-**Value** | **string** | The value of this Field | 
+**Fields** | [**List&lt;FieldInstance&gt;**](FieldInstance.md) | Defines the fields associated with the Trigger | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
