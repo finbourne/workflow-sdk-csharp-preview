@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.134",
+    "version": "0.1.154",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -42,6 +42,10 @@
   "displayName": "An example TaskDefinition",
   "description": "Test",
   "fields": [
+    {
+      "name": "clientId",
+      "type": "String"
+    },
     {
       "name": "assignee",
       "type": "String"
@@ -117,21 +121,21 @@
     {
       "name": "start",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "cancel",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "resolve",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
@@ -170,8 +174,7 @@
   "initialState": {
     "name": "Submitted",
     "requiredFields": [
-      "clientId",
-      "description"
+      "clientId"
     ]
   },
   "outputs": [
@@ -211,6 +214,10 @@
   "description": "Test",
   "fields": [
     {
+      "name": "clientId",
+      "type": "String"
+    },
+    {
       "name": "assignee",
       "type": "String"
     },
@@ -285,21 +292,21 @@
     {
       "name": "start",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "cancel",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "resolve",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
@@ -338,8 +345,7 @@
   "initialState": {
     "name": "Submitted",
     "requiredFields": [
-      "clientId",
-      "description"
+      "clientId"
     ]
   },
   "outputs": [
@@ -379,6 +385,10 @@
   "description": "Test",
   "fields": [
     {
+      "name": "clientId",
+      "type": "String"
+    },
+    {
       "name": "assignee",
       "type": "String"
     },
@@ -453,21 +463,21 @@
     {
       "name": "start",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "cancel",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "resolve",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
@@ -506,8 +516,7 @@
   "initialState": {
     "name": "Submitted",
     "requiredFields": [
-      "clientId",
-      "description"
+      "clientId"
     ]
   },
   "outputs": [
@@ -547,6 +556,10 @@
   "description": "Test",
   "fields": [
     {
+      "name": "clientId",
+      "type": "String"
+    },
+    {
       "name": "assignee",
       "type": "String"
     },
@@ -621,21 +634,21 @@
     {
       "name": "start",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "cancel",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "resolve",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
@@ -674,8 +687,7 @@
   "initialState": {
     "name": "Submitted",
     "requiredFields": [
-      "clientId",
-      "description"
+      "clientId"
     ]
   },
   "outputs": [
@@ -749,6 +761,10 @@
   ],
   "fieldsSchema": [
     {
+      "name": "clientId",
+      "type": "String"
+    },
+    {
       "name": "assignee",
       "type": "String"
     },
@@ -760,29 +776,28 @@
   "initialState": {
     "name": "Submitted",
     "requiredFields": [
-      "clientId",
-      "description"
+      "clientId"
     ]
   },
   "triggers": [
     {
       "name": "start",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "cancel",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "resolve",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
@@ -1138,6 +1153,10 @@
   ],
   "fieldsSchema": [
     {
+      "name": "clientId",
+      "type": "String"
+    },
+    {
       "name": "assignee",
       "type": "String"
     },
@@ -1149,29 +1168,28 @@
   "initialState": {
     "name": "Submitted",
     "requiredFields": [
-      "clientId",
-      "description"
+      "clientId"
     ]
   },
   "triggers": [
     {
       "name": "start",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "cancel",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "resolve",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
@@ -1451,6 +1469,10 @@
   ],
   "fieldsSchema": [
     {
+      "name": "clientId",
+      "type": "String"
+    },
+    {
       "name": "assignee",
       "type": "String"
     },
@@ -1462,29 +1484,28 @@
   "initialState": {
     "name": "Submitted",
     "requiredFields": [
-      "clientId",
-      "description"
+      "clientId"
     ]
   },
   "triggers": [
     {
       "name": "start",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "cancel",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
     {
       "name": "resolve",
       "schema": {
-        "type": "Manual",
+        "type": "External",
         "timeInState": 0
       }
     },
@@ -2608,7 +2629,7 @@
         "properties": {
           "type": {
             "type": "string",
-            "description": "The type of Trigger: Manual, Timeout or WebHook",
+            "description": "The type of Trigger: External, Timeout or WebHook",
             "nullable": true
           },
           "timeInState": {
