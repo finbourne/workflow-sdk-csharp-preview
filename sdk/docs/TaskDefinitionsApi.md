@@ -9,6 +9,7 @@ Method | HTTP request | Description
 [**DeleteTaskDefinition**](TaskDefinitionsApi.md#deletetaskdefinition) | **DELETE** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition.
 [**GetTaskDefinition**](TaskDefinitionsApi.md#gettaskdefinition) | **GET** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] GetTaskDefinition: Get a Task Definition.
 [**GetTaskInstancesForDefinition**](TaskDefinitionsApi.md#gettaskinstancesfordefinition) | **GET** /api/taskdefinitions/{scope}/{code}/instances | [EXPERIMENTAL] GetTaskInstancesForDefinition: Get all Task Instances based on a Task Definition
+[**ListTaskDefinitions**](TaskDefinitionsApi.md#listtaskdefinitions) | **GET** /api/taskdefinitions/{scope} | [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
 [**UpdateTaskDefinition**](TaskDefinitionsApi.md#updatetaskdefinition) | **PUT** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition.
 
 
@@ -397,6 +398,81 @@ Name | Type | Description  | Notes
 | **200** | List of Task Instances which share the requested Definition |  -  |
 | **400** | The details of the input related failure |  -  |
 | **404** | No Task Instances found in current scope for this Definition |  -  |
+| **0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a name="listtaskdefinitions"></a>
+# **ListTaskDefinitions**
+> ResourceListOfTaskDefinition ListTaskDefinitions (string scope)
+
+[EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Finbourne.Workflow.Sdk.Api;
+using Finbourne.Workflow.Sdk.Client;
+using Finbourne.Workflow.Sdk.Model;
+
+namespace Example
+{
+    public class ListTaskDefinitionsExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://www.lusid.com/workflow";
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new TaskDefinitionsApi(config);
+            var scope = scope_example;  // string |  (default to "default")
+
+            try
+            {
+                // [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
+                ResourceListOfTaskDefinition result = apiInstance.ListTaskDefinitions(scope);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TaskDefinitionsApi.ListTaskDefinitions: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **string**|  | [default to &quot;default&quot;]
+
+### Return type
+
+[**ResourceListOfTaskDefinition**](ResourceListOfTaskDefinition.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | List of Task Definitions |  -  |
+| **400** | The details of the input related failure |  -  |
+| **404** | No Task Definitions found in the requested scope |  -  |
 | **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

@@ -27,28 +27,28 @@ using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
-    /// ResourceListOfTaskInstance
+    /// ResourceListOfTaskDefinition
     /// </summary>
-    [DataContract(Name = "ResourceListOfTaskInstance")]
-    public partial class ResourceListOfTaskInstance : IEquatable<ResourceListOfTaskInstance>
+    [DataContract(Name = "ResourceListOfTaskDefinition")]
+    public partial class ResourceListOfTaskDefinition : IEquatable<ResourceListOfTaskDefinition>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ResourceListOfTaskInstance" /> class.
+        /// Initializes a new instance of the <see cref="ResourceListOfTaskDefinition" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected ResourceListOfTaskInstance() { }
+        protected ResourceListOfTaskDefinition() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="ResourceListOfTaskInstance" /> class.
+        /// Initializes a new instance of the <see cref="ResourceListOfTaskDefinition" /> class.
         /// </summary>
         /// <param name="values">values (required).</param>
         /// <param name="href">href.</param>
         /// <param name="links">links.</param>
         /// <param name="nextPage">nextPage.</param>
         /// <param name="previousPage">previousPage.</param>
-        public ResourceListOfTaskInstance(List<TaskInstance> values = default(List<TaskInstance>), string href = default(string), List<Link> links = default(List<Link>), string nextPage = default(string), string previousPage = default(string))
+        public ResourceListOfTaskDefinition(List<TaskDefinition> values = default(List<TaskDefinition>), string href = default(string), List<Link> links = default(List<Link>), string nextPage = default(string), string previousPage = default(string))
         {
             // to ensure "values" is required (not null)
-            this.Values = values ?? throw new ArgumentNullException("values is a required property for ResourceListOfTaskInstance and cannot be null");
+            this.Values = values ?? throw new ArgumentNullException("values is a required property for ResourceListOfTaskDefinition and cannot be null");
             this.Href = href;
             this.Links = links;
             this.NextPage = nextPage;
@@ -59,7 +59,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Gets or Sets Values
         /// </summary>
         [DataMember(Name = "values", IsRequired = true, EmitDefaultValue = false)]
-        public List<TaskInstance> Values { get; set; }
+        public List<TaskDefinition> Values { get; set; }
 
         /// <summary>
         /// Gets or Sets Href
@@ -92,7 +92,7 @@ namespace Finbourne.Workflow.Sdk.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class ResourceListOfTaskInstance {\n");
+            sb.Append("class ResourceListOfTaskDefinition {\n");
             sb.Append("  Values: ").Append(Values).Append("\n");
             sb.Append("  Href: ").Append(Href).Append("\n");
             sb.Append("  Links: ").Append(Links).Append("\n");
@@ -118,15 +118,15 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ResourceListOfTaskInstance);
+            return this.Equals(input as ResourceListOfTaskDefinition);
         }
 
         /// <summary>
-        /// Returns true if ResourceListOfTaskInstance instances are equal
+        /// Returns true if ResourceListOfTaskDefinition instances are equal
         /// </summary>
-        /// <param name="input">Instance of ResourceListOfTaskInstance to be compared</param>
+        /// <param name="input">Instance of ResourceListOfTaskDefinition to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ResourceListOfTaskInstance input)
+        public bool Equals(ResourceListOfTaskDefinition input)
         {
             if (input == null)
                 return false;
