@@ -1,11 +1,12 @@
-# Finbourne.Workflow.Sdk.Model.TriggerSchema
-Triggers can operate in response to different stimuli
+# Finbourne.Workflow.Sdk.Model.TaskInstanceField
+Defines a Field on a Task
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | The type of Trigger | [optional] 
+**Name** | **string** | The name of this Field | 
+**Value** | **string** | The value of this Field | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
