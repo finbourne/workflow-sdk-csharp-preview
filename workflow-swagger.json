@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.209",
+    "version": "0.1.230",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -25,7 +25,7 @@
         "tags": [
           "Task Definitions"
         ],
-        "summary": "[EXPERIMENTAL] CreateTaskDefinition: Create a new Task Definition.",
+        "summary": "[EXPERIMENTAL] CreateTaskDefinition: Create a new Task Definition",
         "operationId": "CreateTaskDefinition",
         "requestBody": {
           "description": "The data to create a Task Definition",
@@ -175,7 +175,7 @@
         "tags": [
           "Task Definitions"
         ],
-        "summary": "[EXPERIMENTAL] GetTaskDefinition: Get a Task Definition.",
+        "summary": "[EXPERIMENTAL] GetTaskDefinition: Get a Task Definition",
         "operationId": "GetTaskDefinition",
         "parameters": [
           {
@@ -205,7 +205,7 @@
           {
             "name": "asAt",
             "in": "query",
-            "description": "AsAt time to retrieve stated Task Definition. Default to current time if not provided.",
+            "description": "AsAt time to retrieve stated Task Definition. Defaults to current time if not provided.",
             "schema": {
               "type": "string",
               "format": "date-time"
@@ -267,7 +267,7 @@
         "tags": [
           "Task Definitions"
         ],
-        "summary": "[EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition.",
+        "summary": "[EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition",
         "operationId": "UpdateTaskDefinition",
         "parameters": [
           {
@@ -379,7 +379,7 @@
         "tags": [
           "Task Definitions"
         ],
-        "summary": "[EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition.",
+        "summary": "[EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition",
         "operationId": "DeleteTaskDefinition",
         "parameters": [
           {
@@ -457,12 +457,105 @@
         "x-fbn-apistatus": "Experimental"
       }
     },
+    "/api/taskdefinitions/{scope}/{code}/tasks": {
+      "get": {
+        "tags": [
+          "Task Definitions"
+        ],
+        "summary": "[EXPERIMENTAL] ListTasksForTaskDefinition: List Tasks for a Task Definition",
+        "operationId": "ListTasksForTaskDefinition",
+        "parameters": [
+          {
+            "name": "scope",
+            "in": "path",
+            "description": "The scope that identifies a Task Definition",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "code",
+            "in": "path",
+            "description": "The code that identifies a Task Definition",
+            "required": true,
+            "schema": {
+              "maxLength": 64,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "asAt",
+            "in": "query",
+            "description": "AsAt time to retrieve stated Tasks. Defaults to current time if not provided",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfTask"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "No tasks found for this Task Definition",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
     "/api/tasks": {
       "post": {
         "tags": [
           "Tasks"
         ],
-        "summary": "[EXPERIMENTAL] CreateTask: Create a new Task.",
+        "summary": "[EXPERIMENTAL] CreateTask: Create a new Task",
         "operationId": "CreateTask",
         "parameters": [
           {
@@ -552,7 +645,7 @@
         "tags": [
           "Tasks"
         ],
-        "summary": "[EXPERIMENTAL] GetTask: Get a Task.",
+        "summary": "[EXPERIMENTAL] GetTask: Get a Task",
         "operationId": "GetTask",
         "parameters": [
           {
@@ -632,7 +725,7 @@
         "tags": [
           "Tasks"
         ],
-        "summary": "[EXPERIMENTAL] UpdateTask: Update a Task.",
+        "summary": "[EXPERIMENTAL] UpdateTask: Update a Task",
         "operationId": "UpdateTask",
         "parameters": [
           {
@@ -741,7 +834,7 @@
         "tags": [
           "Tasks"
         ],
-        "summary": "[EXPERIMENTAL] DeleteTask: Delete a Task.",
+        "summary": "[EXPERIMENTAL] DeleteTask: Delete a Task",
         "operationId": "DeleteTask",
         "parameters": [
           {
@@ -1337,6 +1430,41 @@
         },
         "additionalProperties": false
       },
+      "ResourceListOfTask": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Task"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
       "ResourceListOfTaskDefinition": {
         "required": [
           "values"
@@ -1513,8 +1641,7 @@
       },
       "TaskInstanceField": {
         "required": [
-          "name",
-          "value"
+          "name"
         ],
         "type": "object",
         "properties": {
@@ -1524,7 +1651,8 @@
           },
           "value": {
             "type": "string",
-            "description": "The value of this Field"
+            "description": "The value of this Field",
+            "nullable": true
           }
         },
         "additionalProperties": false,

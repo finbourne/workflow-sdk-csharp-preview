@@ -27,51 +27,45 @@ using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
-    /// DeletedEntityResponse
+    /// ResourceListOfTask
     /// </summary>
-    [DataContract(Name = "DeletedEntityResponse")]
-    public partial class DeletedEntityResponse : IEquatable<DeletedEntityResponse>
+    [DataContract(Name = "ResourceListOfTask")]
+    public partial class ResourceListOfTask : IEquatable<ResourceListOfTask>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeletedEntityResponse" /> class.
+        /// Initializes a new instance of the <see cref="ResourceListOfTask" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected DeletedEntityResponse() { }
+        protected ResourceListOfTask() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="DeletedEntityResponse" /> class.
+        /// Initializes a new instance of the <see cref="ResourceListOfTask" /> class.
         /// </summary>
-        /// <param name="href">The Uri related to this Entity.</param>
-        /// <param name="effectiveFrom">The EffectiveFrom for this response.</param>
-        /// <param name="asAt">The AsAt for this response (required).</param>
+        /// <param name="values">values (required).</param>
+        /// <param name="href">href.</param>
         /// <param name="links">links.</param>
-        public DeletedEntityResponse(string href = default(string), DateTimeOffset? effectiveFrom = default(DateTimeOffset?), DateTimeOffset asAt = default(DateTimeOffset), List<Link> links = default(List<Link>))
+        /// <param name="nextPage">nextPage.</param>
+        /// <param name="previousPage">previousPage.</param>
+        public ResourceListOfTask(List<Task> values = default(List<Task>), string href = default(string), List<Link> links = default(List<Link>), string nextPage = default(string), string previousPage = default(string))
         {
-            this.AsAt = asAt;
+            // to ensure "values" is required (not null)
+            this.Values = values ?? throw new ArgumentNullException("values is a required property for ResourceListOfTask and cannot be null");
             this.Href = href;
-            this.EffectiveFrom = effectiveFrom;
             this.Links = links;
+            this.NextPage = nextPage;
+            this.PreviousPage = previousPage;
         }
 
         /// <summary>
-        /// The Uri related to this Entity
+        /// Gets or Sets Values
         /// </summary>
-        /// <value>The Uri related to this Entity</value>
+        [DataMember(Name = "values", IsRequired = true, EmitDefaultValue = false)]
+        public List<Task> Values { get; set; }
+
+        /// <summary>
+        /// Gets or Sets Href
+        /// </summary>
         [DataMember(Name = "href", EmitDefaultValue = true)]
         public string Href { get; set; }
-
-        /// <summary>
-        /// The EffectiveFrom for this response
-        /// </summary>
-        /// <value>The EffectiveFrom for this response</value>
-        [DataMember(Name = "effectiveFrom", EmitDefaultValue = true)]
-        public DateTimeOffset? EffectiveFrom { get; set; }
-
-        /// <summary>
-        /// The AsAt for this response
-        /// </summary>
-        /// <value>The AsAt for this response</value>
-        [DataMember(Name = "asAt", IsRequired = true, EmitDefaultValue = false)]
-        public DateTimeOffset AsAt { get; set; }
 
         /// <summary>
         /// Gets or Sets Links
@@ -80,17 +74,30 @@ namespace Finbourne.Workflow.Sdk.Model
         public List<Link> Links { get; set; }
 
         /// <summary>
+        /// Gets or Sets NextPage
+        /// </summary>
+        [DataMember(Name = "nextPage", EmitDefaultValue = true)]
+        public string NextPage { get; set; }
+
+        /// <summary>
+        /// Gets or Sets PreviousPage
+        /// </summary>
+        [DataMember(Name = "previousPage", EmitDefaultValue = true)]
+        public string PreviousPage { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class DeletedEntityResponse {\n");
+            sb.Append("class ResourceListOfTask {\n");
+            sb.Append("  Values: ").Append(Values).Append("\n");
             sb.Append("  Href: ").Append(Href).Append("\n");
-            sb.Append("  EffectiveFrom: ").Append(EffectiveFrom).Append("\n");
-            sb.Append("  AsAt: ").Append(AsAt).Append("\n");
             sb.Append("  Links: ").Append(Links).Append("\n");
+            sb.Append("  NextPage: ").Append(NextPage).Append("\n");
+            sb.Append("  PreviousPage: ").Append(PreviousPage).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -111,40 +118,46 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as DeletedEntityResponse);
+            return this.Equals(input as ResourceListOfTask);
         }
 
         /// <summary>
-        /// Returns true if DeletedEntityResponse instances are equal
+        /// Returns true if ResourceListOfTask instances are equal
         /// </summary>
-        /// <param name="input">Instance of DeletedEntityResponse to be compared</param>
+        /// <param name="input">Instance of ResourceListOfTask to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(DeletedEntityResponse input)
+        public bool Equals(ResourceListOfTask input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
+                    this.Values == input.Values ||
+                    this.Values != null &&
+                    input.Values != null &&
+                    this.Values.SequenceEqual(input.Values)
+                ) && 
+                (
                     this.Href == input.Href ||
                     (this.Href != null &&
                     this.Href.Equals(input.Href))
-                ) && 
-                (
-                    this.EffectiveFrom == input.EffectiveFrom ||
-                    (this.EffectiveFrom != null &&
-                    this.EffectiveFrom.Equals(input.EffectiveFrom))
-                ) && 
-                (
-                    this.AsAt == input.AsAt ||
-                    (this.AsAt != null &&
-                    this.AsAt.Equals(input.AsAt))
                 ) && 
                 (
                     this.Links == input.Links ||
                     this.Links != null &&
                     input.Links != null &&
                     this.Links.SequenceEqual(input.Links)
+                ) && 
+                (
+                    this.NextPage == input.NextPage ||
+                    (this.NextPage != null &&
+                    this.NextPage.Equals(input.NextPage))
+                ) && 
+                (
+                    this.PreviousPage == input.PreviousPage ||
+                    (this.PreviousPage != null &&
+                    this.PreviousPage.Equals(input.PreviousPage))
                 );
         }
 
@@ -157,14 +170,16 @@ namespace Finbourne.Workflow.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                if (this.Values != null)
+                    hashCode = hashCode * 59 + this.Values.GetHashCode();
                 if (this.Href != null)
                     hashCode = hashCode * 59 + this.Href.GetHashCode();
-                if (this.EffectiveFrom != null)
-                    hashCode = hashCode * 59 + this.EffectiveFrom.GetHashCode();
-                if (this.AsAt != null)
-                    hashCode = hashCode * 59 + this.AsAt.GetHashCode();
                 if (this.Links != null)
                     hashCode = hashCode * 59 + this.Links.GetHashCode();
+                if (this.NextPage != null)
+                    hashCode = hashCode * 59 + this.NextPage.GetHashCode();
+                if (this.PreviousPage != null)
+                    hashCode = hashCode * 59 + this.PreviousPage.GetHashCode();
                 return hashCode;
             }
         }

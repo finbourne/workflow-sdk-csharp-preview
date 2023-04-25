@@ -4,17 +4,17 @@ All URIs are relative to *https://www.lusid.com/workflow*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTask**](TasksApi.md#createtask) | **POST** /api/tasks | [EXPERIMENTAL] CreateTask: Create a new Task.
-[**DeleteTask**](TasksApi.md#deletetask) | **DELETE** /api/tasks/{id} | [EXPERIMENTAL] DeleteTask: Delete a Task.
-[**GetTask**](TasksApi.md#gettask) | **GET** /api/tasks/{id} | [EXPERIMENTAL] GetTask: Get a Task.
-[**UpdateTask**](TasksApi.md#updatetask) | **POST** /api/tasks/{id} | [EXPERIMENTAL] UpdateTask: Update a Task.
+[**CreateTask**](TasksApi.md#createtask) | **POST** /api/tasks | [EXPERIMENTAL] CreateTask: Create a new Task
+[**DeleteTask**](TasksApi.md#deletetask) | **DELETE** /api/tasks/{id} | [EXPERIMENTAL] DeleteTask: Delete a Task
+[**GetTask**](TasksApi.md#gettask) | **GET** /api/tasks/{id} | [EXPERIMENTAL] GetTask: Get a Task
+[**UpdateTask**](TasksApi.md#updatetask) | **POST** /api/tasks/{id} | [EXPERIMENTAL] UpdateTask: Update a Task
 
 
 <a name="createtask"></a>
 # **CreateTask**
 > Task CreateTask (CreateTaskRequest createTaskRequest, string trigger = null)
 
-[EXPERIMENTAL] CreateTask: Create a new Task.
+[EXPERIMENTAL] CreateTask: Create a new Task
 
 ### Example
 ```csharp
@@ -41,7 +41,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] CreateTask: Create a new Task.
+                // [EXPERIMENTAL] CreateTask: Create a new Task
                 Task result = apiInstance.CreateTask(createTaskRequest, trigger);
                 Debug.WriteLine(result);
             }
@@ -90,7 +90,7 @@ Name | Type | Description  | Notes
 # **DeleteTask**
 > DeletedEntityResponse DeleteTask (string id)
 
-[EXPERIMENTAL] DeleteTask: Delete a Task.
+[EXPERIMENTAL] DeleteTask: Delete a Task
 
 ### Example
 ```csharp
@@ -116,7 +116,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] DeleteTask: Delete a Task.
+                // [EXPERIMENTAL] DeleteTask: Delete a Task
                 DeletedEntityResponse result = apiInstance.DeleteTask(id);
                 Debug.WriteLine(result);
             }
@@ -165,7 +165,7 @@ Name | Type | Description  | Notes
 # **GetTask**
 > Task GetTask (string id, DateTimeOffset? asAt = null)
 
-[EXPERIMENTAL] GetTask: Get a Task.
+[EXPERIMENTAL] GetTask: Get a Task
 
 ### Example
 ```csharp
@@ -192,7 +192,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] GetTask: Get a Task.
+                // [EXPERIMENTAL] GetTask: Get a Task
                 Task result = apiInstance.GetTask(id, asAt);
                 Debug.WriteLine(result);
             }
@@ -242,7 +242,7 @@ Name | Type | Description  | Notes
 # **UpdateTask**
 > UpdateTaskResponse UpdateTask (string id, string trigger = null, UpdateTaskRequest updateTaskRequest = null)
 
-[EXPERIMENTAL] UpdateTask: Update a Task.
+[EXPERIMENTAL] UpdateTask: Update a Task
 
 ### Example
 ```csharp
@@ -270,7 +270,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] UpdateTask: Update a Task.
+                // [EXPERIMENTAL] UpdateTask: Update a Task
                 UpdateTaskResponse result = apiInstance.UpdateTask(id, trigger, updateTaskRequest);
                 Debug.WriteLine(result);
             }

@@ -4,18 +4,19 @@ All URIs are relative to *https://www.lusid.com/workflow*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**CreateTaskDefinition**](TaskDefinitionsApi.md#createtaskdefinition) | **POST** /api/taskdefinitions | [EXPERIMENTAL] CreateTaskDefinition: Create a new Task Definition.
-[**DeleteTaskDefinition**](TaskDefinitionsApi.md#deletetaskdefinition) | **DELETE** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition.
-[**GetTaskDefinition**](TaskDefinitionsApi.md#gettaskdefinition) | **GET** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] GetTaskDefinition: Get a Task Definition.
+[**CreateTaskDefinition**](TaskDefinitionsApi.md#createtaskdefinition) | **POST** /api/taskdefinitions | [EXPERIMENTAL] CreateTaskDefinition: Create a new Task Definition
+[**DeleteTaskDefinition**](TaskDefinitionsApi.md#deletetaskdefinition) | **DELETE** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition
+[**GetTaskDefinition**](TaskDefinitionsApi.md#gettaskdefinition) | **GET** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] GetTaskDefinition: Get a Task Definition
 [**ListTaskDefinitions**](TaskDefinitionsApi.md#listtaskdefinitions) | **GET** /api/taskdefinitions/{scope} | [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
-[**UpdateTaskDefinition**](TaskDefinitionsApi.md#updatetaskdefinition) | **PUT** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition.
+[**ListTasksForTaskDefinition**](TaskDefinitionsApi.md#listtasksfortaskdefinition) | **GET** /api/taskdefinitions/{scope}/{code}/tasks | [EXPERIMENTAL] ListTasksForTaskDefinition: List Tasks for a Task Definition
+[**UpdateTaskDefinition**](TaskDefinitionsApi.md#updatetaskdefinition) | **PUT** /api/taskdefinitions/{scope}/{code} | [EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition
 
 
 <a name="createtaskdefinition"></a>
 # **CreateTaskDefinition**
 > TaskDefinition CreateTaskDefinition (CreateTaskDefinitionRequest createTaskDefinitionRequest)
 
-[EXPERIMENTAL] CreateTaskDefinition: Create a new Task Definition.
+[EXPERIMENTAL] CreateTaskDefinition: Create a new Task Definition
 
 ### Example
 ```csharp
@@ -41,7 +42,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] CreateTaskDefinition: Create a new Task Definition.
+                // [EXPERIMENTAL] CreateTaskDefinition: Create a new Task Definition
                 TaskDefinition result = apiInstance.CreateTaskDefinition(createTaskDefinitionRequest);
                 Debug.WriteLine(result);
             }
@@ -89,7 +90,7 @@ Name | Type | Description  | Notes
 # **DeleteTaskDefinition**
 > DeletedEntityResponse DeleteTaskDefinition (string scope, string code)
 
-[EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition.
+[EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition
 
 ### Example
 ```csharp
@@ -116,7 +117,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition.
+                // [EXPERIMENTAL] DeleteTaskDefinition: Delete a Task Definition
                 DeletedEntityResponse result = apiInstance.DeleteTaskDefinition(scope, code);
                 Debug.WriteLine(result);
             }
@@ -166,7 +167,7 @@ Name | Type | Description  | Notes
 # **GetTaskDefinition**
 > TaskDefinition GetTaskDefinition (string scope, string code, DateTimeOffset? asAt = null)
 
-[EXPERIMENTAL] GetTaskDefinition: Get a Task Definition.
+[EXPERIMENTAL] GetTaskDefinition: Get a Task Definition
 
 ### Example
 ```csharp
@@ -190,11 +191,11 @@ namespace Example
             var apiInstance = new TaskDefinitionsApi(config);
             var scope = scope_example;  // string | The scope that identifies a Task Definition
             var code = code_example;  // string | The code that identifies a Task Definition
-            var asAt = 2013-10-20T19:20:30+01:00;  // DateTimeOffset? | AsAt time to retrieve stated Task Definition. Default to current time if not provided. (optional) 
+            var asAt = 2013-10-20T19:20:30+01:00;  // DateTimeOffset? | AsAt time to retrieve stated Task Definition. Defaults to current time if not provided. (optional) 
 
             try
             {
-                // [EXPERIMENTAL] GetTaskDefinition: Get a Task Definition.
+                // [EXPERIMENTAL] GetTaskDefinition: Get a Task Definition
                 TaskDefinition result = apiInstance.GetTaskDefinition(scope, code, asAt);
                 Debug.WriteLine(result);
             }
@@ -215,7 +216,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **string**| The scope that identifies a Task Definition | 
  **code** | **string**| The code that identifies a Task Definition | 
- **asAt** | **DateTimeOffset?**| AsAt time to retrieve stated Task Definition. Default to current time if not provided. | [optional] 
+ **asAt** | **DateTimeOffset?**| AsAt time to retrieve stated Task Definition. Defaults to current time if not provided. | [optional] 
 
 ### Return type
 
@@ -316,11 +317,90 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
+<a name="listtasksfortaskdefinition"></a>
+# **ListTasksForTaskDefinition**
+> ResourceListOfTask ListTasksForTaskDefinition (string scope, string code, DateTimeOffset? asAt = null)
+
+[EXPERIMENTAL] ListTasksForTaskDefinition: List Tasks for a Task Definition
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using Finbourne.Workflow.Sdk.Api;
+using Finbourne.Workflow.Sdk.Client;
+using Finbourne.Workflow.Sdk.Model;
+
+namespace Example
+{
+    public class ListTasksForTaskDefinitionExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://www.lusid.com/workflow";
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            var apiInstance = new TaskDefinitionsApi(config);
+            var scope = scope_example;  // string | The scope that identifies a Task Definition
+            var code = code_example;  // string | The code that identifies a Task Definition
+            var asAt = 2013-10-20T19:20:30+01:00;  // DateTimeOffset? | AsAt time to retrieve stated Tasks. Defaults to current time if not provided (optional) 
+
+            try
+            {
+                // [EXPERIMENTAL] ListTasksForTaskDefinition: List Tasks for a Task Definition
+                ResourceListOfTask result = apiInstance.ListTasksForTaskDefinition(scope, code, asAt);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TaskDefinitionsApi.ListTasksForTaskDefinition: " + e.Message );
+                Debug.Print("Status Code: "+ e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **scope** | **string**| The scope that identifies a Task Definition | 
+ **code** | **string**| The code that identifies a Task Definition | 
+ **asAt** | **DateTimeOffset?**| AsAt time to retrieve stated Tasks. Defaults to current time if not provided | [optional] 
+
+### Return type
+
+[**ResourceListOfTask**](ResourceListOfTask.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | The details of the input related failure |  -  |
+| **404** | No tasks found for this Task Definition |  -  |
+| **0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
 <a name="updatetaskdefinition"></a>
 # **UpdateTaskDefinition**
 > TaskDefinition UpdateTaskDefinition (string scope, string code, UpdateTaskDefinitionRequest updateTaskDefinitionRequest)
 
-[EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition.
+[EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition
 
 ### Example
 ```csharp
@@ -348,7 +428,7 @@ namespace Example
 
             try
             {
-                // [EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition.
+                // [EXPERIMENTAL] UpdateTaskDefinition: Update an existing Task Definition
                 TaskDefinition result = apiInstance.UpdateTaskDefinition(scope, code, updateTaskDefinitionRequest);
                 Debug.WriteLine(result);
             }
