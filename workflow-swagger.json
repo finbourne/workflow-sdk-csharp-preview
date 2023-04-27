@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.233",
+    "version": "0.1.237",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -563,8 +563,9 @@
             "in": "query",
             "description": "The name of the Trigger to invoke",
             "schema": {
-              "maxLength": 150,
-              "minLength": 5,
+              "maxLength": 1024,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
               "type": "string"
             }
           }
@@ -745,8 +746,9 @@
             "in": "query",
             "description": "",
             "schema": {
-              "maxLength": 150,
-              "minLength": 5,
+              "maxLength": 1024,
+              "minLength": 1,
+              "pattern": "^[a-zA-Z0-9\\-_]+$",
               "type": "string"
             }
           }
