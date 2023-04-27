@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateTask**](TasksApi.md#createtask) | **POST** /api/tasks | [EXPERIMENTAL] CreateTask: Create a new Task
 [**DeleteTask**](TasksApi.md#deletetask) | **DELETE** /api/tasks/{id} | [EXPERIMENTAL] DeleteTask: Delete a Task
 [**GetTask**](TasksApi.md#gettask) | **GET** /api/tasks/{id} | [EXPERIMENTAL] GetTask: Get a Task
-[**UpdateTask**](TasksApi.md#updatetask) | **POST** /api/tasks/{id} | [EXPERIMENTAL] UpdateTask: Update a Task
+[**UpdateTask**](TasksApi.md#updatetask) | **PUT** /api/tasks/{id} | [EXPERIMENTAL] UpdateTask: Update a Task
 
 
 <a name="createtask"></a>
@@ -240,7 +240,7 @@ Name | Type | Description  | Notes
 
 <a name="updatetask"></a>
 # **UpdateTask**
-> UpdateTaskResponse UpdateTask (string id, string trigger = null, UpdateTaskRequest updateTaskRequest = null)
+> Task UpdateTask (string id, string trigger = null, UpdateTaskRequest updateTaskRequest = null)
 
 [EXPERIMENTAL] UpdateTask: Update a Task
 
@@ -271,7 +271,7 @@ namespace Example
             try
             {
                 // [EXPERIMENTAL] UpdateTask: Update a Task
-                UpdateTaskResponse result = apiInstance.UpdateTask(id, trigger, updateTaskRequest);
+                Task result = apiInstance.UpdateTask(id, trigger, updateTaskRequest);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -295,7 +295,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UpdateTaskResponse**](UpdateTaskResponse.md)
+[**Task**](Task.md)
 
 ### Authorization
 

@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.231",
+    "version": "0.1.232",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -576,25 +576,25 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateTaskRequest"
               },
-              "example": {"taskDefinitionId":{"scope":"A1-Scope","code":"A1-Code"},"correlationIds":["correlation-id"],"fields":[{"name":"clientId","value":"zzz123"}]}
+              "example": {"taskDefinitionId":{"scope":"A1","code":"ZZZ"},"correlationIds":["correlation-id"],"fields":[{"name":"clientId","value":"zzz123"},{"name":"assignee"},{"name":"resolutionDetail","value":""}]}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateTaskRequest"
               },
-              "example": {"taskDefinitionId":{"scope":"A1-Scope","code":"A1-Code"},"correlationIds":["correlation-id"],"fields":[{"name":"clientId","value":"zzz123"}]}
+              "example": {"taskDefinitionId":{"scope":"A1","code":"ZZZ"},"correlationIds":["correlation-id"],"fields":[{"name":"clientId","value":"zzz123"},{"name":"assignee"},{"name":"resolutionDetail","value":""}]}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateTaskRequest"
               },
-              "example": {"taskDefinitionId":{"scope":"A1-Scope","code":"A1-Code"},"correlationIds":["correlation-id"],"fields":[{"name":"clientId","value":"zzz123"}]}
+              "example": {"taskDefinitionId":{"scope":"A1","code":"ZZZ"},"correlationIds":["correlation-id"],"fields":[{"name":"clientId","value":"zzz123"},{"name":"assignee"},{"name":"resolutionDetail","value":""}]}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateTaskRequest"
               },
-              "example": {"taskDefinitionId":{"scope":"A1-Scope","code":"A1-Code"},"correlationIds":["correlation-id"],"fields":[{"name":"clientId","value":"zzz123"}]}
+              "example": {"taskDefinitionId":{"scope":"A1","code":"ZZZ"},"correlationIds":["correlation-id"],"fields":[{"name":"clientId","value":"zzz123"},{"name":"assignee"},{"name":"resolutionDetail","value":""}]}
             }
           },
           "required": true
@@ -607,7 +607,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/Task"
                 },
-                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","correlationIds":["correlation-id"],"taskDefinitionId":{"scope":"A1-Scope","code":"A1-Code"},"state":"foo","terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
+                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","correlationIds":["correlation-id"],"taskDefinitionId":{"scope":"A1","code":"ZZZ"},"state":"foo","terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
               }
             }
           },
@@ -679,7 +679,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/Task"
                 },
-                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","correlationIds":["correlation-id"],"taskDefinitionId":{"scope":"A1-Scope","code":"A1-Code"},"state":"foo","terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
+                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","correlationIds":["correlation-id"],"taskDefinitionId":{"scope":"A1","code":"ZZZ"},"state":"foo","terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
               }
             }
           },
@@ -721,7 +721,7 @@
         ],
         "x-fbn-apistatus": "Experimental"
       },
-      "post": {
+      "put": {
         "tags": [
           "Tasks"
         ],
@@ -758,25 +758,25 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateTaskRequest"
               },
-              "example": {"fields":[{"name":"test","value":"foo"}]}
+              "example": {"fields":[{"name":"clientId","value":"zzz123"},{"name":"assignee","value":"bob"},{"name":"resolutionDetail","value":""}]}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateTaskRequest"
               },
-              "example": {"fields":[{"name":"test","value":"foo"}]}
+              "example": {"fields":[{"name":"clientId","value":"zzz123"},{"name":"assignee","value":"bob"},{"name":"resolutionDetail","value":""}]}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateTaskRequest"
               },
-              "example": {"fields":[{"name":"test","value":"foo"}]}
+              "example": {"fields":[{"name":"clientId","value":"zzz123"},{"name":"assignee","value":"bob"},{"name":"resolutionDetail","value":""}]}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateTaskRequest"
               },
-              "example": {"fields":[{"name":"test","value":"foo"}]}
+              "example": {"fields":[{"name":"clientId","value":"zzz123"},{"name":"assignee","value":"bob"},{"name":"resolutionDetail","value":""}]}
             }
           }
         },
@@ -786,9 +786,9 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/UpdateTaskResponse"
+                  "$ref": "#/components/schemas/Task"
                 },
-                "example": {"wasSuccessful":true,"asAt":"0001-01-01T00:00:00.0000000+00:00","message":"foo"}
+                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","correlationIds":["correlation-id"],"taskDefinitionId":{"scope":"A1","code":"ZZZ"},"state":"foo","terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
               }
             }
           },
@@ -1627,13 +1627,11 @@
         "properties": {
           "name": {
             "type": "string",
-            "description": "The name of this Field",
-            "nullable": true
+            "description": "The name of this Field"
           },
           "type": {
             "type": "string",
-            "description": "The value type for the field. Available values are: \"String\", \"Decimal\", \"DateTime\", \"Boolean\")",
-            "nullable": true
+            "description": "The value type for the field. Available values are: \"String\", \"Decimal\", \"DateTime\", \"Boolean\")"
           }
         },
         "additionalProperties": false,
@@ -1779,6 +1777,14 @@
       "UpdateTaskRequest": {
         "type": "object",
         "properties": {
+          "correlationIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "A set of guid identifiers that allow correlation across the application tier",
+            "nullable": true
+          },
           "fields": {
             "type": "array",
             "items": {
@@ -1790,28 +1796,6 @@
         },
         "additionalProperties": false,
         "description": "A request to update a Task"
-      },
-      "UpdateTaskResponse": {
-        "type": "object",
-        "properties": {
-          "wasSuccessful": {
-            "type": "boolean",
-            "description": "A flag indicating success"
-          },
-          "asAt": {
-            "type": "string",
-            "description": "If successful, the AsAt time",
-            "format": "date-time",
-            "nullable": true
-          },
-          "message": {
-            "type": "string",
-            "description": "Any messaging",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false,
-        "description": "Encapsulates what happened"
       },
       "Version": {
         "type": "object",
