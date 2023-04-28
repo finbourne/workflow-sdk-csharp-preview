@@ -5,7 +5,7 @@ A Task Definition/Task has a given set of States
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Name** | **string** | The Name of this State | [optional] 
+**Name** | **string** | The Name of this State | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

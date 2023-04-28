@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.239",
+    "version": "0.1.240",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1114,15 +1114,21 @@
   "components": {
     "schemas": {
       "CreateTaskDefinitionRequest": {
+        "required": [
+          "displayName",
+          "id",
+          "initialState",
+          "states"
+        ],
         "type": "object",
         "properties": {
           "id": {
             "$ref": "#/components/schemas/ResourceId"
           },
           "displayName": {
+            "minLength": 1,
             "type": "string",
-            "description": "Human readable name",
-            "nullable": true
+            "description": "Human readable name"
           },
           "description": {
             "type": "string",
@@ -1130,12 +1136,12 @@
             "nullable": true
           },
           "states": {
+            "minItems": 1,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TaskStateDefinition"
             },
-            "description": "The states this Task Definition operates over",
-            "nullable": true
+            "description": "The states this Task Definition operates over"
           },
           "fieldSchema": {
             "type": "array",
@@ -1264,6 +1270,9 @@
         "additionalProperties": false
       },
       "InitialState": {
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -1271,8 +1280,7 @@
             "minLength": 1,
             "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
-            "description": "The Initial State of the Task",
-            "nullable": true
+            "description": "The Initial State of the Task"
           },
           "requiredFields": {
             "type": "array",
@@ -1565,6 +1573,12 @@
         "description": "Defines a Task created based on a Task Definition"
       },
       "TaskDefinition": {
+        "required": [
+          "displayName",
+          "id",
+          "initialState",
+          "states"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -1574,9 +1588,9 @@
             "$ref": "#/components/schemas/Version"
           },
           "displayName": {
+            "minLength": 1,
             "type": "string",
-            "description": "Human readable name",
-            "nullable": true
+            "description": "Human readable name"
           },
           "description": {
             "type": "string",
@@ -1584,12 +1598,12 @@
             "nullable": true
           },
           "states": {
+            "minItems": 1,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TaskStateDefinition"
             },
-            "description": "The states this Task Definition operates over",
-            "nullable": true
+            "description": "The states this Task Definition operates over"
           },
           "fieldSchema": {
             "type": "array",
@@ -1635,6 +1649,10 @@
         "description": "The version of the Task Definition used by this Task"
       },
       "TaskFieldDefinition": {
+        "required": [
+          "name",
+          "type"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -1645,6 +1663,7 @@
             "description": "The name of this Field"
           },
           "type": {
+            "minLength": 1,
             "type": "string",
             "description": "The value type for the field. Available values are: \"String\", \"Decimal\", \"DateTime\", \"Boolean\")"
           }
@@ -1673,6 +1692,9 @@
         "description": "Defines a Field on a Task"
       },
       "TaskStateDefinition": {
+        "required": [
+          "name"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -1680,30 +1702,34 @@
             "minLength": 1,
             "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
-            "description": "The Name of this State",
-            "nullable": true
+            "description": "The Name of this State"
           }
         },
         "additionalProperties": false,
         "description": "A Task Definition/Task has a given set of States"
       },
       "TaskTransitionDefinition": {
+        "required": [
+          "fromState",
+          "toState",
+          "trigger"
+        ],
         "type": "object",
         "properties": {
           "fromState": {
+            "minLength": 1,
             "type": "string",
-            "description": "The State this Transition if coming From",
-            "nullable": true
+            "description": "The State this Transition if coming From"
           },
           "toState": {
+            "minLength": 1,
             "type": "string",
-            "description": "The State this Transition is going To",
-            "nullable": true
+            "description": "The State this Transition is going To"
           },
           "trigger": {
+            "minLength": 1,
             "type": "string",
-            "description": "The Trigger for this Transition",
-            "nullable": true
+            "description": "The Trigger for this Transition"
           },
           "guard": {
             "type": "string",
@@ -1715,6 +1741,10 @@
         "description": "Defines a State change"
       },
       "TransitionTriggerDefinition": {
+        "required": [
+          "name",
+          "trigger"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -1722,8 +1752,7 @@
             "minLength": 1,
             "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
-            "description": "The key/Name of this Trigger",
-            "nullable": true
+            "description": "The key/Name of this Trigger"
           },
           "trigger": {
             "$ref": "#/components/schemas/TriggerSchema"
@@ -1733,24 +1762,32 @@
         "description": "State changes happen in response to Triggers"
       },
       "TriggerSchema": {
+        "required": [
+          "type"
+        ],
         "type": "object",
         "properties": {
           "type": {
+            "minLength": 1,
             "type": "string",
-            "description": "The type of Trigger",
-            "nullable": true
+            "description": "The type of Trigger"
           }
         },
         "additionalProperties": false,
         "description": "Triggers can operate in response to different stimuli"
       },
       "UpdateTaskDefinitionRequest": {
+        "required": [
+          "displayName",
+          "initialState",
+          "states"
+        ],
         "type": "object",
         "properties": {
           "displayName": {
+            "minLength": 1,
             "type": "string",
-            "description": "Human readable name",
-            "nullable": true
+            "description": "Human readable name"
           },
           "description": {
             "type": "string",
@@ -1758,12 +1795,12 @@
             "nullable": true
           },
           "states": {
+            "minItems": 1,
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/TaskStateDefinition"
             },
-            "description": "The states this Task Definition operates over",
-            "nullable": true
+            "description": "The states this Task Definition operates over"
           },
           "fieldSchema": {
             "type": "array",

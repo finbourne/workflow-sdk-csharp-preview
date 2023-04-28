@@ -5,12 +5,12 @@ Contains required info to create a new Task Definition
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Id** | [**ResourceId**](ResourceId.md) |  | [optional] 
-**DisplayName** | **string** | Human readable name | [optional] 
+**Id** | [**ResourceId**](ResourceId.md) |  | 
+**DisplayName** | **string** | Human readable name | 
 **Description** | **string** | Human readable description | [optional] 
-**States** | [**List&lt;TaskStateDefinition&gt;**](TaskStateDefinition.md) | The states this Task Definition operates over | [optional] 
+**States** | [**List&lt;TaskStateDefinition&gt;**](TaskStateDefinition.md) | The states this Task Definition operates over | 
 **FieldSchema** | [**List&lt;TaskFieldDefinition&gt;**](TaskFieldDefinition.md) | Defines the fields associated with this Task | [optional] 
-**InitialState** | [**InitialState**](InitialState.md) |  | [optional] 
+**InitialState** | [**InitialState**](InitialState.md) |  | 
 **Triggers** | [**List&lt;TransitionTriggerDefinition&gt;**](TransitionTriggerDefinition.md) | Triggers | [optional] 
 **Transitions** | [**List&lt;TaskTransitionDefinition&gt;**](TaskTransitionDefinition.md) | Transitions | [optional] 
 
