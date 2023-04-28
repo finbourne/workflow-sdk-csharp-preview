@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>0.1.238</Version>
+    <Version>0.1.239</Version>
     <PackageId>Finbourne.Workflow.Sdk.Preview</PackageId>
     <Authors>engineering@finbourne.com</Authors>
     <Company>FINBOURNE Technology Limited</Company>

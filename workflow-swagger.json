@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.238",
+    "version": "0.1.239",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1267,6 +1267,9 @@
         "type": "object",
         "properties": {
           "name": {
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
             "description": "The Initial State of the Task",
             "nullable": true
@@ -1635,6 +1638,9 @@
         "type": "object",
         "properties": {
           "name": {
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
             "description": "The name of this Field"
           },
@@ -1653,6 +1659,7 @@
         "type": "object",
         "properties": {
           "name": {
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
             "description": "The name of this Field"
           },
@@ -1669,6 +1676,9 @@
         "type": "object",
         "properties": {
           "name": {
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
             "description": "The Name of this State",
             "nullable": true
@@ -1708,6 +1718,9 @@
         "type": "object",
         "properties": {
           "name": {
+            "maxLength": 1024,
+            "minLength": 1,
+            "pattern": "^[a-zA-Z0-9\\-_]+$",
             "type": "string",
             "description": "The key/Name of this Trigger",
             "nullable": true
