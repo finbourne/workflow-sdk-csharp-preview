@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.242",
+    "version": "0.1.243",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -117,6 +117,15 @@
               "type": "string",
               "default": "default"
             }
+          },
+          {
+            "name": "asAt",
+            "in": "query",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "x-nullable": true
           }
         ],
         "responses": {

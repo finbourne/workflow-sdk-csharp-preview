@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 <a name="listtaskdefinitions"></a>
 # **ListTaskDefinitions**
-> ResourceListOfTaskDefinition ListTaskDefinitions (string scope)
+> ResourceListOfTaskDefinition ListTaskDefinitions (string scope, DateTimeOffset? asAt = null)
 
 [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
 
@@ -269,11 +269,12 @@ namespace Example
 
             var apiInstance = new TaskDefinitionsApi(config);
             var scope = scope_example;  // string |  (default to "default")
+            var asAt = 2013-10-20T19:20:30+01:00;  // DateTimeOffset? |  (optional) 
 
             try
             {
                 // [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
-                ResourceListOfTaskDefinition result = apiInstance.ListTaskDefinitions(scope);
+                ResourceListOfTaskDefinition result = apiInstance.ListTaskDefinitions(scope, asAt);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -292,6 +293,7 @@ namespace Example
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **string**|  | [default to &quot;default&quot;]
+ **asAt** | **DateTimeOffset?**|  | [optional] 
 
 ### Return type
 
