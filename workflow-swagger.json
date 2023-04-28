@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.237",
+    "version": "0.1.238",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1503,6 +1503,13 @@
         "additionalProperties": false
       },
       "Task": {
+        "required": [
+          "id",
+          "state",
+          "taskDefinitionId",
+          "taskDefinitionVersion",
+          "terminalState"
+        ],
         "type": "object",
         "properties": {
           "id": {
@@ -1528,9 +1535,9 @@
             "$ref": "#/components/schemas/Version"
           },
           "state": {
+            "minLength": 1,
             "type": "string",
-            "description": "Current State",
-            "nullable": true
+            "description": "Current State"
           },
           "terminalState": {
             "type": "boolean",
