@@ -7,7 +7,7 @@ Method | HTTP request | Description
 [**CreateTask**](TasksApi.md#createtask) | **POST** /api/tasks | [EXPERIMENTAL] CreateTask: Create a new Task
 [**DeleteTask**](TasksApi.md#deletetask) | **DELETE** /api/tasks/{id} | [EXPERIMENTAL] DeleteTask: Delete a Task
 [**GetTask**](TasksApi.md#gettask) | **GET** /api/tasks/{id} | [EXPERIMENTAL] GetTask: Get a Task
-[**UpdateTask**](TasksApi.md#updatetask) | **PUT** /api/tasks/{id} | [EXPERIMENTAL] UpdateTask: Update a Task
+[**UpdateTask**](TasksApi.md#updatetask) | **POST** /api/tasks/{id} | [EXPERIMENTAL] UpdateTask: Update a Task
 
 
 <a name="createtask"></a>
