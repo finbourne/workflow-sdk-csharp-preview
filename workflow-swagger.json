@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.254",
+    "version": "0.1.255",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -957,19 +957,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1}}
+                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1},"parameters":[]}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1}}
+                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1},"parameters":[]}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1}}
+                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1},"parameters":[]}
               }
             }
           },
@@ -1064,19 +1064,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1}}
+                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1},"parameters":[]}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1}}
+                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1},"parameters":[]}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1}}
+                "example": {"id":{"scope":"Quotes","code":"QuoteExceptionWorker"},"displayName":"Quote data quality worker","description":"Find erroneous quotes after quotes inserted","workerConfiguration":{"viewName":"Views.QuoteExceptionProvider","type":"LuminesceView"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","asAtVersionNumber":1},"parameters":[]}
               }
             }
           },
@@ -1435,6 +1435,48 @@
           }
         },
         "additionalProperties": false
+      },
+      "Parameter": {
+        "required": [
+          "defaultValue",
+          "displayName",
+          "name",
+          "required"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The type of this Parameter",
+            "nullable": true
+          },
+          "name": {
+            "minLength": 1,
+            "type": "string",
+            "description": "Name"
+          },
+          "displayName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "DisplayName"
+          },
+          "description": {
+            "type": "string",
+            "description": "Description",
+            "nullable": true
+          },
+          "required": {
+            "type": "boolean",
+            "description": "Required or not"
+          },
+          "defaultValue": {
+            "minLength": 1,
+            "type": "string",
+            "description": "DefaultValue"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines a Worker Parameter"
       },
       "ResourceId": {
         "required": [
@@ -1926,6 +1968,14 @@
           },
           "version": {
             "$ref": "#/components/schemas/Version"
+          },
+          "parameters": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Parameter"
+            },
+            "description": "The Parameters this Worker accepts or requires.",
+            "nullable": true
           },
           "links": {
             "type": "array",

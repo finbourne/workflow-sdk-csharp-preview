@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **Description** | **string** | Human readable description | [optional] 
 **WorkerConfiguration** | [**WorkerConfiguration**](WorkerConfiguration.md) |  | 
 **Version** | [**Version**](Version.md) |  | [optional] 
+**Parameters** | [**List&lt;Parameter&gt;**](Parameter.md) | The Parameters this Worker accepts or requires. | [optional] 
 **Links** | [**List&lt;Link&gt;**](Link.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
