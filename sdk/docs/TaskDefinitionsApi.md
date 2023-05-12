@@ -244,7 +244,7 @@ Name | Type | Description  | Notes
 
 <a name="listtaskdefinitions"></a>
 # **ListTaskDefinitions**
-> ResourceListOfTaskDefinition ListTaskDefinitions (string scope, DateTimeOffset? asAt = null)
+> PagedResourceListOfTaskDefinition ListTaskDefinitions (string scope, DateTimeOffset? asAt = null, int? limit = null, string page = null)
 
 [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
 
@@ -270,11 +270,13 @@ namespace Example
             var apiInstance = new TaskDefinitionsApi(config);
             var scope = scope_example;  // string |  (default to "default")
             var asAt = 2013-10-20T19:20:30+01:00;  // DateTimeOffset? |  (optional) 
+            var limit = 56;  // int? |  (optional)  (default to 10)
+            var page = page_example;  // string |  (optional) 
 
             try
             {
                 // [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
-                ResourceListOfTaskDefinition result = apiInstance.ListTaskDefinitions(scope, asAt);
+                PagedResourceListOfTaskDefinition result = apiInstance.ListTaskDefinitions(scope, asAt, limit, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -294,10 +296,12 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **scope** | **string**|  | [default to &quot;default&quot;]
  **asAt** | **DateTimeOffset?**|  | [optional] 
+ **limit** | **int?**|  | [optional] [default to 10]
+ **page** | **string**|  | [optional] 
 
 ### Return type
 
-[**ResourceListOfTaskDefinition**](ResourceListOfTaskDefinition.md)
+[**PagedResourceListOfTaskDefinition**](PagedResourceListOfTaskDefinition.md)
 
 ### Authorization
 
