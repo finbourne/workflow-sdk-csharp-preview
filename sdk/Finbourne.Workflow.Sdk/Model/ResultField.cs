@@ -27,59 +27,60 @@ using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
-    /// Request to Create a new worker
+    /// Defines a Worker Result Field
     /// </summary>
-    [DataContract(Name = "CreateWorkerRequest")]
-    public partial class CreateWorkerRequest : IEquatable<CreateWorkerRequest>
+    [DataContract(Name = "ResultField")]
+    public partial class ResultField : IEquatable<ResultField>
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateWorkerRequest" /> class.
+        /// Initializes a new instance of the <see cref="ResultField" /> class.
         /// </summary>
         [JsonConstructorAttribute]
-        protected CreateWorkerRequest() { }
+        protected ResultField() { }
         /// <summary>
-        /// Initializes a new instance of the <see cref="CreateWorkerRequest" /> class.
+        /// Initializes a new instance of the <see cref="ResultField" /> class.
         /// </summary>
-        /// <param name="id">id (required).</param>
-        /// <param name="displayName">Human readable name (required).</param>
-        /// <param name="description">Human readable description.</param>
-        /// <param name="workerConfiguration">workerConfiguration (required).</param>
-        public CreateWorkerRequest(ResourceId id = default(ResourceId), string displayName = default(string), string description = default(string), WorkerConfiguration workerConfiguration = default(WorkerConfiguration))
+        /// <param name="name">Name (required).</param>
+        /// <param name="type">The type of this Parameter.</param>
+        /// <param name="displayName">DisplayName (required).</param>
+        /// <param name="description">Description.</param>
+        public ResultField(string name = default(string), string type = default(string), string displayName = default(string), string description = default(string))
         {
-            // to ensure "id" is required (not null)
-            this.Id = id ?? throw new ArgumentNullException("id is a required property for CreateWorkerRequest and cannot be null");
+            // to ensure "name" is required (not null)
+            this.Name = name ?? throw new ArgumentNullException("name is a required property for ResultField and cannot be null");
             // to ensure "displayName" is required (not null)
-            this.DisplayName = displayName ?? throw new ArgumentNullException("displayName is a required property for CreateWorkerRequest and cannot be null");
-            // to ensure "workerConfiguration" is required (not null)
-            this.WorkerConfiguration = workerConfiguration ?? throw new ArgumentNullException("workerConfiguration is a required property for CreateWorkerRequest and cannot be null");
+            this.DisplayName = displayName ?? throw new ArgumentNullException("displayName is a required property for ResultField and cannot be null");
+            this.Type = type;
             this.Description = description;
         }
 
         /// <summary>
-        /// Gets or Sets Id
+        /// Name
         /// </summary>
-        [DataMember(Name = "id", IsRequired = true, EmitDefaultValue = false)]
-        public ResourceId Id { get; set; }
+        /// <value>Name</value>
+        [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = false)]
+        public string Name { get; set; }
 
         /// <summary>
-        /// Human readable name
+        /// The type of this Parameter
         /// </summary>
-        /// <value>Human readable name</value>
+        /// <value>The type of this Parameter</value>
+        [DataMember(Name = "type", EmitDefaultValue = true)]
+        public string Type { get; set; }
+
+        /// <summary>
+        /// DisplayName
+        /// </summary>
+        /// <value>DisplayName</value>
         [DataMember(Name = "displayName", IsRequired = true, EmitDefaultValue = false)]
         public string DisplayName { get; set; }
 
         /// <summary>
-        /// Human readable description
+        /// Description
         /// </summary>
-        /// <value>Human readable description</value>
+        /// <value>Description</value>
         [DataMember(Name = "description", EmitDefaultValue = true)]
         public string Description { get; set; }
-
-        /// <summary>
-        /// Gets or Sets WorkerConfiguration
-        /// </summary>
-        [DataMember(Name = "workerConfiguration", IsRequired = true, EmitDefaultValue = false)]
-        public WorkerConfiguration WorkerConfiguration { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -88,11 +89,11 @@ namespace Finbourne.Workflow.Sdk.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class CreateWorkerRequest {\n");
-            sb.Append("  Id: ").Append(Id).Append("\n");
+            sb.Append("class ResultField {\n");
+            sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  DisplayName: ").Append(DisplayName).Append("\n");
             sb.Append("  Description: ").Append(Description).Append("\n");
-            sb.Append("  WorkerConfiguration: ").Append(WorkerConfiguration).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -113,24 +114,29 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as CreateWorkerRequest);
+            return this.Equals(input as ResultField);
         }
 
         /// <summary>
-        /// Returns true if CreateWorkerRequest instances are equal
+        /// Returns true if ResultField instances are equal
         /// </summary>
-        /// <param name="input">Instance of CreateWorkerRequest to be compared</param>
+        /// <param name="input">Instance of ResultField to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(CreateWorkerRequest input)
+        public bool Equals(ResultField input)
         {
             if (input == null)
                 return false;
 
             return 
                 (
-                    this.Id == input.Id ||
-                    (this.Id != null &&
-                    this.Id.Equals(input.Id))
+                    this.Name == input.Name ||
+                    (this.Name != null &&
+                    this.Name.Equals(input.Name))
+                ) && 
+                (
+                    this.Type == input.Type ||
+                    (this.Type != null &&
+                    this.Type.Equals(input.Type))
                 ) && 
                 (
                     this.DisplayName == input.DisplayName ||
@@ -141,11 +147,6 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.Description == input.Description ||
                     (this.Description != null &&
                     this.Description.Equals(input.Description))
-                ) && 
-                (
-                    this.WorkerConfiguration == input.WorkerConfiguration ||
-                    (this.WorkerConfiguration != null &&
-                    this.WorkerConfiguration.Equals(input.WorkerConfiguration))
                 );
         }
 
@@ -158,14 +159,14 @@ namespace Finbourne.Workflow.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Id != null)
-                    hashCode = hashCode * 59 + this.Id.GetHashCode();
+                if (this.Name != null)
+                    hashCode = hashCode * 59 + this.Name.GetHashCode();
+                if (this.Type != null)
+                    hashCode = hashCode * 59 + this.Type.GetHashCode();
                 if (this.DisplayName != null)
                     hashCode = hashCode * 59 + this.DisplayName.GetHashCode();
                 if (this.Description != null)
                     hashCode = hashCode * 59 + this.Description.GetHashCode();
-                if (this.WorkerConfiguration != null)
-                    hashCode = hashCode * 59 + this.WorkerConfiguration.GetHashCode();
                 return hashCode;
             }
         }
