@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **ToState** | **string** | The State this Transition is going To | 
 **Trigger** | **string** | The Trigger for this Transition | 
 **Guard** | **string** | The Guard for this Transition, if any | [optional] 
+**Action** | **string** | The Action to invoke on successful Transition | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

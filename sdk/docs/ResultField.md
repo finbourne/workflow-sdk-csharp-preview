@@ -6,8 +6,8 @@ Defines a Worker Result Field
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Name** | **string** | Name | 
-**Type** | **string** | The type of this Parameter | [optional] 
-**DisplayName** | **string** | DisplayName | 
+**Type** | **string** | The type of this Parameter | 
+**DisplayName** | **string** | DisplayName | [optional] 
 **Description** | **string** | Description | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

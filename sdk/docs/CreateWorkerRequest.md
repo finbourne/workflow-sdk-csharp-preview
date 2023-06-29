@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Id** | [**ResourceId**](ResourceId.md) |  | 
 **DisplayName** | **string** | Human readable name | 
 **Description** | **string** | Human readable description | [optional] 
-**WorkerConfiguration** | [**WorkerConfiguration**](WorkerConfiguration.md) |  | 
+**WorkerConfiguration** | [**CreateWorkerRequestWorkerConfiguration**](CreateWorkerRequestWorkerConfiguration.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

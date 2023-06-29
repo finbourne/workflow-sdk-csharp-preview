@@ -1,7 +1,3 @@
-*.sln
-**/*.csproj
-**/*.Sdk.Tests/**
+*.Test/**
+api/**
 appveyor.yml
-.gitignore
-**/.gitignore
-

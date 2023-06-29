@@ -5,12 +5,12 @@ Defines a Worker Parameter
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | The type of this Parameter | [optional] 
+**Type** | **string** | The type of this Parameter | 
 **Name** | **string** | Name | 
-**DisplayName** | **string** | DisplayName | 
+**DisplayName** | **string** | DisplayName | [optional] 
 **Description** | **string** | Description | [optional] 
 **Required** | **bool** | Required or not | 
-**DefaultValue** | **string** | DefaultValue | 
+**DefaultValue** | **string** | DefaultValue | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

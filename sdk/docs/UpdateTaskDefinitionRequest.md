@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **InitialState** | [**InitialState**](InitialState.md) |  | 
 **Triggers** | [**List&lt;TransitionTriggerDefinition&gt;**](TransitionTriggerDefinition.md) | Triggers | [optional] 
 **Transitions** | [**List&lt;TaskTransitionDefinition&gt;**](TaskTransitionDefinition.md) | Transitions | [optional] 
+**Actions** | [**List&lt;ActionDefinition&gt;**](ActionDefinition.md) | Actions | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
