@@ -40,12 +40,12 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="id">id (required).</param>
         /// <param name="displayName">Human readable name (required).</param>
         /// <param name="description">Human readable description.</param>
-        /// <param name="workerConfiguration">workerConfiguration (required).</param>
+        /// <param name="workerConfiguration">Information about how the worker should be executed (required).</param>
         /// <param name="version">version.</param>
         /// <param name="parameters">The Parameters this Worker accepts or requires..</param>
         /// <param name="resultFields">The Fields that the Worker results will come back with..</param>
         /// <param name="links">links.</param>
-        public Worker(ResourceId id = default(ResourceId), string displayName = default(string), string description = default(string), CreateWorkerRequestWorkerConfiguration workerConfiguration = default(CreateWorkerRequestWorkerConfiguration), ModelVersion version = default(ModelVersion), List<Parameter> parameters = default(List<Parameter>), List<ResultField> resultFields = default(List<ResultField>), List<Link> links = default(List<Link>))
+        public Worker(ResourceId id = default(ResourceId), string displayName = default(string), string description = default(string), Object workerConfiguration = default(Object), ModelVersion version = default(ModelVersion), List<Parameter> parameters = default(List<Parameter>), List<ResultField> resultFields = default(List<ResultField>), List<Link> links = default(List<Link>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -93,10 +93,11 @@ namespace Finbourne.Workflow.Sdk.Model
         public string Description { get; set; }
 
         /// <summary>
-        /// Gets or Sets WorkerConfiguration
+        /// Information about how the worker should be executed
         /// </summary>
+        /// <value>Information about how the worker should be executed</value>
         [DataMember(Name = "workerConfiguration", IsRequired = true, EmitDefaultValue = true)]
-        public CreateWorkerRequestWorkerConfiguration WorkerConfiguration { get; set; }
+        public Object WorkerConfiguration { get; set; }
 
         /// <summary>
         /// Gets or Sets _Version

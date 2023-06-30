@@ -34,25 +34,25 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateTaskDefinitionRequest"
               },
-              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}]}
+              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}]}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateTaskDefinitionRequest"
               },
-              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}]}
+              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}]}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateTaskDefinitionRequest"
               },
-              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}]}
+              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}]}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateTaskDefinitionRequest"
               },
-              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}]}
+              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}]}
             }
           },
           "required": true
@@ -65,7 +65,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/TaskDefinition"
                 },
-                "example": {"id":{"scope":"A1","code":"ZZZ"},"version":{"asAtCreated":"2022-01-01T01:02:03.0000000+00:00","userIdCreated":"User-1","requestIdCreated":"RequestId-1","asAtModified":"2022-01-01T01:02:03.0000000+00:00","userIdModified":"User-1","requestIdModified":"RequestId-1","asAtVersionNumber":1},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}]}
+                "example": {"id":{"scope":"A1","code":"ZZZ"},"version":{"asAtCreated":"2022-01-01T01:02:03.0000000+00:00","userIdCreated":"User-1","requestIdCreated":"RequestId-1","asAtModified":"2022-01-01T01:02:03.0000000+00:00","userIdModified":"User-1","requestIdModified":"RequestId-1","asAtVersionNumber":1},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}]}
               }
             }
           },
@@ -145,7 +145,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/PagedResourceListOfTaskDefinition"
                 },
-                "example": {"values":[{"id":{"scope":"A1","code":"ZZZ"},"version":{"asAtCreated":"2022-01-01T01:02:03.0000000+00:00","userIdCreated":"User-1","requestIdCreated":"RequestId-1","asAtModified":"2022-01-01T01:02:03.0000000+00:00","userIdModified":"User-1","requestIdModified":"RequestId-1","asAtVersionNumber":1},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}]}],"links":[]}
+                "example": {"values":[{"id":{"scope":"A1","code":"ZZZ"},"version":{"asAtCreated":"2022-01-01T01:02:03.0000000+00:00","userIdCreated":"User-1","requestIdCreated":"RequestId-1","asAtModified":"2022-01-01T01:02:03.0000000+00:00","userIdModified":"User-1","requestIdModified":"RequestId-1","asAtVersionNumber":1},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}]}],"links":[]}
               }
             }
           },
@@ -239,7 +239,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/TaskDefinition"
                 },
-                "example": {"id":{"scope":"A1","code":"ZZZ"},"version":{"asAtCreated":"2022-01-01T01:02:03.0000000+00:00","userIdCreated":"User-1","requestIdCreated":"RequestId-1","asAtModified":"2022-01-01T01:02:03.0000000+00:00","userIdModified":"User-1","requestIdModified":"RequestId-1","asAtVersionNumber":1},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}]}
+                "example": {"id":{"scope":"A1","code":"ZZZ"},"version":{"asAtCreated":"2022-01-01T01:02:03.0000000+00:00","userIdCreated":"User-1","requestIdCreated":"RequestId-1","asAtModified":"2022-01-01T01:02:03.0000000+00:00","userIdModified":"User-1","requestIdModified":"RequestId-1","asAtVersionNumber":1},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}]}
               }
             }
           },
@@ -320,25 +320,25 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateTaskDefinitionRequest"
               },
-              "example": {"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}]}
+              "example": {"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}]}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateTaskDefinitionRequest"
               },
-              "example": {"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}]}
+              "example": {"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}]}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateTaskDefinitionRequest"
               },
-              "example": {"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}]}
+              "example": {"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}]}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateTaskDefinitionRequest"
               },
-              "example": {"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}]}
+              "example": {"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}]}
             }
           },
           "required": true
@@ -351,7 +351,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/TaskDefinition"
                 },
-                "example": {"id":{"scope":"A1","code":"ZZZ"},"version":{"asAtCreated":"2022-01-01T01:02:03.0000000+00:00","userIdCreated":"User-1","requestIdCreated":"RequestId-1","asAtModified":"2022-01-01T01:02:03.0000000+00:00","userIdModified":"User-1","requestIdModified":"RequestId-1","asAtVersionNumber":1},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"actions":[{"name":"health-check","actionDetails":{"workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}],"type":"RunWorker"}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}]}
+                "example": {"id":{"scope":"A1","code":"ZZZ"},"version":{"asAtCreated":"2022-01-01T01:02:03.0000000+00:00","userIdCreated":"User-1","requestIdCreated":"RequestId-1","asAtModified":"2022-01-01T01:02:03.0000000+00:00","userIdModified":"User-1","requestIdModified":"RequestId-1","asAtVersionNumber":1},"displayName":"An example TaskDefinition","description":"Test","states":[{"name":"Submitted"},{"name":"InProgress"},{"name":"SendingSurvey"},{"name":"Done"},{"name":"SurveyNotSent"},{"name":"NotDone"}],"fieldSchema":[{"name":"clientId","type":"String"},{"name":"assignee","type":"String"},{"name":"resolutionDetail","type":"String"}],"initialState":{"name":"Submitted","requiredFields":["clientId"]},"triggers":[{"name":"start","trigger":{"type":"External"}},{"name":"cancel","trigger":{"type":"External"}},{"name":"resolve","trigger":{"type":"External"}},{"name":"timeout","trigger":{"type":"External"}},{"name":"success","trigger":{"type":"External"}},{"name":"failure","trigger":{"type":"External"}}],"actions":[{"name":"health-check","actionDetails":{"type":"RunWorker","workerId":{"scope":"Health","code":"HealthCheckWorker"},"workerAsAt":"2022-01-01T01:02:03.0000000+00:00","workerParameters":{},"workerStatusTriggers":{},"childTaskConfigurations":[{"taskDefinitionId":{"scope":"AAA","code":"BBB"},"initialTrigger":"test-trigger","childTaskFields":{"assignee":{"mapFrom":"foo","setTo":"bar"}}}]}}],"transitions":[{"fromState":"Submitted","toState":"InProgress","trigger":"start","guard":"fields['assignee'] exists AND fields['assignee'] NOT eq ''"},{"fromState":"InProgress","toState":"SendingSurvey","trigger":"resolve","guard":"fields['resolutionDetail'] exists AND fields['resolutionDetail'] NOT eq ''","action":"health-check"},{"fromState":"SendingSurvey","toState":"Done","trigger":"success"},{"fromState":"SendingSurvey","toState":"SurveyNotSent","trigger":"failure"},{"fromState":"SendingSurvey","toState":"NotDone","trigger":"timeout"},{"fromState":"InProgress","toState":"NotDone","trigger":"cancel","guard":"fields['cancellationDetail'] exists AND fields['cancellationDetail'] NOT eq ''"}]}
               }
             }
           },
@@ -1024,25 +1024,25 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateWorkerRequest"
               },
-              "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282","type":"HealthCheck"}}
+              "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"type":"HealthCheck","url":"http://localhost.lusid.com:8282"}}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateWorkerRequest"
               },
-              "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282","type":"HealthCheck"}}
+              "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"type":"HealthCheck","url":"http://localhost.lusid.com:8282"}}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateWorkerRequest"
               },
-              "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282","type":"HealthCheck"}}
+              "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"type":"HealthCheck","url":"http://localhost.lusid.com:8282"}}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateWorkerRequest"
               },
-              "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282","type":"HealthCheck"}}
+              "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"type":"HealthCheck","url":"http://localhost.lusid.com:8282"}}
             }
           },
           "required": true
@@ -1055,19 +1055,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282/health","type":"HealthCheck"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
+                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"Type":"HealthCheck","Url":"http://localhost.lusid.com:8282/health"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282/health","type":"HealthCheck"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
+                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"Type":"HealthCheck","Url":"http://localhost.lusid.com:8282/health"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282/health","type":"HealthCheck"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
+                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"Type":"HealthCheck","Url":"http://localhost.lusid.com:8282/health"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
               }
             }
           },
@@ -1157,19 +1157,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/PagedResourceListOfWorker"
                 },
-                "example": {"values":[{"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282/health","type":"HealthCheck"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}],"links":[]}
+                "example": {"values":[{"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"Type":"HealthCheck","Url":"http://localhost.lusid.com:8282/health"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}],"links":[]}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PagedResourceListOfWorker"
                 },
-                "example": {"values":[{"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282/health","type":"HealthCheck"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}],"links":[]}
+                "example": {"values":[{"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"Type":"HealthCheck","Url":"http://localhost.lusid.com:8282/health"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}],"links":[]}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/PagedResourceListOfWorker"
                 },
-                "example": {"values":[{"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282/health","type":"HealthCheck"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}],"links":[]}
+                "example": {"values":[{"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"Type":"HealthCheck","Url":"http://localhost.lusid.com:8282/health"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}],"links":[]}
               }
             }
           },
@@ -1264,19 +1264,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282/health","type":"HealthCheck"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
+                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"Type":"HealthCheck","Url":"http://localhost.lusid.com:8282/health"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282/health","type":"HealthCheck"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
+                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"Type":"HealthCheck","Url":"http://localhost.lusid.com:8282/health"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/Worker"
                 },
-                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"url":"http://localhost.lusid.com:8282/health","type":"HealthCheck"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
+                "example": {"id":{"scope":"Health","code":"HealthCheckWorker"},"displayName":"ASP.Net Health Check worker","description":"Calls /health to check a service is running","workerConfiguration":{"Type":"HealthCheck","Url":"http://localhost.lusid.com:8282/health"},"version":{"asAtCreated":"2023-01-01T12:00:00.0000000+00:00","userIdCreated":"UserId123","requestIdCreated":"RequestId123","asAtModified":"2023-01-01T12:00:00.0000000+00:00","userIdModified":"UserId123","requestIdModified":"RequestId123","asAtVersionNumber":1},"parameters":[],"resultFields":[]}
               }
             }
           },
@@ -1473,18 +1473,7 @@
             "description": "The Name of this Action"
           },
           "actionDetails": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/CreateChildTasksAction"
-              },
-              {
-                "$ref": "#/components/schemas/RunWorkerAction"
-              },
-              {
-                "$ref": "#/components/schemas/TriggerParentTaskAction"
-              }
-            ],
-            "description": "Schema for the Action"
+            "$ref": "#/components/schemas/ActionDetails"
           }
         },
         "additionalProperties": false,
@@ -1495,6 +1484,17 @@
           "type"
         ],
         "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/CreateChildTasksAction"
+          },
+          {
+            "$ref": "#/components/schemas/RunWorkerAction"
+          },
+          {
+            "$ref": "#/components/schemas/TriggerParentTaskAction"
+          }
+        ],
         "properties": {
           "type": {
             "minLength": 1,
@@ -1506,13 +1506,19 @@
         "description": "Abstracts the kinds of Actions available"
       },
       "CreateChildTasksAction": {
-        "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ActionDetails"
-          }
+        "required": [
+          "type"
         ],
+        "type": "object",
         "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "CreateChildTasks"
+            ],
+            "type": "string",
+            "description": "Type name for this Action"
+          },
           "childTaskConfigurations": {
             "type": "array",
             "items": {
@@ -1650,15 +1656,7 @@
             "nullable": true
           },
           "workerConfiguration": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/HealthCheck"
-              },
-              {
-                "$ref": "#/components/schemas/LuminesceView"
-              }
-            ],
-            "description": "Information about how the worker should be executed"
+            "$ref": "#/components/schemas/WorkerConfiguration"
           }
         },
         "additionalProperties": false,
@@ -1722,15 +1720,19 @@
       },
       "HealthCheck": {
         "required": [
+          "type",
           "url"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/WorkerConfiguration"
-          }
-        ],
         "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "HealthCheck"
+            ],
+            "type": "string",
+            "description": "The type of worker"
+          },
           "url": {
             "maxLength": 2048,
             "minLength": 1,
@@ -1794,15 +1796,19 @@
       },
       "LuminesceView": {
         "required": [
-          "name"
+          "name",
+          "type"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/WorkerConfiguration"
-          }
-        ],
         "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "LuminesceView"
+            ],
+            "type": "string",
+            "description": "The type of worker"
+          },
           "name": {
             "maxLength": 512,
             "minLength": 1,
@@ -2082,18 +2088,7 @@
             "description": "Name"
           },
           "value": {
-            "oneOf": [
-              {
-                "type": "string"
-              },
-              {
-                "type": "number"
-              },
-              {
-                "type": "boolean"
-              }
-            ],
-            "description": "Value",
+            "description": "Value which can be a String, Boolean, Decimal or DateTime (ISO 8601)",
             "nullable": true
           }
         },
@@ -2238,15 +2233,19 @@
       },
       "RunWorkerAction": {
         "required": [
+          "type",
           "workerId"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ActionDetails"
-          }
-        ],
         "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "RunWorker"
+            ],
+            "type": "string",
+            "description": "Type name for this Action"
+          },
           "workerId": {
             "$ref": "#/components/schemas/ResourceId"
           },
@@ -2600,15 +2599,19 @@
       },
       "TriggerParentTaskAction": {
         "required": [
-          "trigger"
+          "trigger",
+          "type"
         ],
         "type": "object",
-        "allOf": [
-          {
-            "$ref": "#/components/schemas/ActionDetails"
-          }
-        ],
         "properties": {
+          "type": {
+            "minLength": 1,
+            "enum": [
+              "TriggerParentTask"
+            ],
+            "type": "string",
+            "description": "Type name for this Action"
+          },
           "trigger": {
             "maxLength": 1024,
             "minLength": 1,
@@ -2790,14 +2793,6 @@
             "nullable": true
           },
           "workerConfiguration": {
-            "oneOf": [
-              {
-                "$ref": "#/components/schemas/HealthCheck"
-              },
-              {
-                "$ref": "#/components/schemas/LuminesceView"
-              }
-            ],
             "description": "Information about how the worker should be executed"
           },
           "version": {
@@ -2835,6 +2830,14 @@
           "type"
         ],
         "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/HealthCheck"
+          },
+          {
+            "$ref": "#/components/schemas/LuminesceView"
+          }
+        ],
         "properties": {
           "type": {
             "minLength": 1,
@@ -2843,10 +2846,7 @@
           }
         },
         "additionalProperties": false,
-        "description": "Information about how the worker should be executed",
-        "discriminator": {
-          "propertyName": "type"
-        }
+        "description": "Information about how the worker should be executed"
       },
       "WorkerStatusTriggers": {
         "type": "object",

@@ -17,47 +17,92 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using JsonSubTypes;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Finbourne.Workflow.Sdk.Client.FileParameter;
 using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
     /// Information about how the worker should be executed
     /// </summary>
+    [JsonConverter(typeof(WorkerConfigurationJsonConverter))]
     [DataContract(Name = "WorkerConfiguration")]
-    [JsonConverter(typeof(JsonSubtypes), "Type")]
-    [JsonSubtypes.KnownSubType(typeof(HealthCheck), "HealthCheck")]
-    [JsonSubtypes.KnownSubType(typeof(LuminesceView), "LuminesceView")]
-    public partial class WorkerConfiguration : IEquatable<WorkerConfiguration>, IValidatableObject
+    public partial class WorkerConfiguration : AbstractOpenAPISchema, IEquatable<WorkerConfiguration>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WorkerConfiguration" /> class.
+        /// Initializes a new instance of the <see cref="WorkerConfiguration" /> class
+        /// with the <see cref="HealthCheck" /> class
         /// </summary>
-        [JsonConstructorAttribute]
-        protected WorkerConfiguration() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="WorkerConfiguration" /> class.
-        /// </summary>
-        /// <param name="type">The type of worker (required).</param>
-        public WorkerConfiguration(string type = default(string))
+        /// <param name="actualInstance">An instance of HealthCheck.</param>
+        public WorkerConfiguration(HealthCheck actualInstance)
         {
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for WorkerConfiguration and cannot be null");
-            }
-            this.Type = type;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// The type of worker
+        /// Initializes a new instance of the <see cref="WorkerConfiguration" /> class
+        /// with the <see cref="LuminesceView" /> class
         /// </summary>
-        /// <value>The type of worker</value>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public string Type { get; set; }
+        /// <param name="actualInstance">An instance of LuminesceView.</param>
+        public WorkerConfiguration(LuminesceView actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
+
+        /// <summary>
+        /// Gets or Sets ActualInstance
+        /// </summary>
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(HealthCheck))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(LuminesceView))
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: HealthCheck, LuminesceView");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `HealthCheck`. If the actual instance is not `HealthCheck`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of HealthCheck</returns>
+        public HealthCheck GetHealthCheck()
+        {
+            return (HealthCheck)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `LuminesceView`. If the actual instance is not `LuminesceView`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of LuminesceView</returns>
+        public LuminesceView GetLuminesceView()
+        {
+            return (LuminesceView)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -65,9 +110,9 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class WorkerConfiguration {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -76,9 +121,78 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, WorkerConfiguration.SerializerSettings);
+        }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of WorkerConfiguration
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of WorkerConfiguration</returns>
+        public static WorkerConfiguration FromJson(string jsonString)
+        {
+            WorkerConfiguration newWorkerConfiguration = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newWorkerConfiguration;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(HealthCheck).GetProperty("AdditionalProperties") == null)
+                {
+                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<HealthCheck>(jsonString, WorkerConfiguration.SerializerSettings));
+                }
+                else
+                {
+                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<HealthCheck>(jsonString, WorkerConfiguration.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("HealthCheck");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into HealthCheck: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(LuminesceView).GetProperty("AdditionalProperties") == null)
+                {
+                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<LuminesceView>(jsonString, WorkerConfiguration.SerializerSettings));
+                }
+                else
+                {
+                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<LuminesceView>(jsonString, WorkerConfiguration.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("LuminesceView");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into LuminesceView: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + matchedTypes);
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newWorkerConfiguration;
         }
 
         /// <summary>
@@ -99,15 +213,9 @@ namespace Finbourne.Workflow.Sdk.Model
         public bool Equals(WorkerConfiguration input)
         {
             if (input == null)
-            {
                 return false;
-            }
-            return 
-                (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
-                );
+
+            return this.ActualInstance.Equals(input.ActualInstance);
         }
 
         /// <summary>
@@ -119,10 +227,8 @@ namespace Finbourne.Workflow.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Type != null)
-                {
-                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                }
+                if (this.ActualInstance != null)
+                    hashCode = hashCode * 59 + this.ActualInstance.GetHashCode();
                 return hashCode;
             }
         }
@@ -134,23 +240,52 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            return this.BaseValidate(validationContext);
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
-        {
-            // Type (string) minLength
-            if (this.Type != null && this.Type.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
-            }
-
             yield break;
         }
     }
+
+    /// <summary>
+    /// Custom JSON converter for WorkerConfiguration
+    /// </summary>
+    public class WorkerConfigurationJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(WorkerConfiguration).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            if(reader.TokenType != JsonToken.Null)
+            {
+                return WorkerConfiguration.FromJson(JObject.Load(reader).ToString(Formatting.None));
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
+        }
+    }
+
 }

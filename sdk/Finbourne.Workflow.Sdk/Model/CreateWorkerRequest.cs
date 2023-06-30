@@ -41,7 +41,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="displayName">Human readable name (required).</param>
         /// <param name="description">Human readable description.</param>
         /// <param name="workerConfiguration">workerConfiguration (required).</param>
-        public CreateWorkerRequest(ResourceId id = default(ResourceId), string displayName = default(string), string description = default(string), CreateWorkerRequestWorkerConfiguration workerConfiguration = default(CreateWorkerRequestWorkerConfiguration))
+        public CreateWorkerRequest(ResourceId id = default(ResourceId), string displayName = default(string), string description = default(string), WorkerConfiguration workerConfiguration = default(WorkerConfiguration))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -88,7 +88,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Gets or Sets WorkerConfiguration
         /// </summary>
         [DataMember(Name = "workerConfiguration", IsRequired = true, EmitDefaultValue = true)]
-        public CreateWorkerRequestWorkerConfiguration WorkerConfiguration { get; set; }
+        public WorkerConfiguration WorkerConfiguration { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

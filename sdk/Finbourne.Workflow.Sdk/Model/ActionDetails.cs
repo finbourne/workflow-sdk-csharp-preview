@@ -20,40 +20,115 @@ using Newtonsoft.Json.Linq;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Finbourne.Workflow.Sdk.Client.FileParameter;
 using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
+using System.Reflection;
 
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
     /// Abstracts the kinds of Actions available
     /// </summary>
+    [JsonConverter(typeof(ActionDetailsJsonConverter))]
     [DataContract(Name = "ActionDetails")]
-    public partial class ActionDetails : IEquatable<ActionDetails>, IValidatableObject
+    public partial class ActionDetails : AbstractOpenAPISchema, IEquatable<ActionDetails>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ActionDetails" /> class.
+        /// Initializes a new instance of the <see cref="ActionDetails" /> class
+        /// with the <see cref="CreateChildTasksAction" /> class
         /// </summary>
-        [JsonConstructorAttribute]
-        protected ActionDetails() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="ActionDetails" /> class.
-        /// </summary>
-        /// <param name="type">Type name for this Action (required).</param>
-        public ActionDetails(string type = default(string))
+        /// <param name="actualInstance">An instance of CreateChildTasksAction.</param>
+        public ActionDetails(CreateChildTasksAction actualInstance)
         {
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for ActionDetails and cannot be null");
-            }
-            this.Type = type;
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
         /// <summary>
-        /// Type name for this Action
+        /// Initializes a new instance of the <see cref="ActionDetails" /> class
+        /// with the <see cref="RunWorkerAction" /> class
         /// </summary>
-        /// <value>Type name for this Action</value>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public string Type { get; set; }
+        /// <param name="actualInstance">An instance of RunWorkerAction.</param>
+        public ActionDetails(RunWorkerAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="ActionDetails" /> class
+        /// with the <see cref="TriggerParentTaskAction" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of TriggerParentTaskAction.</param>
+        public ActionDetails(TriggerParentTaskAction actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+
+        private Object _actualInstance;
+
+        /// <summary>
+        /// Gets or Sets ActualInstance
+        /// </summary>
+        public override Object ActualInstance
+        {
+            get
+            {
+                return _actualInstance;
+            }
+            set
+            {
+                if (value.GetType() == typeof(CreateChildTasksAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(RunWorkerAction))
+                {
+                    this._actualInstance = value;
+                }
+                else if (value.GetType() == typeof(TriggerParentTaskAction))
+                {
+                    this._actualInstance = value;
+                }
+                else
+                {
+                    throw new ArgumentException("Invalid instance found. Must be the following types: CreateChildTasksAction, RunWorkerAction, TriggerParentTaskAction");
+                }
+            }
+        }
+
+        /// <summary>
+        /// Get the actual instance of `CreateChildTasksAction`. If the actual instance is not `CreateChildTasksAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of CreateChildTasksAction</returns>
+        public CreateChildTasksAction GetCreateChildTasksAction()
+        {
+            return (CreateChildTasksAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `RunWorkerAction`. If the actual instance is not `RunWorkerAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of RunWorkerAction</returns>
+        public RunWorkerAction GetRunWorkerAction()
+        {
+            return (RunWorkerAction)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `TriggerParentTaskAction`. If the actual instance is not `TriggerParentTaskAction`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of TriggerParentTaskAction</returns>
+        public TriggerParentTaskAction GetTriggerParentTaskAction()
+        {
+            return (TriggerParentTaskAction)this.ActualInstance;
+        }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -61,9 +136,9 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>String presentation of the object</returns>
         public override string ToString()
         {
-            StringBuilder sb = new StringBuilder();
+            var sb = new StringBuilder();
             sb.Append("class ActionDetails {\n");
-            sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -72,9 +147,98 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public virtual string ToJson()
+        public override string ToJson()
         {
-            return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
+            return JsonConvert.SerializeObject(this.ActualInstance, ActionDetails.SerializerSettings);
+        }
+
+        /// <summary>
+        /// Converts the JSON string into an instance of ActionDetails
+        /// </summary>
+        /// <param name="jsonString">JSON string</param>
+        /// <returns>An instance of ActionDetails</returns>
+        public static ActionDetails FromJson(string jsonString)
+        {
+            ActionDetails newActionDetails = null;
+
+            if (string.IsNullOrEmpty(jsonString))
+            {
+                return newActionDetails;
+            }
+            int match = 0;
+            List<string> matchedTypes = new List<string>();
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(CreateChildTasksAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newActionDetails = new ActionDetails(JsonConvert.DeserializeObject<CreateChildTasksAction>(jsonString, ActionDetails.SerializerSettings));
+                }
+                else
+                {
+                    newActionDetails = new ActionDetails(JsonConvert.DeserializeObject<CreateChildTasksAction>(jsonString, ActionDetails.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("CreateChildTasksAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into CreateChildTasksAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(RunWorkerAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newActionDetails = new ActionDetails(JsonConvert.DeserializeObject<RunWorkerAction>(jsonString, ActionDetails.SerializerSettings));
+                }
+                else
+                {
+                    newActionDetails = new ActionDetails(JsonConvert.DeserializeObject<RunWorkerAction>(jsonString, ActionDetails.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("RunWorkerAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into RunWorkerAction: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(TriggerParentTaskAction).GetProperty("AdditionalProperties") == null)
+                {
+                    newActionDetails = new ActionDetails(JsonConvert.DeserializeObject<TriggerParentTaskAction>(jsonString, ActionDetails.SerializerSettings));
+                }
+                else
+                {
+                    newActionDetails = new ActionDetails(JsonConvert.DeserializeObject<TriggerParentTaskAction>(jsonString, ActionDetails.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("TriggerParentTaskAction");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into TriggerParentTaskAction: {1}", jsonString, exception.ToString()));
+            }
+
+            if (match == 0)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` cannot be deserialized into any schema defined.");
+            }
+            else if (match > 1)
+            {
+                throw new InvalidDataException("The JSON string `" + jsonString + "` incorrectly matches more than one schema (should be exactly one match): " + matchedTypes);
+            }
+
+            // deserialization is considered successful at this point if no exception has been thrown.
+            return newActionDetails;
         }
 
         /// <summary>
@@ -95,15 +259,9 @@ namespace Finbourne.Workflow.Sdk.Model
         public bool Equals(ActionDetails input)
         {
             if (input == null)
-            {
                 return false;
-            }
-            return 
-                (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
-                );
+
+            return this.ActualInstance.Equals(input.ActualInstance);
         }
 
         /// <summary>
@@ -115,10 +273,8 @@ namespace Finbourne.Workflow.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.Type != null)
-                {
-                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
-                }
+                if (this.ActualInstance != null)
+                    hashCode = hashCode * 59 + this.ActualInstance.GetHashCode();
                 return hashCode;
             }
         }
@@ -130,13 +286,52 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Type (string) minLength
-            if (this.Type != null && this.Type.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
-            }
-
             yield break;
         }
     }
+
+    /// <summary>
+    /// Custom JSON converter for ActionDetails
+    /// </summary>
+    public class ActionDetailsJsonConverter : JsonConverter
+    {
+        /// <summary>
+        /// To write the JSON string
+        /// </summary>
+        /// <param name="writer">JSON writer</param>
+        /// <param name="value">Object to be converted into a JSON string</param>
+        /// <param name="serializer">JSON Serializer</param>
+        public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
+        {
+            writer.WriteRawValue((string)(typeof(ActionDetails).GetMethod("ToJson").Invoke(value, null)));
+        }
+
+        /// <summary>
+        /// To convert a JSON string into an object
+        /// </summary>
+        /// <param name="reader">JSON reader</param>
+        /// <param name="objectType">Object type</param>
+        /// <param name="existingValue">Existing value</param>
+        /// <param name="serializer">JSON Serializer</param>
+        /// <returns>The object converted from the JSON string</returns>
+        public override object ReadJson(JsonReader reader, Type objectType, object existingValue, JsonSerializer serializer)
+        {
+            if(reader.TokenType != JsonToken.Null)
+            {
+                return ActionDetails.FromJson(JObject.Load(reader).ToString(Formatting.None));
+            }
+            return null;
+        }
+
+        /// <summary>
+        /// Check if the object can be converted
+        /// </summary>
+        /// <param name="objectType">Object type</param>
+        /// <returns>True if the object can be converted</returns>
+        public override bool CanConvert(Type objectType)
+        {
+            return false;
+        }
+    }
+
 }

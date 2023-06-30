@@ -30,6 +30,28 @@ namespace Finbourne.Workflow.Sdk.Model
     public partial class CreateChildTasksAction : IEquatable<CreateChildTasksAction>, IValidatableObject
     {
         /// <summary>
+        /// Type name for this Action
+        /// </summary>
+        /// <value>Type name for this Action</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum CreateChildTasks for value: CreateChildTasks
+            /// </summary>
+            [EnumMember(Value = "CreateChildTasks")]
+            CreateChildTasks = 1
+
+        }
+
+
+        /// <summary>
+        /// Type name for this Action
+        /// </summary>
+        /// <value>Type name for this Action</value>
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public TypeEnum Type { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="CreateChildTasksAction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -37,15 +59,10 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateChildTasksAction" /> class.
         /// </summary>
-        /// <param name="childTaskConfigurations">The Child Task Configurations.</param>
         /// <param name="type">Type name for this Action (required).</param>
-        public CreateChildTasksAction(List<ResultantChildTaskConfiguration> childTaskConfigurations = default(List<ResultantChildTaskConfiguration>), string type = default(string))
+        /// <param name="childTaskConfigurations">The Child Task Configurations.</param>
+        public CreateChildTasksAction(TypeEnum type = default(TypeEnum), List<ResultantChildTaskConfiguration> childTaskConfigurations = default(List<ResultantChildTaskConfiguration>))
         {
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for CreateChildTasksAction and cannot be null");
-            }
             this.Type = type;
             this.ChildTaskConfigurations = childTaskConfigurations;
         }
@@ -58,13 +75,6 @@ namespace Finbourne.Workflow.Sdk.Model
         public List<ResultantChildTaskConfiguration> ChildTaskConfigurations { get; set; }
 
         /// <summary>
-        /// Type name for this Action
-        /// </summary>
-        /// <value>Type name for this Action</value>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public string Type { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -72,8 +82,8 @@ namespace Finbourne.Workflow.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class CreateChildTasksAction {\n");
-            sb.Append("  ChildTaskConfigurations: ").Append(ChildTaskConfigurations).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  ChildTaskConfigurations: ").Append(ChildTaskConfigurations).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -110,15 +120,14 @@ namespace Finbourne.Workflow.Sdk.Model
             }
             return 
                 (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
+                ) && 
+                (
                     this.ChildTaskConfigurations == input.ChildTaskConfigurations ||
                     this.ChildTaskConfigurations != null &&
                     input.ChildTaskConfigurations != null &&
                     this.ChildTaskConfigurations.SequenceEqual(input.ChildTaskConfigurations)
-                ) && 
-                (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -131,13 +140,10 @@ namespace Finbourne.Workflow.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.ChildTaskConfigurations != null)
                 {
                     hashCode = (hashCode * 59) + this.ChildTaskConfigurations.GetHashCode();
-                }
-                if (this.Type != null)
-                {
-                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 }
                 return hashCode;
             }
@@ -150,12 +156,6 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Type (string) minLength
-            if (this.Type != null && this.Type.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
-            }
-
             yield break;
         }
     }

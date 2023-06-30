@@ -17,7 +17,6 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using JsonSubTypes;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Finbourne.Workflow.Sdk.Client.FileParameter;
 using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
@@ -28,9 +27,30 @@ namespace Finbourne.Workflow.Sdk.Model
     /// Configuration for a Worker that calls a Luminesce view
     /// </summary>
     [DataContract(Name = "LuminesceView")]
-    [JsonConverter(typeof(JsonSubtypes), "Type")]
-    public partial class LuminesceView : WorkerConfiguration, IEquatable<LuminesceView>, IValidatableObject
+    public partial class LuminesceView : IEquatable<LuminesceView>, IValidatableObject
     {
+        /// <summary>
+        /// The type of worker
+        /// </summary>
+        /// <value>The type of worker</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum LuminesceView for value: LuminesceView
+            /// </summary>
+            [EnumMember(Value = "LuminesceView")]
+            LuminesceView = 1
+
+        }
+
+
+        /// <summary>
+        /// The type of worker
+        /// </summary>
+        /// <value>The type of worker</value>
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="LuminesceView" /> class.
         /// </summary>
@@ -39,10 +59,11 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="LuminesceView" /> class.
         /// </summary>
+        /// <param name="type">The type of worker (required).</param>
         /// <param name="name">Name of the view in Luminesce (required).</param>
-        /// <param name="type">The type of worker (required) (default to &quot;LuminesceView&quot;).</param>
-        public LuminesceView(string name = default(string), string type = @"LuminesceView") : base(type)
+        public LuminesceView(TypeEnum type = default(TypeEnum), string name = default(string))
         {
+            this.Type = type;
             // to ensure "name" is required (not null)
             if (name == null)
             {
@@ -66,7 +87,7 @@ namespace Finbourne.Workflow.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class LuminesceView {\n");
-            sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -76,7 +97,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public override string ToJson()
+        public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
@@ -102,7 +123,11 @@ namespace Finbourne.Workflow.Sdk.Model
             {
                 return false;
             }
-            return base.Equals(input) && 
+            return 
+                (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
+                ) && 
                 (
                     this.Name == input.Name ||
                     (this.Name != null &&
@@ -118,7 +143,8 @@ namespace Finbourne.Workflow.Sdk.Model
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = base.GetHashCode();
+                int hashCode = 41;
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
@@ -134,20 +160,6 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            return this.BaseValidate(validationContext);
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
-        {
-            foreach (var x in base.BaseValidate(validationContext))
-            {
-                yield return x;
-            }
             // Name (string) maxLength
             if (this.Name != null && this.Name.Length > 512)
             {

@@ -30,6 +30,28 @@ namespace Finbourne.Workflow.Sdk.Model
     public partial class TriggerParentTaskAction : IEquatable<TriggerParentTaskAction>, IValidatableObject
     {
         /// <summary>
+        /// Type name for this Action
+        /// </summary>
+        /// <value>Type name for this Action</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum TriggerParentTask for value: TriggerParentTask
+            /// </summary>
+            [EnumMember(Value = "TriggerParentTask")]
+            TriggerParentTask = 1
+
+        }
+
+
+        /// <summary>
+        /// Type name for this Action
+        /// </summary>
+        /// <value>Type name for this Action</value>
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public TypeEnum Type { get; set; }
+        /// <summary>
         /// Initializes a new instance of the <see cref="TriggerParentTaskAction" /> class.
         /// </summary>
         [JsonConstructorAttribute]
@@ -37,22 +59,17 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="TriggerParentTaskAction" /> class.
         /// </summary>
-        /// <param name="trigger">Trigger on parent task to be invoked (required).</param>
         /// <param name="type">Type name for this Action (required).</param>
-        public TriggerParentTaskAction(string trigger = default(string), string type = default(string))
+        /// <param name="trigger">Trigger on parent task to be invoked (required).</param>
+        public TriggerParentTaskAction(TypeEnum type = default(TypeEnum), string trigger = default(string))
         {
+            this.Type = type;
             // to ensure "trigger" is required (not null)
             if (trigger == null)
             {
                 throw new ArgumentNullException("trigger is a required property for TriggerParentTaskAction and cannot be null");
             }
             this.Trigger = trigger;
-            // to ensure "type" is required (not null)
-            if (type == null)
-            {
-                throw new ArgumentNullException("type is a required property for TriggerParentTaskAction and cannot be null");
-            }
-            this.Type = type;
         }
 
         /// <summary>
@@ -63,13 +80,6 @@ namespace Finbourne.Workflow.Sdk.Model
         public string Trigger { get; set; }
 
         /// <summary>
-        /// Type name for this Action
-        /// </summary>
-        /// <value>Type name for this Action</value>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public string Type { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -77,8 +87,8 @@ namespace Finbourne.Workflow.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class TriggerParentTaskAction {\n");
-            sb.Append("  Trigger: ").Append(Trigger).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  Trigger: ").Append(Trigger).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -115,14 +125,13 @@ namespace Finbourne.Workflow.Sdk.Model
             }
             return 
                 (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
+                ) && 
+                (
                     this.Trigger == input.Trigger ||
                     (this.Trigger != null &&
                     this.Trigger.Equals(input.Trigger))
-                ) && 
-                (
-                    this.Type == input.Type ||
-                    (this.Type != null &&
-                    this.Type.Equals(input.Type))
                 );
         }
 
@@ -135,13 +144,10 @@ namespace Finbourne.Workflow.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.Trigger != null)
                 {
                     hashCode = (hashCode * 59) + this.Trigger.GetHashCode();
-                }
-                if (this.Type != null)
-                {
-                    hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 }
                 return hashCode;
             }
@@ -171,12 +177,6 @@ namespace Finbourne.Workflow.Sdk.Model
             if (false == regexTrigger.Match(this.Trigger).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Trigger, must match a pattern of " + regexTrigger, new [] { "Trigger" });
-            }
-
-            // Type (string) minLength
-            if (this.Type != null && this.Type.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Type, length must be greater than 1.", new [] { "Type" });
             }
 
             yield break;

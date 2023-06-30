@@ -39,7 +39,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         /// <param name="name">The Name of this Action (required).</param>
         /// <param name="actionDetails">actionDetails (required).</param>
-        public ActionDefinition(string name = default(string), ActionDefinitionActionDetails actionDetails = default(ActionDefinitionActionDetails))
+        public ActionDefinition(string name = default(string), ActionDetails actionDetails = default(ActionDetails))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -66,7 +66,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Gets or Sets ActionDetails
         /// </summary>
         [DataMember(Name = "actionDetails", IsRequired = true, EmitDefaultValue = true)]
-        public ActionDefinitionActionDetails ActionDetails { get; set; }
+        public ActionDetails ActionDetails { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

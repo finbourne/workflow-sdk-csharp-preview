@@ -38,8 +38,8 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Initializes a new instance of the <see cref="ParameterValue" /> class.
         /// </summary>
         /// <param name="name">Name (required).</param>
-        /// <param name="value">value.</param>
-        public ParameterValue(string name = default(string), ParameterValueValue value = default(ParameterValueValue))
+        /// <param name="value">Value which can be a String, Boolean, Decimal or DateTime (ISO 8601).</param>
+        public ParameterValue(string name = default(string), Object value = default(Object))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -58,10 +58,11 @@ namespace Finbourne.Workflow.Sdk.Model
         public string Name { get; set; }
 
         /// <summary>
-        /// Gets or Sets Value
+        /// Value which can be a String, Boolean, Decimal or DateTime (ISO 8601)
         /// </summary>
+        /// <value>Value which can be a String, Boolean, Decimal or DateTime (ISO 8601)</value>
         [DataMember(Name = "value", EmitDefaultValue = true)]
-        public ParameterValueValue Value { get; set; }
+        public Object Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

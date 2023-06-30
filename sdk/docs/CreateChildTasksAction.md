@@ -5,8 +5,8 @@ Defines a Worker Action
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**ChildTaskConfigurations** | [**List&lt;ResultantChildTaskConfiguration&gt;**](ResultantChildTaskConfiguration.md) | The Child Task Configurations | [optional] 
 **Type** | **string** | Type name for this Action | 
+**ChildTaskConfigurations** | [**List&lt;ResultantChildTaskConfiguration&gt;**](ResultantChildTaskConfiguration.md) | The Child Task Configurations | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

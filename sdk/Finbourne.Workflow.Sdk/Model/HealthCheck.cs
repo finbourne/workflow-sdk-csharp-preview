@@ -17,7 +17,6 @@ using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Linq;
-using JsonSubTypes;
 using System.ComponentModel.DataAnnotations;
 using FileParameter = Finbourne.Workflow.Sdk.Client.FileParameter;
 using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
@@ -28,9 +27,30 @@ namespace Finbourne.Workflow.Sdk.Model
     /// Configuration for a Worker that performs a GET against a given Url.
     /// </summary>
     [DataContract(Name = "HealthCheck")]
-    [JsonConverter(typeof(JsonSubtypes), "Type")]
-    public partial class HealthCheck : WorkerConfiguration, IEquatable<HealthCheck>, IValidatableObject
+    public partial class HealthCheck : IEquatable<HealthCheck>, IValidatableObject
     {
+        /// <summary>
+        /// The type of worker
+        /// </summary>
+        /// <value>The type of worker</value>
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum TypeEnum
+        {
+            /// <summary>
+            /// Enum HealthCheck for value: HealthCheck
+            /// </summary>
+            [EnumMember(Value = "HealthCheck")]
+            HealthCheck = 1
+
+        }
+
+
+        /// <summary>
+        /// The type of worker
+        /// </summary>
+        /// <value>The type of worker</value>
+        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
+        public TypeEnum Type { get; set; }
         /// <summary>
         /// Initializes a new instance of the <see cref="HealthCheck" /> class.
         /// </summary>
@@ -39,10 +59,11 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="HealthCheck" /> class.
         /// </summary>
+        /// <param name="type">The type of worker (required).</param>
         /// <param name="url">The URL to check, eg: https://www.google.com/ (required).</param>
-        /// <param name="type">The type of worker (required) (default to &quot;HealthCheck&quot;).</param>
-        public HealthCheck(string url = default(string), string type = @"HealthCheck") : base(type)
+        public HealthCheck(TypeEnum type = default(TypeEnum), string url = default(string))
         {
+            this.Type = type;
             // to ensure "url" is required (not null)
             if (url == null)
             {
@@ -66,7 +87,7 @@ namespace Finbourne.Workflow.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class HealthCheck {\n");
-            sb.Append("  ").Append(base.ToString().Replace("\n", "\n  ")).Append("\n");
+            sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Url: ").Append(Url).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -76,7 +97,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Returns the JSON string presentation of the object
         /// </summary>
         /// <returns>JSON string presentation of the object</returns>
-        public override string ToJson()
+        public virtual string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this, Newtonsoft.Json.Formatting.Indented);
         }
@@ -102,7 +123,11 @@ namespace Finbourne.Workflow.Sdk.Model
             {
                 return false;
             }
-            return base.Equals(input) && 
+            return 
+                (
+                    this.Type == input.Type ||
+                    this.Type.Equals(input.Type)
+                ) && 
                 (
                     this.Url == input.Url ||
                     (this.Url != null &&
@@ -118,7 +143,8 @@ namespace Finbourne.Workflow.Sdk.Model
         {
             unchecked // Overflow is fine, just wrap
             {
-                int hashCode = base.GetHashCode();
+                int hashCode = 41;
+                hashCode = (hashCode * 59) + this.Type.GetHashCode();
                 if (this.Url != null)
                 {
                     hashCode = (hashCode * 59) + this.Url.GetHashCode();
@@ -134,20 +160,6 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            return this.BaseValidate(validationContext);
-        }
-
-        /// <summary>
-        /// To validate all properties of the instance
-        /// </summary>
-        /// <param name="validationContext">Validation context</param>
-        /// <returns>Validation Result</returns>
-        protected IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> BaseValidate(ValidationContext validationContext)
-        {
-            foreach (var x in base.BaseValidate(validationContext))
-            {
-                yield return x;
-            }
             // Url (string) maxLength
             if (this.Url != null && this.Url.Length > 2048)
             {
