@@ -29,7 +29,7 @@ namespace Finbourne.Workflow.Sdk.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "0.1.324";
+        public const string Version = "0.1.325";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -111,8 +111,8 @@ namespace Finbourne.Workflow.Sdk.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/0.1.324/csharp");
-            BasePath = "http://localhost";
+            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/0.1.325/csharp");
+            BasePath = "https://www.lusid.com/workflow";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
             ApiKeyPrefix = new ConcurrentDictionary<string, string>();
@@ -120,7 +120,7 @@ namespace Finbourne.Workflow.Sdk.Client
             {
                 {
                     new Dictionary<string, object> {
-                        {"url", "http://localhost"},
+                        {"url", "https://www.lusid.com/workflow"},
                         {"description", "No description provided"},
                     }
                 }
@@ -141,7 +141,7 @@ namespace Finbourne.Workflow.Sdk.Client
             IDictionary<string, string> defaultHeaders,
             IDictionary<string, string> apiKey,
             IDictionary<string, string> apiKeyPrefix,
-            string basePath = "http://localhost") : this()
+            string basePath = "https://www.lusid.com/workflow") : this()
         {
             if (string.IsNullOrWhiteSpace(basePath))
                 throw new ArgumentException("The provided basePath is invalid.", "basePath");
@@ -518,8 +518,8 @@ namespace Finbourne.Workflow.Sdk.Client
             string report = "C# SDK (Finbourne.Workflow.Sdk) Debug Report:\n";
             report += "    OS: " + System.Environment.OSVersion + "\n";
             report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
-            report += "    Version of the API: 0.1.324\n";
-            report += "    SDK Package Version: 0.1.324\n";
+            report += "    Version of the API: 0.1.325\n";
+            report += "    SDK Package Version: 0.1.325\n";
 
             return report;
         }
