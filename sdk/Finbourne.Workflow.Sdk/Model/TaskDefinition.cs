@@ -47,7 +47,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="triggers">The Triggers for State transition.</param>
         /// <param name="actions">The Actions of this Task - executed after a Transition completion.</param>
         /// <param name="transitions">The Transitions between States.</param>
-        public TaskDefinition(ResourceId id = default(ResourceId), ModelVersion version = default(ModelVersion), string displayName = default(string), string description = default(string), List<TaskStateDefinition> states = default(List<TaskStateDefinition>), List<TaskFieldDefinition> fieldSchema = default(List<TaskFieldDefinition>), InitialState initialState = default(InitialState), List<TransitionTriggerDefinition> triggers = default(List<TransitionTriggerDefinition>), List<ActionDefinition> actions = default(List<ActionDefinition>), List<TaskTransitionDefinition> transitions = default(List<TaskTransitionDefinition>))
+        public TaskDefinition(ResourceId id = default(ResourceId), VersionInfo version = default(VersionInfo), string displayName = default(string), string description = default(string), List<TaskStateDefinition> states = default(List<TaskStateDefinition>), List<TaskFieldDefinition> fieldSchema = default(List<TaskFieldDefinition>), InitialState initialState = default(InitialState), List<TransitionTriggerDefinition> triggers = default(List<TransitionTriggerDefinition>), List<ActionDefinition> actions = default(List<ActionDefinition>), List<TaskTransitionDefinition> transitions = default(List<TaskTransitionDefinition>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -91,7 +91,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Gets or Sets _Version
         /// </summary>
         [DataMember(Name = "version", EmitDefaultValue = false)]
-        public ModelVersion _Version { get; set; }
+        public VersionInfo _Version { get; set; }
 
         /// <summary>
         /// Human readable name

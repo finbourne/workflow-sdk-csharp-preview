@@ -46,7 +46,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="terminalState">True if no onward transitions are possible (required).</param>
         /// <param name="asAtLastTransition">Last Transition timestamp.</param>
         /// <param name="fields">Fields and their latest values - should correspond with the Task Definition field schema.</param>
-        public Task(Guid id = default(Guid), List<string> correlationIds = default(List<string>), ResourceId taskDefinitionId = default(ResourceId), TaskDefinitionVersion taskDefinitionVersion = default(TaskDefinitionVersion), ModelVersion version = default(ModelVersion), string state = default(string), bool terminalState = default(bool), DateTimeOffset? asAtLastTransition = default(DateTimeOffset?), List<TaskInstanceField> fields = default(List<TaskInstanceField>))
+        public Task(Guid id = default(Guid), List<string> correlationIds = default(List<string>), ResourceId taskDefinitionId = default(ResourceId), TaskDefinitionVersion taskDefinitionVersion = default(TaskDefinitionVersion), VersionInfo version = default(VersionInfo), string state = default(string), bool terminalState = default(bool), DateTimeOffset? asAtLastTransition = default(DateTimeOffset?), List<TaskInstanceField> fields = default(List<TaskInstanceField>))
         {
             this.Id = id;
             // to ensure "taskDefinitionId" is required (not null)
@@ -104,7 +104,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Gets or Sets _Version
         /// </summary>
         [DataMember(Name = "version", EmitDefaultValue = false)]
-        public ModelVersion _Version { get; set; }
+        public VersionInfo _Version { get; set; }
 
         /// <summary>
         /// Current State

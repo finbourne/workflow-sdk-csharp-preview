@@ -521,7 +521,8 @@ namespace Finbourne.Workflow.Sdk.Client
                         {
                             Content = new StringContent(policyResult.FinalException?.ToString() ?? string.Empty),
                             ReasonPhrase = policyResult.FinalException?.GetType().ToString() ?? string.Empty,
-                            RequestMessage = policyResult.FinalHandledResult.RequestMessage
+                            RequestMessage = policyResult.FinalHandledResult?.RequestMessage ?? null,
+                            StatusCode = policyResult.FinalHandledResult?.StatusCode ?? 0
                         };
                 }
                 else
@@ -531,7 +532,7 @@ namespace Finbourne.Workflow.Sdk.Client
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    return await ToApiResponse<T>(response, default(T), response.RequestMessage.RequestUri).ConfigureAwait(false);
+                    return await ToApiResponse<T>(response, default(T), response.RequestMessage?.RequestUri).ConfigureAwait(false);
                 }
 
                 object responseData = await deserializer.Deserialize<T>(response).ConfigureAwait(false);

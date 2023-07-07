@@ -26,11 +26,11 @@ namespace Finbourne.Workflow.Sdk.Model
     /// <summary>
     /// The version metadata.
     /// </summary>
-    [DataContract(Name = "_Version")]
-    public partial class ModelVersion : IEquatable<ModelVersion>, IValidatableObject
+    [DataContract(Name = "VersionInfo")]
+    public partial class VersionInfo : IEquatable<VersionInfo>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="ModelVersion" /> class.
+        /// Initializes a new instance of the <see cref="VersionInfo" /> class.
         /// </summary>
         /// <param name="asAtCreated">The asAt datetime at which this entity was first created..</param>
         /// <param name="userIdCreated">The unique id of the user who created this entity..</param>
@@ -39,7 +39,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="userIdModified">The unique id of the user who last updated this entity..</param>
         /// <param name="requestIdModified">The request id of the request that last updated this entity..</param>
         /// <param name="asAtVersionNumber">The integer version number for this entity (the entity was created at version 1)..</param>
-        public ModelVersion(DateTimeOffset? asAtCreated = default(DateTimeOffset?), string userIdCreated = default(string), string requestIdCreated = default(string), DateTimeOffset? asAtModified = default(DateTimeOffset?), string userIdModified = default(string), string requestIdModified = default(string), int? asAtVersionNumber = default(int?))
+        public VersionInfo(DateTimeOffset? asAtCreated = default(DateTimeOffset?), string userIdCreated = default(string), string requestIdCreated = default(string), DateTimeOffset? asAtModified = default(DateTimeOffset?), string userIdModified = default(string), string requestIdModified = default(string), int? asAtVersionNumber = default(int?))
         {
             this.AsAtCreated = asAtCreated;
             this.UserIdCreated = userIdCreated;
@@ -106,7 +106,7 @@ namespace Finbourne.Workflow.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class ModelVersion {\n");
+            sb.Append("class VersionInfo {\n");
             sb.Append("  AsAtCreated: ").Append(AsAtCreated).Append("\n");
             sb.Append("  UserIdCreated: ").Append(UserIdCreated).Append("\n");
             sb.Append("  RequestIdCreated: ").Append(RequestIdCreated).Append("\n");
@@ -134,15 +134,15 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as ModelVersion);
+            return this.Equals(input as VersionInfo);
         }
 
         /// <summary>
-        /// Returns true if ModelVersion instances are equal
+        /// Returns true if VersionInfo instances are equal
         /// </summary>
-        /// <param name="input">Instance of ModelVersion to be compared</param>
+        /// <param name="input">Instance of VersionInfo to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(ModelVersion input)
+        public bool Equals(VersionInfo input)
         {
             if (input == null)
             {

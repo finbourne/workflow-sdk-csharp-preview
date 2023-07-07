@@ -45,7 +45,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="parameters">The Parameters this Worker accepts or requires..</param>
         /// <param name="resultFields">The Fields that the Worker results will come back with..</param>
         /// <param name="links">links.</param>
-        public Worker(ResourceId id = default(ResourceId), string displayName = default(string), string description = default(string), Object workerConfiguration = default(Object), ModelVersion version = default(ModelVersion), List<Parameter> parameters = default(List<Parameter>), List<ResultField> resultFields = default(List<ResultField>), List<Link> links = default(List<Link>))
+        public Worker(ResourceId id = default(ResourceId), string displayName = default(string), string description = default(string), Object workerConfiguration = default(Object), VersionInfo version = default(VersionInfo), List<Parameter> parameters = default(List<Parameter>), List<ResultField> resultFields = default(List<ResultField>), List<Link> links = default(List<Link>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -103,7 +103,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Gets or Sets _Version
         /// </summary>
         [DataMember(Name = "version", EmitDefaultValue = false)]
-        public ModelVersion _Version { get; set; }
+        public VersionInfo _Version { get; set; }
 
         /// <summary>
         /// The Parameters this Worker accepts or requires.
