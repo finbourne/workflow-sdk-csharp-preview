@@ -492,9 +492,10 @@ namespace Finbourne.Workflow.Sdk.Client
                     _httpClientHandler.ClientCertificates.AddRange(configuration.ClientCertificates);
                 }
 
-                Func<HttpRequestMessage> request = () =>
+                Func<Context, HttpRequestMessage> request = (Context ctx) =>
                 {
                     var innerRequest = req();
+                    innerRequest.Headers.Add("x-sdk-correlation-id", ctx.CorrelationId.ToString());
                     innerRequest.Options.TryGetValue(new HttpRequestOptionsKey<List<Cookie>>("CookieContainer"), out var cookieContainer);
                     if (cookieContainer != null)
                     {
@@ -509,25 +510,37 @@ namespace Finbourne.Workflow.Sdk.Client
                     return innerRequest;
                 };
 
+                Func< PolicyResult<HttpResponseMessage>, HttpResponseMessage> constructFailureMessage = (policyResult) =>
+                {
+                    if (Environment.GetEnvironmentVariable("SDK_LOGGING") != null)
+                    {
+                        Console.WriteLine("FAILED REQUEST: {0}", policyResult.Context.CorrelationId);
+                    }
+
+                    return new HttpResponseMessage(0)
+                    {
+                        Content = new StringContent(policyResult.FinalException?.ToString() ?? string.Empty),
+                        ReasonPhrase = policyResult.FinalException?.GetType().ToString() ?? string.Empty,
+                        RequestMessage = policyResult.FinalHandledResult?.RequestMessage ?? null,
+                        StatusCode = policyResult.FinalHandledResult?.StatusCode ?? 0,
+                    };
+                };
+
                 HttpResponseMessage response;
+                var ctx = new Context();
                 if (RetryConfiguration.AsyncRetryPolicy != null)
                 {
                     var policy = RetryConfiguration.AsyncRetryPolicy;
                     var policyResult = await policy
-                        .ExecuteAndCaptureAsync(() => _httpClient.SendAsync(request(), finalToken))
+                        .ExecuteAndCaptureAsync((_, _) => _httpClient.SendAsync(request(ctx), finalToken), ctx, CancellationToken.None, false)
                         .ConfigureAwait(false);
-                    response = (policyResult.Outcome == OutcomeType.Successful) ?
-                        policyResult.Result : new HttpResponseMessage(0)
-                        {
-                            Content = new StringContent(policyResult.FinalException?.ToString() ?? string.Empty),
-                            ReasonPhrase = policyResult.FinalException?.GetType().ToString() ?? string.Empty,
-                            RequestMessage = policyResult.FinalHandledResult?.RequestMessage ?? null,
-                            StatusCode = policyResult.FinalHandledResult?.StatusCode ?? 0
-                        };
+                    response = (policyResult.Outcome == OutcomeType.Successful)
+                        ? policyResult.Result
+                        : constructFailureMessage(policyResult);
                 }
                 else
                 {
-                    response = await _httpClient.SendAsync(request(), finalToken).ConfigureAwait(false);
+                    response = await _httpClient.SendAsync(request(ctx), finalToken).ConfigureAwait(false);
                 }
 
                 if (!response.IsSuccessStatusCode)
@@ -549,7 +562,7 @@ namespace Finbourne.Workflow.Sdk.Client
 
                 InterceptResponse(response.RequestMessage, response);
 
-                return await ToApiResponse<T>(response, responseData, response.RequestMessage.RequestUri).ConfigureAwait(false);
+                return await ToApiResponse<T>(response, responseData, response.RequestMessage?.RequestUri).ConfigureAwait(false);
             }
             catch (OperationCanceledException original)
             {
@@ -559,6 +572,12 @@ namespace Finbourne.Workflow.Sdk.Client
                     throw new TaskCanceledException($"[{request.Method}] {request.RequestUri} was timeout.",
                         new TimeoutException(original.Message, original));
                 }
+
+                if (Environment.GetEnvironmentVariable("SDK_LOGGING") != null)
+                {
+                    Console.WriteLine($"Operation Cancelled - rethrowing: {original}");
+                }
+
                 throw;
             }
             finally

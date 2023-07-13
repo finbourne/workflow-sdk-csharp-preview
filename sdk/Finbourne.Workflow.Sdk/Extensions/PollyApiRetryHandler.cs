@@ -47,6 +47,7 @@ namespace Finbourne.Workflow.Sdk.Extensions
         /// <returns>The boolean of whether the Polly retry condition is satisfied</returns>
         public static bool GetPollyRateLimitRetryCondition(HttpResponseMessage restResponse)
         {
+            if (restResponse == null) return false;
             // Retry on rate limit hit:
             bool rateLimitHitCondition = restResponse.StatusCode == (HttpStatusCode)429;
             return rateLimitHitCondition;
@@ -79,6 +80,10 @@ namespace Finbourne.Workflow.Sdk.Extensions
                     (outcome, ctx) =>
                     {
                         // Add logging or other logic here 
+                        if (Environment.GetEnvironmentVariable("SDK_LOGGING") != null)
+                        {
+                            Console.WriteLine("FALLBACK action triggered: {0}", ctx.CorrelationId);
+                        }
                     });
 
 
