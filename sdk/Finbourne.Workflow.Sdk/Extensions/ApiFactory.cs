@@ -116,9 +116,43 @@ namespace Finbourne.Workflow.Sdk.Extensions
             RetryConfiguration.AsyncRetryPolicy =
                 RetryConfiguration.AsyncRetryPolicy ?? PollyApiRetryHandler.DefaultRetryPolicyWithFallbackAsync;
 
+            var handler = new SocketsHttpHandler();
+            handler.ConnectCallback = async (ctx, ct) =>
+            {
+                var s = new Socket(SocketType.Stream, ProtocolType.Tcp) { NoDelay = true };
+                try
+                {
+                    s.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.KeepAlive, true);
+                    s.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.NoDelay, true);
+                    s.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.TcpKeepAliveTime, 30);
+                    s.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.TcpKeepAliveInterval, 30);
+                    // note that 100 below gives us 50m worth of tcpkeepalive.  That should be plenty for any call.
+                    // note this doesnt work on some windows versions
+                    s.SetSocketOption(SocketOptionLevel.Tcp, SocketOptionName.TcpKeepAliveRetryCount, 100);
+
+                    var addresses = await Dns.GetHostAddressesAsync(ctx.DnsEndPoint.Host);
+                    var endpoint = new IPEndPoint(addresses[0], ctx.DnsEndPoint.Port);
+                    await s.ConnectAsync(endpoint, ct);
+                    return new NetworkStream(s, ownsSocket: true); 
+                }
+                catch(Exception e)
+                {
+                    s.Dispose();
+
+                    if (Environment.GetEnvironmentVariable("SDK_LOGGING") != null)
+                    {
+                        Console.WriteLine($"Socket Callback error - rethrowing: {e}");
+                    }
+
+                    throw;
+                }
+            };
 
             // Create an HttpClient object to be used in the instance creation.
             var client = new HttpClient();
+            client.DefaultRequestVersion = HttpVersion.Version20;
+            client.Timeout = TimeSpan.FromMinutes(60);
+            client.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrHigher;
 
             var dict = new Dictionary<Type, IApiAccessor>();
             foreach (Type api in ApiTypes)
