@@ -53,7 +53,7 @@ namespace Finbourne.Workflow.Sdk.Extensions
             return rateLimitHitCondition;
         }
 
-        private static void HandleRetryAction(DelegateResult<HttpResponseMessage> result, int retryCount, Context context)
+        private static void HandleRetryAction(DelegateResult<HttpResponseMessage> result, int retryCount, Context ctx)
         {
         }
 
@@ -74,16 +74,11 @@ namespace Finbourne.Workflow.Sdk.Extensions
         /// <returns>Fallback Policy (Synchronous)</returns>
         public static Policy<HttpResponseMessage> DefaultFallbackPolicy =>
             Policy<HttpResponseMessage>
-                .Handle<SystemException>()
+                .Handle<Exception>()
                 .Fallback(
                     (outcome, ctx, ct) => outcome.Result,
-                    (outcome, ctx) =>
-                    {
-                        // Add logging or other logic here 
-                        if (Environment.GetEnvironmentVariable("SDK_LOGGING") != null)
-                        {
-                            Console.WriteLine("FALLBACK action triggered: {0}", ctx.CorrelationId);
-                        }
+                    (outcome, ctx) => {
+                        // Add logging or other logic here
                     });
 
 
@@ -154,10 +149,20 @@ namespace Finbourne.Workflow.Sdk.Extensions
         /// <returns>Fallback Policy (Asynchronous)</returns>
         public static AsyncPolicy<HttpResponseMessage> DefaultFallbackPolicyAsync =>
             Policy<HttpResponseMessage>
-                .Handle<SystemException>()
+                .Handle<Exception>()
                 .FallbackAsync(
-                    (outcome, b, c) => Task.FromResult(outcome.Result),
-                    (outcome, b) => Task.CompletedTask);
+                    (outcome, b, c) => Task.FromException<HttpResponseMessage>(outcome.Exception),
+                    (outcome, ctx) =>
+                    {
+                        // Add logging or other logic here 
+                        if (Environment.GetEnvironmentVariable("SDK_LOGGING") != null)
+                        {
+                            Console.WriteLine("ASYNC FALLBACK action triggered: {0}", ctx.CorrelationId);
+                            Console.WriteLine("Outcome Result: {0}", outcome.Result);
+                            Console.WriteLine("Outcome Exception: {0}", outcome.Exception);
+                        }
+                        return Task.CompletedTask;
+                    });
 
         /// <summary>
         /// Async retry policy wrap that handles rate limit codes (409) as well as the default retry policy.
