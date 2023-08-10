@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Net.Http.Headers;
 using System.Net.Sockets;
 using System.Reflection;
 using Finbourne.Workflow.Sdk.Client;
@@ -117,6 +118,7 @@ namespace Finbourne.Workflow.Sdk.Extensions
                 RetryConfiguration.AsyncRetryPolicy ?? PollyApiRetryHandler.DefaultRetryPolicyWithFallbackAsync;
 
             var handler = new SocketsHttpHandler();
+            handler.AutomaticDecompression = DecompressionMethods.All;
             handler.ConnectCallback = async (ctx, ct) =>
             {
                 var s = new Socket(SocketType.Stream, ProtocolType.Tcp) { NoDelay = true };
@@ -153,6 +155,8 @@ namespace Finbourne.Workflow.Sdk.Extensions
             client.DefaultRequestVersion = HttpVersion.Version20;
             client.Timeout = TimeSpan.FromMinutes(60);
             client.DefaultVersionPolicy = HttpVersionPolicy.RequestVersionOrHigher;
+            client.DefaultRequestHeaders.AcceptEncoding.Add(StringWithQualityHeaderValue.Parse("br"));
+            client.DefaultRequestHeaders.AcceptEncoding.Add(StringWithQualityHeaderValue.Parse("deflate"));
 
             var dict = new Dictionary<Type, IApiAccessor>();
             foreach (Type api in ApiTypes)
