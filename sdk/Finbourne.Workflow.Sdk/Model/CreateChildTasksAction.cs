@@ -61,7 +61,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         /// <param name="type">Type name for this Action (required).</param>
         /// <param name="childTaskConfigurations">The Child Task Configurations.</param>
-        public CreateChildTasksAction(TypeEnum type = default(TypeEnum), List<ResultantChildTaskConfiguration> childTaskConfigurations = default(List<ResultantChildTaskConfiguration>))
+        public CreateChildTasksAction(TypeEnum type = default(TypeEnum), List<CreateChildTaskConfiguration> childTaskConfigurations = default(List<CreateChildTaskConfiguration>))
         {
             this.Type = type;
             this.ChildTaskConfigurations = childTaskConfigurations;
@@ -72,7 +72,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         /// <value>The Child Task Configurations</value>
         [DataMember(Name = "childTaskConfigurations", EmitDefaultValue = true)]
-        public List<ResultantChildTaskConfiguration> ChildTaskConfigurations { get; set; }
+        public List<CreateChildTaskConfiguration> ChildTaskConfigurations { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
