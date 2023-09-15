@@ -55,6 +55,18 @@ namespace Finbourne.Workflow.Sdk.Model
             this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorkerConfiguration" /> class
+        /// with the <see cref="Sleep" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of Sleep.</param>
+        public WorkerConfiguration(Sleep actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
 
         private Object _actualInstance;
 
@@ -77,9 +89,13 @@ namespace Finbourne.Workflow.Sdk.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(Sleep))
+                {
+                    this._actualInstance = value;
+                }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: HealthCheck, LuminesceView");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: HealthCheck, LuminesceView, Sleep");
                 }
             }
         }
@@ -102,6 +118,16 @@ namespace Finbourne.Workflow.Sdk.Model
         public LuminesceView GetLuminesceView()
         {
             return (LuminesceView)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `Sleep`. If the actual instance is not `Sleep`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of Sleep</returns>
+        public Sleep GetSleep()
+        {
+            return (Sleep)this.ActualInstance;
         }
 
         /// <summary>
@@ -180,6 +206,26 @@ namespace Finbourne.Workflow.Sdk.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into LuminesceView: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(Sleep).GetProperty("AdditionalProperties") == null)
+                {
+                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<Sleep>(jsonString, WorkerConfiguration.SerializerSettings));
+                }
+                else
+                {
+                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<Sleep>(jsonString, WorkerConfiguration.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("Sleep");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into Sleep: {1}", jsonString, exception.ToString()));
             }
 
             if (match == 0)
