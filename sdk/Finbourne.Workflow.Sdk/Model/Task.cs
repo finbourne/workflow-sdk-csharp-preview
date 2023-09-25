@@ -38,15 +38,18 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Initializes a new instance of the <see cref="Task" /> class.
         /// </summary>
         /// <param name="id">The unique id for this Task (required).</param>
-        /// <param name="correlationIds">User-provided ID used to link entities and tasks.</param>
         /// <param name="taskDefinitionId">taskDefinitionId (required).</param>
         /// <param name="taskDefinitionVersion">taskDefinitionVersion (required).</param>
-        /// <param name="version">version.</param>
         /// <param name="state">Current State (required).</param>
+        /// <param name="ultimateParentTask">ultimateParentTask (required).</param>
+        /// <param name="parentTask">parentTask.</param>
+        /// <param name="childTasks">This Task&#39;s child tasks.</param>
+        /// <param name="correlationIds">User-provided ID used to link entities and tasks.</param>
+        /// <param name="version">version.</param>
         /// <param name="terminalState">True if no onward transitions are possible (required).</param>
         /// <param name="asAtLastTransition">Last Transition timestamp.</param>
         /// <param name="fields">Fields and their latest values - should correspond with the Task Definition field schema.</param>
-        public Task(Guid id = default(Guid), List<string> correlationIds = default(List<string>), ResourceId taskDefinitionId = default(ResourceId), TaskDefinitionVersion taskDefinitionVersion = default(TaskDefinitionVersion), VersionInfo version = default(VersionInfo), string state = default(string), bool terminalState = default(bool), DateTimeOffset? asAtLastTransition = default(DateTimeOffset?), List<TaskInstanceField> fields = default(List<TaskInstanceField>))
+        public Task(Guid id = default(Guid), ResourceId taskDefinitionId = default(ResourceId), TaskDefinitionVersion taskDefinitionVersion = default(TaskDefinitionVersion), string state = default(string), TaskSummary ultimateParentTask = default(TaskSummary), TaskSummary parentTask = default(TaskSummary), List<TaskSummary> childTasks = default(List<TaskSummary>), List<string> correlationIds = default(List<string>), VersionInfo version = default(VersionInfo), bool terminalState = default(bool), DateTimeOffset? asAtLastTransition = default(DateTimeOffset?), List<TaskInstanceField> fields = default(List<TaskInstanceField>))
         {
             this.Id = id;
             // to ensure "taskDefinitionId" is required (not null)
@@ -67,7 +70,15 @@ namespace Finbourne.Workflow.Sdk.Model
                 throw new ArgumentNullException("state is a required property for Task and cannot be null");
             }
             this.State = state;
+            // to ensure "ultimateParentTask" is required (not null)
+            if (ultimateParentTask == null)
+            {
+                throw new ArgumentNullException("ultimateParentTask is a required property for Task and cannot be null");
+            }
+            this.UltimateParentTask = ultimateParentTask;
             this.TerminalState = terminalState;
+            this.ParentTask = parentTask;
+            this.ChildTasks = childTasks;
             this.CorrelationIds = correlationIds;
             this._Version = version;
             this.AsAtLastTransition = asAtLastTransition;
@@ -82,13 +93,6 @@ namespace Finbourne.Workflow.Sdk.Model
         public Guid Id { get; set; }
 
         /// <summary>
-        /// User-provided ID used to link entities and tasks
-        /// </summary>
-        /// <value>User-provided ID used to link entities and tasks</value>
-        [DataMember(Name = "correlationIds", EmitDefaultValue = true)]
-        public List<string> CorrelationIds { get; set; }
-
-        /// <summary>
         /// Gets or Sets TaskDefinitionId
         /// </summary>
         [DataMember(Name = "taskDefinitionId", IsRequired = true, EmitDefaultValue = true)]
@@ -101,17 +105,43 @@ namespace Finbourne.Workflow.Sdk.Model
         public TaskDefinitionVersion TaskDefinitionVersion { get; set; }
 
         /// <summary>
-        /// Gets or Sets _Version
-        /// </summary>
-        [DataMember(Name = "version", EmitDefaultValue = false)]
-        public VersionInfo _Version { get; set; }
-
-        /// <summary>
         /// Current State
         /// </summary>
         /// <value>Current State</value>
         [DataMember(Name = "state", IsRequired = true, EmitDefaultValue = true)]
         public string State { get; set; }
+
+        /// <summary>
+        /// Gets or Sets UltimateParentTask
+        /// </summary>
+        [DataMember(Name = "ultimateParentTask", IsRequired = true, EmitDefaultValue = true)]
+        public TaskSummary UltimateParentTask { get; set; }
+
+        /// <summary>
+        /// Gets or Sets ParentTask
+        /// </summary>
+        [DataMember(Name = "parentTask", EmitDefaultValue = false)]
+        public TaskSummary ParentTask { get; set; }
+
+        /// <summary>
+        /// This Task&#39;s child tasks
+        /// </summary>
+        /// <value>This Task&#39;s child tasks</value>
+        [DataMember(Name = "childTasks", EmitDefaultValue = true)]
+        public List<TaskSummary> ChildTasks { get; set; }
+
+        /// <summary>
+        /// User-provided ID used to link entities and tasks
+        /// </summary>
+        /// <value>User-provided ID used to link entities and tasks</value>
+        [DataMember(Name = "correlationIds", EmitDefaultValue = true)]
+        public List<string> CorrelationIds { get; set; }
+
+        /// <summary>
+        /// Gets or Sets _Version
+        /// </summary>
+        [DataMember(Name = "version", EmitDefaultValue = false)]
+        public VersionInfo _Version { get; set; }
 
         /// <summary>
         /// True if no onward transitions are possible
@@ -143,11 +173,14 @@ namespace Finbourne.Workflow.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class Task {\n");
             sb.Append("  Id: ").Append(Id).Append("\n");
-            sb.Append("  CorrelationIds: ").Append(CorrelationIds).Append("\n");
             sb.Append("  TaskDefinitionId: ").Append(TaskDefinitionId).Append("\n");
             sb.Append("  TaskDefinitionVersion: ").Append(TaskDefinitionVersion).Append("\n");
-            sb.Append("  _Version: ").Append(_Version).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
+            sb.Append("  UltimateParentTask: ").Append(UltimateParentTask).Append("\n");
+            sb.Append("  ParentTask: ").Append(ParentTask).Append("\n");
+            sb.Append("  ChildTasks: ").Append(ChildTasks).Append("\n");
+            sb.Append("  CorrelationIds: ").Append(CorrelationIds).Append("\n");
+            sb.Append("  _Version: ").Append(_Version).Append("\n");
             sb.Append("  TerminalState: ").Append(TerminalState).Append("\n");
             sb.Append("  AsAtLastTransition: ").Append(AsAtLastTransition).Append("\n");
             sb.Append("  Fields: ").Append(Fields).Append("\n");
@@ -192,12 +225,6 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.Id.Equals(input.Id))
                 ) && 
                 (
-                    this.CorrelationIds == input.CorrelationIds ||
-                    this.CorrelationIds != null &&
-                    input.CorrelationIds != null &&
-                    this.CorrelationIds.SequenceEqual(input.CorrelationIds)
-                ) && 
-                (
                     this.TaskDefinitionId == input.TaskDefinitionId ||
                     (this.TaskDefinitionId != null &&
                     this.TaskDefinitionId.Equals(input.TaskDefinitionId))
@@ -208,14 +235,36 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.TaskDefinitionVersion.Equals(input.TaskDefinitionVersion))
                 ) && 
                 (
-                    this._Version == input._Version ||
-                    (this._Version != null &&
-                    this._Version.Equals(input._Version))
-                ) && 
-                (
                     this.State == input.State ||
                     (this.State != null &&
                     this.State.Equals(input.State))
+                ) && 
+                (
+                    this.UltimateParentTask == input.UltimateParentTask ||
+                    (this.UltimateParentTask != null &&
+                    this.UltimateParentTask.Equals(input.UltimateParentTask))
+                ) && 
+                (
+                    this.ParentTask == input.ParentTask ||
+                    (this.ParentTask != null &&
+                    this.ParentTask.Equals(input.ParentTask))
+                ) && 
+                (
+                    this.ChildTasks == input.ChildTasks ||
+                    this.ChildTasks != null &&
+                    input.ChildTasks != null &&
+                    this.ChildTasks.SequenceEqual(input.ChildTasks)
+                ) && 
+                (
+                    this.CorrelationIds == input.CorrelationIds ||
+                    this.CorrelationIds != null &&
+                    input.CorrelationIds != null &&
+                    this.CorrelationIds.SequenceEqual(input.CorrelationIds)
+                ) && 
+                (
+                    this._Version == input._Version ||
+                    (this._Version != null &&
+                    this._Version.Equals(input._Version))
                 ) && 
                 (
                     this.TerminalState == input.TerminalState ||
@@ -247,10 +296,6 @@ namespace Finbourne.Workflow.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.Id.GetHashCode();
                 }
-                if (this.CorrelationIds != null)
-                {
-                    hashCode = (hashCode * 59) + this.CorrelationIds.GetHashCode();
-                }
                 if (this.TaskDefinitionId != null)
                 {
                     hashCode = (hashCode * 59) + this.TaskDefinitionId.GetHashCode();
@@ -259,13 +304,29 @@ namespace Finbourne.Workflow.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.TaskDefinitionVersion.GetHashCode();
                 }
-                if (this._Version != null)
-                {
-                    hashCode = (hashCode * 59) + this._Version.GetHashCode();
-                }
                 if (this.State != null)
                 {
                     hashCode = (hashCode * 59) + this.State.GetHashCode();
+                }
+                if (this.UltimateParentTask != null)
+                {
+                    hashCode = (hashCode * 59) + this.UltimateParentTask.GetHashCode();
+                }
+                if (this.ParentTask != null)
+                {
+                    hashCode = (hashCode * 59) + this.ParentTask.GetHashCode();
+                }
+                if (this.ChildTasks != null)
+                {
+                    hashCode = (hashCode * 59) + this.ChildTasks.GetHashCode();
+                }
+                if (this.CorrelationIds != null)
+                {
+                    hashCode = (hashCode * 59) + this.CorrelationIds.GetHashCode();
+                }
+                if (this._Version != null)
+                {
+                    hashCode = (hashCode * 59) + this._Version.GetHashCode();
                 }
                 hashCode = (hashCode * 59) + this.TerminalState.GetHashCode();
                 if (this.AsAtLastTransition != null)

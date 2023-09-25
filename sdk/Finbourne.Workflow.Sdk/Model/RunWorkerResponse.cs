@@ -37,39 +37,20 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="RunWorkerResponse" /> class.
         /// </summary>
-        /// <param name="workerStatus">The final status of the Worker (required).</param>
-        /// <param name="results">Results (required).</param>
+        /// <param name="runId">Identifies a Worker run (required).</param>
         /// <param name="statusDetail">Detail on the final status.</param>
-        public RunWorkerResponse(string workerStatus = default(string), List<Dictionary<string, Object>> results = default(List<Dictionary<string, Object>>), string statusDetail = default(string))
+        public RunWorkerResponse(long runId = default(long), string statusDetail = default(string))
         {
-            // to ensure "workerStatus" is required (not null)
-            if (workerStatus == null)
-            {
-                throw new ArgumentNullException("workerStatus is a required property for RunWorkerResponse and cannot be null");
-            }
-            this.WorkerStatus = workerStatus;
-            // to ensure "results" is required (not null)
-            if (results == null)
-            {
-                throw new ArgumentNullException("results is a required property for RunWorkerResponse and cannot be null");
-            }
-            this.Results = results;
+            this.RunId = runId;
             this.StatusDetail = statusDetail;
         }
 
         /// <summary>
-        /// The final status of the Worker
+        /// Identifies a Worker run
         /// </summary>
-        /// <value>The final status of the Worker</value>
-        [DataMember(Name = "workerStatus", IsRequired = true, EmitDefaultValue = true)]
-        public string WorkerStatus { get; set; }
-
-        /// <summary>
-        /// Results
-        /// </summary>
-        /// <value>Results</value>
-        [DataMember(Name = "results", IsRequired = true, EmitDefaultValue = true)]
-        public List<Dictionary<string, Object>> Results { get; set; }
+        /// <value>Identifies a Worker run</value>
+        [DataMember(Name = "runId", IsRequired = true, EmitDefaultValue = true)]
+        public long RunId { get; set; }
 
         /// <summary>
         /// Detail on the final status
@@ -86,8 +67,7 @@ namespace Finbourne.Workflow.Sdk.Model
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("class RunWorkerResponse {\n");
-            sb.Append("  WorkerStatus: ").Append(WorkerStatus).Append("\n");
-            sb.Append("  Results: ").Append(Results).Append("\n");
+            sb.Append("  RunId: ").Append(RunId).Append("\n");
             sb.Append("  StatusDetail: ").Append(StatusDetail).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -125,15 +105,8 @@ namespace Finbourne.Workflow.Sdk.Model
             }
             return 
                 (
-                    this.WorkerStatus == input.WorkerStatus ||
-                    (this.WorkerStatus != null &&
-                    this.WorkerStatus.Equals(input.WorkerStatus))
-                ) && 
-                (
-                    this.Results == input.Results ||
-                    this.Results != null &&
-                    input.Results != null &&
-                    this.Results.SequenceEqual(input.Results)
+                    this.RunId == input.RunId ||
+                    this.RunId.Equals(input.RunId)
                 ) && 
                 (
                     this.StatusDetail == input.StatusDetail ||
@@ -151,14 +124,7 @@ namespace Finbourne.Workflow.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                if (this.WorkerStatus != null)
-                {
-                    hashCode = (hashCode * 59) + this.WorkerStatus.GetHashCode();
-                }
-                if (this.Results != null)
-                {
-                    hashCode = (hashCode * 59) + this.Results.GetHashCode();
-                }
+                hashCode = (hashCode * 59) + this.RunId.GetHashCode();
                 if (this.StatusDetail != null)
                 {
                     hashCode = (hashCode * 59) + this.StatusDetail.GetHashCode();
@@ -174,12 +140,6 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // WorkerStatus (string) minLength
-            if (this.WorkerStatus != null && this.WorkerStatus.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for WorkerStatus, length must be greater than 1.", new [] { "WorkerStatus" });
-            }
-
             yield break;
         }
     }

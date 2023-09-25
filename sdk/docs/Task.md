@@ -6,11 +6,14 @@ Defines a Task created based on a Task Definition
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **Id** | **Guid** | The unique id for this Task | 
-**CorrelationIds** | **List&lt;string&gt;** | User-provided ID used to link entities and tasks | [optional] 
 **TaskDefinitionId** | [**ResourceId**](ResourceId.md) |  | 
 **TaskDefinitionVersion** | [**TaskDefinitionVersion**](TaskDefinitionVersion.md) |  | 
-**_Version** | [**VersionInfo**](VersionInfo.md) |  | [optional] 
 **State** | **string** | Current State | 
+**UltimateParentTask** | [**TaskSummary**](TaskSummary.md) |  | 
+**ParentTask** | [**TaskSummary**](TaskSummary.md) |  | [optional] 
+**ChildTasks** | [**List&lt;TaskSummary&gt;**](TaskSummary.md) | This Task&#39;s child tasks | [optional] 
+**CorrelationIds** | **List&lt;string&gt;** | User-provided ID used to link entities and tasks | [optional] 
+**_Version** | [**VersionInfo**](VersionInfo.md) |  | [optional] 
 **TerminalState** | **bool** | True if no onward transitions are possible | 
 **AsAtLastTransition** | **DateTimeOffset?** | Last Transition timestamp | [optional] 
 **Fields** | [**List&lt;TaskInstanceField&gt;**](TaskInstanceField.md) | Fields and their latest values - should correspond with the Task Definition field schema | [optional] 
