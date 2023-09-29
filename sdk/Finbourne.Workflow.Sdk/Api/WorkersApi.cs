@@ -71,6 +71,24 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <returns>ApiResponse of Worker</returns>
         ApiResponse<Worker> GetWorkerWithHttpInfo(string scope, string code, DateTimeOffset? asAt = default(DateTimeOffset?));
         /// <summary>
+        /// [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="runId">The ID returned when calling Run Worker</param>
+        /// <returns>GetWorkerResultResponse</returns>
+        GetWorkerResultResponse GetWorkerResult(long runId);
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="runId">The ID returned when calling Run Worker</param>
+        /// <returns>ApiResponse of GetWorkerResultResponse</returns>
+        ApiResponse<GetWorkerResultResponse> GetWorkerResultWithHttpInfo(long runId);
+        /// <summary>
         /// [EXPERIMENTAL] ListWorkers: List Workers
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
@@ -175,6 +193,29 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Worker)</returns>
         System.Threading.Tasks.Task<ApiResponse<Worker>> GetWorkerWithHttpInfoAsync(string scope, string code, DateTimeOffset? asAt = default(DateTimeOffset?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="runId">The ID returned when calling Run Worker</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWorkerResultResponse</returns>
+        System.Threading.Tasks.Task<GetWorkerResultResponse> GetWorkerResultAsync(long runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="runId">The ID returned when calling Run Worker</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWorkerResultResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<GetWorkerResultResponse>> GetWorkerResultWithHttpInfoAsync(long runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// [EXPERIMENTAL] ListWorkers: List Workers
         /// </summary>
@@ -734,6 +775,129 @@ namespace Finbourne.Workflow.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetWorker", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results 
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="runId">The ID returned when calling Run Worker</param>
+        /// <returns>GetWorkerResultResponse</returns>
+        public GetWorkerResultResponse GetWorkerResult(long runId)
+        {
+            Finbourne.Workflow.Sdk.Client.ApiResponse<GetWorkerResultResponse> localVarResponse = GetWorkerResultWithHttpInfo(runId);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results 
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="runId">The ID returned when calling Run Worker</param>
+        /// <returns>ApiResponse of GetWorkerResultResponse</returns>
+        public Finbourne.Workflow.Sdk.Client.ApiResponse<GetWorkerResultResponse> GetWorkerResultWithHttpInfo(long runId)
+        {
+            Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("runId", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(runId)); // path parameter
+
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<GetWorkerResultResponse>("/api/workers/{runId}/$result", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWorkerResult", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results 
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="runId">The ID returned when calling Run Worker</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of GetWorkerResultResponse</returns>
+        public async System.Threading.Tasks.Task<GetWorkerResultResponse> GetWorkerResultAsync(long runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Finbourne.Workflow.Sdk.Client.ApiResponse<GetWorkerResultResponse> localVarResponse = await GetWorkerResultWithHttpInfoAsync(runId, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results 
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="runId">The ID returned when calling Run Worker</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (GetWorkerResultResponse)</returns>
+        public async System.Threading.Tasks.Task<Finbourne.Workflow.Sdk.Client.ApiResponse<GetWorkerResultResponse>> GetWorkerResultWithHttpInfoAsync(long runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+
+            Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+
+            var localVarContentType = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("runId", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(runId)); // path parameter
+
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<GetWorkerResultResponse>("/api/workers/{runId}/$result", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetWorkerResult", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

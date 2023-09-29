@@ -33,8 +33,8 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Initializes a new instance of the <see cref="FieldMapping" /> class.
         /// </summary>
         /// <param name="mapFrom">The field to map from.</param>
-        /// <param name="setTo">The (constant) value to set.</param>
-        public FieldMapping(string mapFrom = default(string), string setTo = default(string))
+        /// <param name="setTo">setTo.</param>
+        public FieldMapping(string mapFrom = default(string), FieldMappingSetTo setTo = default(FieldMappingSetTo))
         {
             this.MapFrom = mapFrom;
             this.SetTo = setTo;
@@ -48,11 +48,10 @@ namespace Finbourne.Workflow.Sdk.Model
         public string MapFrom { get; set; }
 
         /// <summary>
-        /// The (constant) value to set
+        /// Gets or Sets SetTo
         /// </summary>
-        /// <value>The (constant) value to set</value>
         [DataMember(Name = "setTo", EmitDefaultValue = true)]
-        public string SetTo { get; set; }
+        public FieldMappingSetTo SetTo { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
@@ -156,25 +155,6 @@ namespace Finbourne.Workflow.Sdk.Model
             if (false == regexMapFrom.Match(this.MapFrom).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for MapFrom, must match a pattern of " + regexMapFrom, new [] { "MapFrom" });
-            }
-
-            // SetTo (string) maxLength
-            if (this.SetTo != null && this.SetTo.Length > 1024)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SetTo, length must be less than 1024.", new [] { "SetTo" });
-            }
-
-            // SetTo (string) minLength
-            if (this.SetTo != null && this.SetTo.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SetTo, length must be greater than 1.", new [] { "SetTo" });
-            }
-
-            // SetTo (string) pattern
-            Regex regexSetTo = new Regex(@"^[a-zA-Z0-9\-_]+$", RegexOptions.CultureInvariant);
-            if (false == regexSetTo.Match(this.SetTo).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for SetTo, must match a pattern of " + regexSetTo, new [] { "SetTo" });
             }
 
             yield break;

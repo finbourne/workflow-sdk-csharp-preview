@@ -6,7 +6,7 @@ Defines a single Field map
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **MapFrom** | **string** | The field to map from | [optional] 
-**SetTo** | **string** | The (constant) value to set | [optional] 
+**SetTo** | [**FieldMappingSetTo**](FieldMappingSetTo.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

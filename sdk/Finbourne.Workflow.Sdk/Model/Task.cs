@@ -40,6 +40,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="id">The unique id for this Task (required).</param>
         /// <param name="taskDefinitionId">taskDefinitionId (required).</param>
         /// <param name="taskDefinitionVersion">taskDefinitionVersion (required).</param>
+        /// <param name="taskDefinitionDisplayName">The display name of the Task Definition used by this Task (required).</param>
         /// <param name="state">Current State (required).</param>
         /// <param name="ultimateParentTask">ultimateParentTask (required).</param>
         /// <param name="parentTask">parentTask.</param>
@@ -49,7 +50,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="terminalState">True if no onward transitions are possible (required).</param>
         /// <param name="asAtLastTransition">Last Transition timestamp.</param>
         /// <param name="fields">Fields and their latest values - should correspond with the Task Definition field schema.</param>
-        public Task(Guid id = default(Guid), ResourceId taskDefinitionId = default(ResourceId), TaskDefinitionVersion taskDefinitionVersion = default(TaskDefinitionVersion), string state = default(string), TaskSummary ultimateParentTask = default(TaskSummary), TaskSummary parentTask = default(TaskSummary), List<TaskSummary> childTasks = default(List<TaskSummary>), List<string> correlationIds = default(List<string>), VersionInfo version = default(VersionInfo), bool terminalState = default(bool), DateTimeOffset? asAtLastTransition = default(DateTimeOffset?), List<TaskInstanceField> fields = default(List<TaskInstanceField>))
+        public Task(Guid id = default(Guid), ResourceId taskDefinitionId = default(ResourceId), TaskDefinitionVersion taskDefinitionVersion = default(TaskDefinitionVersion), string taskDefinitionDisplayName = default(string), string state = default(string), TaskSummary ultimateParentTask = default(TaskSummary), TaskSummary parentTask = default(TaskSummary), List<TaskSummary> childTasks = default(List<TaskSummary>), List<string> correlationIds = default(List<string>), VersionInfo version = default(VersionInfo), bool terminalState = default(bool), DateTimeOffset? asAtLastTransition = default(DateTimeOffset?), List<TaskInstanceField> fields = default(List<TaskInstanceField>))
         {
             this.Id = id;
             // to ensure "taskDefinitionId" is required (not null)
@@ -64,6 +65,12 @@ namespace Finbourne.Workflow.Sdk.Model
                 throw new ArgumentNullException("taskDefinitionVersion is a required property for Task and cannot be null");
             }
             this.TaskDefinitionVersion = taskDefinitionVersion;
+            // to ensure "taskDefinitionDisplayName" is required (not null)
+            if (taskDefinitionDisplayName == null)
+            {
+                throw new ArgumentNullException("taskDefinitionDisplayName is a required property for Task and cannot be null");
+            }
+            this.TaskDefinitionDisplayName = taskDefinitionDisplayName;
             // to ensure "state" is required (not null)
             if (state == null)
             {
@@ -103,6 +110,13 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         [DataMember(Name = "taskDefinitionVersion", IsRequired = true, EmitDefaultValue = true)]
         public TaskDefinitionVersion TaskDefinitionVersion { get; set; }
+
+        /// <summary>
+        /// The display name of the Task Definition used by this Task
+        /// </summary>
+        /// <value>The display name of the Task Definition used by this Task</value>
+        [DataMember(Name = "taskDefinitionDisplayName", IsRequired = true, EmitDefaultValue = true)]
+        public string TaskDefinitionDisplayName { get; set; }
 
         /// <summary>
         /// Current State
@@ -175,6 +189,7 @@ namespace Finbourne.Workflow.Sdk.Model
             sb.Append("  Id: ").Append(Id).Append("\n");
             sb.Append("  TaskDefinitionId: ").Append(TaskDefinitionId).Append("\n");
             sb.Append("  TaskDefinitionVersion: ").Append(TaskDefinitionVersion).Append("\n");
+            sb.Append("  TaskDefinitionDisplayName: ").Append(TaskDefinitionDisplayName).Append("\n");
             sb.Append("  State: ").Append(State).Append("\n");
             sb.Append("  UltimateParentTask: ").Append(UltimateParentTask).Append("\n");
             sb.Append("  ParentTask: ").Append(ParentTask).Append("\n");
@@ -233,6 +248,11 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.TaskDefinitionVersion == input.TaskDefinitionVersion ||
                     (this.TaskDefinitionVersion != null &&
                     this.TaskDefinitionVersion.Equals(input.TaskDefinitionVersion))
+                ) && 
+                (
+                    this.TaskDefinitionDisplayName == input.TaskDefinitionDisplayName ||
+                    (this.TaskDefinitionDisplayName != null &&
+                    this.TaskDefinitionDisplayName.Equals(input.TaskDefinitionDisplayName))
                 ) && 
                 (
                     this.State == input.State ||
@@ -304,6 +324,10 @@ namespace Finbourne.Workflow.Sdk.Model
                 {
                     hashCode = (hashCode * 59) + this.TaskDefinitionVersion.GetHashCode();
                 }
+                if (this.TaskDefinitionDisplayName != null)
+                {
+                    hashCode = (hashCode * 59) + this.TaskDefinitionDisplayName.GetHashCode();
+                }
                 if (this.State != null)
                 {
                     hashCode = (hashCode * 59) + this.State.GetHashCode();
@@ -348,6 +372,12 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
+            // TaskDefinitionDisplayName (string) minLength
+            if (this.TaskDefinitionDisplayName != null && this.TaskDefinitionDisplayName.Length < 1)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for TaskDefinitionDisplayName, length must be greater than 1.", new [] { "TaskDefinitionDisplayName" });
+            }
+
             // State (string) minLength
             if (this.State != null && this.State.Length < 1)
             {

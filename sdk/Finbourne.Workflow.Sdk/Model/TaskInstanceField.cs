@@ -39,7 +39,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         /// <param name="name">The name of this Field (required).</param>
         /// <param name="value">The value of this Field.</param>
-        public TaskInstanceField(string name = default(string), string value = default(string))
+        public TaskInstanceField(string name = default(string), Object value = default(Object))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -62,7 +62,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         /// <value>The value of this Field</value>
         [DataMember(Name = "value", EmitDefaultValue = true)]
-        public string Value { get; set; }
+        public Object Value { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object
