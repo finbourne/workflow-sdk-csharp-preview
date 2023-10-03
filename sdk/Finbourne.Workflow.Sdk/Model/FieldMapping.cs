@@ -33,8 +33,8 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Initializes a new instance of the <see cref="FieldMapping" /> class.
         /// </summary>
         /// <param name="mapFrom">The field to map from.</param>
-        /// <param name="setTo">setTo.</param>
-        public FieldMapping(string mapFrom = default(string), FieldMappingSetTo setTo = default(FieldMappingSetTo))
+        /// <param name="setTo">The (constant) value to set.</param>
+        public FieldMapping(string mapFrom = default(string), Object setTo = default(Object))
         {
             this.MapFrom = mapFrom;
             this.SetTo = setTo;
@@ -48,10 +48,11 @@ namespace Finbourne.Workflow.Sdk.Model
         public string MapFrom { get; set; }
 
         /// <summary>
-        /// Gets or Sets SetTo
+        /// The (constant) value to set
         /// </summary>
+        /// <value>The (constant) value to set</value>
         [DataMember(Name = "setTo", EmitDefaultValue = true)]
-        public FieldMappingSetTo SetTo { get; set; }
+        public Object SetTo { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

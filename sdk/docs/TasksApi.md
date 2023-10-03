@@ -312,7 +312,7 @@ catch (ApiException e)
 
 <a id="listtasks"></a>
 # **ListTasks**
-> PagedResourceListOfTask ListTasks (DateTimeOffset? asAt = null, int? limit = null, string? page = null)
+> PagedResourceListOfTask ListTasks (DateTimeOffset? asAt = null, string? filter = null, int? limit = null, string? page = null)
 
 [EXPERIMENTAL] ListTasks: List Tasks
 
@@ -341,13 +341,14 @@ namespace Example
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new TasksApi(httpClient, config, httpClientHandler);
             var asAt = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTimeOffset? | The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified. (optional) 
+            var filter = "filter_example";  // string? | Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional) 
             var limit = 10;  // int? | When paginating, limit the number of returned results to this many. (optional)  (default to 10)
             var page = "page_example";  // string? | The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional) 
 
             try
             {
                 // [EXPERIMENTAL] ListTasks: List Tasks
-                PagedResourceListOfTask result = apiInstance.ListTasks(asAt, limit, page);
+                PagedResourceListOfTask result = apiInstance.ListTasks(asAt, filter, limit, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -368,7 +369,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // [EXPERIMENTAL] ListTasks: List Tasks
-    ApiResponse<PagedResourceListOfTask> response = apiInstance.ListTasksWithHttpInfo(asAt, limit, page);
+    ApiResponse<PagedResourceListOfTask> response = apiInstance.ListTasksWithHttpInfo(asAt, filter, limit, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -386,6 +387,7 @@ catch (ApiException e)
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
 | **asAt** | **DateTimeOffset?** | The asAt datetime at which to list the Tasks. Defaults to return the latest version of each Task if not specified. | [optional]  |
+| **filter** | **string?** | Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. | [optional]  |
 | **limit** | **int?** | When paginating, limit the number of returned results to this many. | [optional] [default to 10] |
 | **page** | **string?** | The pagination token to use to continue listing tasks from a previous call to list tasks. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional]  |
 
