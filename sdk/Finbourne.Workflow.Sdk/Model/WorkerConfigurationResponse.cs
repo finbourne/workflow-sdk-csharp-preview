@@ -25,18 +25,18 @@ using System.Reflection;
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
-    /// Information about how the worker should be executed
+    /// Readonly information about how the worker should be executed
     /// </summary>
-    [JsonConverter(typeof(WorkerConfigurationJsonConverter))]
-    [DataContract(Name = "WorkerConfiguration")]
-    public partial class WorkerConfiguration : AbstractOpenAPISchema, IEquatable<WorkerConfiguration>, IValidatableObject
+    [JsonConverter(typeof(WorkerConfigurationResponseJsonConverter))]
+    [DataContract(Name = "WorkerConfigurationResponse")]
+    public partial class WorkerConfigurationResponse : AbstractOpenAPISchema, IEquatable<WorkerConfigurationResponse>, IValidatableObject
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="WorkerConfiguration" /> class
-        /// with the <see cref="Fail" /> class
+        /// Initializes a new instance of the <see cref="WorkerConfigurationResponse" /> class
+        /// with the <see cref="FailResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of Fail.</param>
-        public WorkerConfiguration(Fail actualInstance)
+        /// <param name="actualInstance">An instance of FailResponse.</param>
+        public WorkerConfigurationResponse(FailResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -44,11 +44,11 @@ namespace Finbourne.Workflow.Sdk.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WorkerConfiguration" /> class
-        /// with the <see cref="HealthCheck" /> class
+        /// Initializes a new instance of the <see cref="WorkerConfigurationResponse" /> class
+        /// with the <see cref="HealthCheckResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of HealthCheck.</param>
-        public WorkerConfiguration(HealthCheck actualInstance)
+        /// <param name="actualInstance">An instance of HealthCheckResponse.</param>
+        public WorkerConfigurationResponse(HealthCheckResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -56,11 +56,11 @@ namespace Finbourne.Workflow.Sdk.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WorkerConfiguration" /> class
-        /// with the <see cref="LuminesceView" /> class
+        /// Initializes a new instance of the <see cref="WorkerConfigurationResponse" /> class
+        /// with the <see cref="LuminesceViewResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of LuminesceView.</param>
-        public WorkerConfiguration(LuminesceView actualInstance)
+        /// <param name="actualInstance">An instance of LuminesceViewResponse.</param>
+        public WorkerConfigurationResponse(LuminesceViewResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -68,11 +68,11 @@ namespace Finbourne.Workflow.Sdk.Model
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="WorkerConfiguration" /> class
-        /// with the <see cref="Sleep" /> class
+        /// Initializes a new instance of the <see cref="WorkerConfigurationResponse" /> class
+        /// with the <see cref="SleepResponse" /> class
         /// </summary>
-        /// <param name="actualInstance">An instance of Sleep.</param>
-        public WorkerConfiguration(Sleep actualInstance)
+        /// <param name="actualInstance">An instance of SleepResponse.</param>
+        public WorkerConfigurationResponse(SleepResponse actualInstance)
         {
             this.IsNullable = false;
             this.SchemaType= "oneOf";
@@ -93,67 +93,67 @@ namespace Finbourne.Workflow.Sdk.Model
             }
             set
             {
-                if (value.GetType() == typeof(Fail))
+                if (value.GetType() == typeof(FailResponse))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(HealthCheck))
+                else if (value.GetType() == typeof(HealthCheckResponse))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(LuminesceView))
+                else if (value.GetType() == typeof(LuminesceViewResponse))
                 {
                     this._actualInstance = value;
                 }
-                else if (value.GetType() == typeof(Sleep))
+                else if (value.GetType() == typeof(SleepResponse))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: Fail, HealthCheck, LuminesceView, Sleep");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: FailResponse, HealthCheckResponse, LuminesceViewResponse, SleepResponse");
                 }
             }
         }
 
         /// <summary>
-        /// Get the actual instance of `Fail`. If the actual instance is not `Fail`,
+        /// Get the actual instance of `FailResponse`. If the actual instance is not `FailResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of Fail</returns>
-        public Fail GetFail()
+        /// <returns>An instance of FailResponse</returns>
+        public FailResponse GetFailResponse()
         {
-            return (Fail)this.ActualInstance;
+            return (FailResponse)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `HealthCheck`. If the actual instance is not `HealthCheck`,
+        /// Get the actual instance of `HealthCheckResponse`. If the actual instance is not `HealthCheckResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of HealthCheck</returns>
-        public HealthCheck GetHealthCheck()
+        /// <returns>An instance of HealthCheckResponse</returns>
+        public HealthCheckResponse GetHealthCheckResponse()
         {
-            return (HealthCheck)this.ActualInstance;
+            return (HealthCheckResponse)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `LuminesceView`. If the actual instance is not `LuminesceView`,
+        /// Get the actual instance of `LuminesceViewResponse`. If the actual instance is not `LuminesceViewResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of LuminesceView</returns>
-        public LuminesceView GetLuminesceView()
+        /// <returns>An instance of LuminesceViewResponse</returns>
+        public LuminesceViewResponse GetLuminesceViewResponse()
         {
-            return (LuminesceView)this.ActualInstance;
+            return (LuminesceViewResponse)this.ActualInstance;
         }
 
         /// <summary>
-        /// Get the actual instance of `Sleep`. If the actual instance is not `Sleep`,
+        /// Get the actual instance of `SleepResponse`. If the actual instance is not `SleepResponse`,
         /// the InvalidClassException will be thrown
         /// </summary>
-        /// <returns>An instance of Sleep</returns>
-        public Sleep GetSleep()
+        /// <returns>An instance of SleepResponse</returns>
+        public SleepResponse GetSleepResponse()
         {
-            return (Sleep)this.ActualInstance;
+            return (SleepResponse)this.ActualInstance;
         }
 
         /// <summary>
@@ -163,7 +163,7 @@ namespace Finbourne.Workflow.Sdk.Model
         public override string ToString()
         {
             var sb = new StringBuilder();
-            sb.Append("class WorkerConfiguration {\n");
+            sb.Append("class WorkerConfigurationResponse {\n");
             sb.Append("  ActualInstance: ").Append(this.ActualInstance).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -175,21 +175,21 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>JSON string presentation of the object</returns>
         public override string ToJson()
         {
-            return JsonConvert.SerializeObject(this.ActualInstance, WorkerConfiguration.SerializerSettings);
+            return JsonConvert.SerializeObject(this.ActualInstance, WorkerConfigurationResponse.SerializerSettings);
         }
 
         /// <summary>
-        /// Converts the JSON string into an instance of WorkerConfiguration
+        /// Converts the JSON string into an instance of WorkerConfigurationResponse
         /// </summary>
         /// <param name="jsonString">JSON string</param>
-        /// <returns>An instance of WorkerConfiguration</returns>
-        public static WorkerConfiguration FromJson(string jsonString)
+        /// <returns>An instance of WorkerConfigurationResponse</returns>
+        public static WorkerConfigurationResponse FromJson(string jsonString)
         {
-            WorkerConfiguration newWorkerConfiguration = null;
+            WorkerConfigurationResponse newWorkerConfigurationResponse = null;
 
             if (string.IsNullOrEmpty(jsonString))
             {
-                return newWorkerConfiguration;
+                return newWorkerConfigurationResponse;
             }
             int match = 0;
             List<string> matchedTypes = new List<string>();
@@ -197,81 +197,81 @@ namespace Finbourne.Workflow.Sdk.Model
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(Fail).GetProperty("AdditionalProperties") == null)
+                if (typeof(FailResponse).GetProperty("AdditionalProperties") == null)
                 {
-                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<Fail>(jsonString, WorkerConfiguration.SerializerSettings));
+                    newWorkerConfigurationResponse = new WorkerConfigurationResponse(JsonConvert.DeserializeObject<FailResponse>(jsonString, WorkerConfigurationResponse.SerializerSettings));
                 }
                 else
                 {
-                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<Fail>(jsonString, WorkerConfiguration.AdditionalPropertiesSerializerSettings));
+                    newWorkerConfigurationResponse = new WorkerConfigurationResponse(JsonConvert.DeserializeObject<FailResponse>(jsonString, WorkerConfigurationResponse.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("Fail");
+                matchedTypes.Add("FailResponse");
                 match++;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into Fail: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into FailResponse: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(HealthCheck).GetProperty("AdditionalProperties") == null)
+                if (typeof(HealthCheckResponse).GetProperty("AdditionalProperties") == null)
                 {
-                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<HealthCheck>(jsonString, WorkerConfiguration.SerializerSettings));
+                    newWorkerConfigurationResponse = new WorkerConfigurationResponse(JsonConvert.DeserializeObject<HealthCheckResponse>(jsonString, WorkerConfigurationResponse.SerializerSettings));
                 }
                 else
                 {
-                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<HealthCheck>(jsonString, WorkerConfiguration.AdditionalPropertiesSerializerSettings));
+                    newWorkerConfigurationResponse = new WorkerConfigurationResponse(JsonConvert.DeserializeObject<HealthCheckResponse>(jsonString, WorkerConfigurationResponse.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("HealthCheck");
+                matchedTypes.Add("HealthCheckResponse");
                 match++;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into HealthCheck: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into HealthCheckResponse: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(LuminesceView).GetProperty("AdditionalProperties") == null)
+                if (typeof(LuminesceViewResponse).GetProperty("AdditionalProperties") == null)
                 {
-                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<LuminesceView>(jsonString, WorkerConfiguration.SerializerSettings));
+                    newWorkerConfigurationResponse = new WorkerConfigurationResponse(JsonConvert.DeserializeObject<LuminesceViewResponse>(jsonString, WorkerConfigurationResponse.SerializerSettings));
                 }
                 else
                 {
-                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<LuminesceView>(jsonString, WorkerConfiguration.AdditionalPropertiesSerializerSettings));
+                    newWorkerConfigurationResponse = new WorkerConfigurationResponse(JsonConvert.DeserializeObject<LuminesceViewResponse>(jsonString, WorkerConfigurationResponse.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("LuminesceView");
+                matchedTypes.Add("LuminesceViewResponse");
                 match++;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into LuminesceView: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into LuminesceViewResponse: {1}", jsonString, exception.ToString()));
             }
 
             try
             {
                 // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
-                if (typeof(Sleep).GetProperty("AdditionalProperties") == null)
+                if (typeof(SleepResponse).GetProperty("AdditionalProperties") == null)
                 {
-                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<Sleep>(jsonString, WorkerConfiguration.SerializerSettings));
+                    newWorkerConfigurationResponse = new WorkerConfigurationResponse(JsonConvert.DeserializeObject<SleepResponse>(jsonString, WorkerConfigurationResponse.SerializerSettings));
                 }
                 else
                 {
-                    newWorkerConfiguration = new WorkerConfiguration(JsonConvert.DeserializeObject<Sleep>(jsonString, WorkerConfiguration.AdditionalPropertiesSerializerSettings));
+                    newWorkerConfigurationResponse = new WorkerConfigurationResponse(JsonConvert.DeserializeObject<SleepResponse>(jsonString, WorkerConfigurationResponse.AdditionalPropertiesSerializerSettings));
                 }
-                matchedTypes.Add("Sleep");
+                matchedTypes.Add("SleepResponse");
                 match++;
             }
             catch (Exception exception)
             {
                 // deserialization failed, try the next one
-                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into Sleep: {1}", jsonString, exception.ToString()));
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SleepResponse: {1}", jsonString, exception.ToString()));
             }
 
             if (match == 0)
@@ -284,7 +284,7 @@ namespace Finbourne.Workflow.Sdk.Model
             }
 
             // deserialization is considered successful at this point if no exception has been thrown.
-            return newWorkerConfiguration;
+            return newWorkerConfigurationResponse;
         }
 
         /// <summary>
@@ -294,15 +294,15 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as WorkerConfiguration);
+            return this.Equals(input as WorkerConfigurationResponse);
         }
 
         /// <summary>
-        /// Returns true if WorkerConfiguration instances are equal
+        /// Returns true if WorkerConfigurationResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of WorkerConfiguration to be compared</param>
+        /// <param name="input">Instance of WorkerConfigurationResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(WorkerConfiguration input)
+        public bool Equals(WorkerConfigurationResponse input)
         {
             if (input == null)
                 return false;
@@ -337,9 +337,9 @@ namespace Finbourne.Workflow.Sdk.Model
     }
 
     /// <summary>
-    /// Custom JSON converter for WorkerConfiguration
+    /// Custom JSON converter for WorkerConfigurationResponse
     /// </summary>
-    public class WorkerConfigurationJsonConverter : JsonConverter
+    public class WorkerConfigurationResponseJsonConverter : JsonConverter
     {
         /// <summary>
         /// To write the JSON string
@@ -349,7 +349,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="serializer">JSON Serializer</param>
         public override void WriteJson(JsonWriter writer, object value, JsonSerializer serializer)
         {
-            writer.WriteRawValue((string)(typeof(WorkerConfiguration).GetMethod("ToJson").Invoke(value, null)));
+            writer.WriteRawValue((string)(typeof(WorkerConfigurationResponse).GetMethod("ToJson").Invoke(value, null)));
         }
 
         /// <summary>
@@ -364,7 +364,7 @@ namespace Finbourne.Workflow.Sdk.Model
         {
             if(reader.TokenType != JsonToken.Null)
             {
-                return WorkerConfiguration.FromJson(JObject.Load(reader).ToString(Formatting.None));
+                return WorkerConfigurationResponse.FromJson(JObject.Load(reader).ToString(Formatting.None));
             }
             return null;
         }

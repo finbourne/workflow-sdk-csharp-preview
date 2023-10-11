@@ -8,7 +8,7 @@ Name | Type | Description | Notes
 **Id** | [**ResourceId**](ResourceId.md) |  | 
 **DisplayName** | **string** | Human readable name | 
 **Description** | **string** | Human readable description | [optional] 
-**WorkerConfiguration** | **Object** | Information about how the worker should be executed | 
+**WorkerConfiguration** | [**WorkerConfigurationResponse**](WorkerConfigurationResponse.md) |  | 
 **_Version** | [**VersionInfo**](VersionInfo.md) |  | [optional] 
 **Parameters** | [**List&lt;Parameter&gt;**](Parameter.md) | The Parameters this Worker accepts or requires. | [optional] 
 **ResultFields** | [**List&lt;ResultField&gt;**](ResultField.md) | The Fields that the Worker results will come back with. | [optional] 
