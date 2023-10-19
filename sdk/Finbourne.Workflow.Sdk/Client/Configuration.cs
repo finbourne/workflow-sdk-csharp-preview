@@ -29,7 +29,7 @@ namespace Finbourne.Workflow.Sdk.Client
         /// Version of the package.
         /// </summary>
         /// <value>Version of the package.</value>
-        public const string Version = "0.1.445";
+        public const string Version = "0.1.459";
 
         /// <summary>
         /// Identifier for ISO 8601 DateTime Format
@@ -111,7 +111,7 @@ namespace Finbourne.Workflow.Sdk.Client
         public Configuration()
         {
             Proxy = null;
-            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/0.1.445/csharp");
+            UserAgent = WebUtility.UrlEncode("OpenAPI-Generator/0.1.459/csharp");
             BasePath = "https://www.lusid.com/workflow";
             DefaultHeaders = new ConcurrentDictionary<string, string>();
             ApiKey = new ConcurrentDictionary<string, string>();
@@ -518,8 +518,8 @@ namespace Finbourne.Workflow.Sdk.Client
             string report = "C# SDK (Finbourne.Workflow.Sdk) Debug Report:\n";
             report += "    OS: " + System.Environment.OSVersion + "\n";
             report += "    .NET Framework Version: " + System.Environment.Version  + "\n";
-            report += "    Version of the API: 0.1.445\n";
-            report += "    SDK Package Version: 0.1.445\n";
+            report += "    Version of the API: 0.1.459\n";
+            report += "    SDK Package Version: 0.1.459\n";
 
             return report;
         }
