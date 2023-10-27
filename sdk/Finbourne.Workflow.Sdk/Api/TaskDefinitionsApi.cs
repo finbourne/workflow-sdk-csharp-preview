@@ -89,10 +89,11 @@ namespace Finbourne.Workflow.Sdk.Api
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="asAt">The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified. (optional)</param>
+        /// <param name="filter">Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional)</param>
         /// <param name="limit">When paginating, limit the number of returned results to this many. (optional, default to 10)</param>
         /// <param name="page">The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional)</param>
         /// <returns>PagedResourceListOfTaskDefinition</returns>
-        PagedResourceListOfTaskDefinition ListTaskDefinitions(DateTimeOffset? asAt = default(DateTimeOffset?), int? limit = default(int?), string? page = default(string?));
+        PagedResourceListOfTaskDefinition ListTaskDefinitions(DateTimeOffset? asAt = default(DateTimeOffset?), string? filter = default(string?), int? limit = default(int?), string? page = default(string?));
 
         /// <summary>
         /// [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
@@ -102,10 +103,11 @@ namespace Finbourne.Workflow.Sdk.Api
         /// </remarks>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="asAt">The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified. (optional)</param>
+        /// <param name="filter">Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional)</param>
         /// <param name="limit">When paginating, limit the number of returned results to this many. (optional, default to 10)</param>
         /// <param name="page">The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional)</param>
         /// <returns>ApiResponse of PagedResourceListOfTaskDefinition</returns>
-        ApiResponse<PagedResourceListOfTaskDefinition> ListTaskDefinitionsWithHttpInfo(DateTimeOffset? asAt = default(DateTimeOffset?), int? limit = default(int?), string? page = default(string?));
+        ApiResponse<PagedResourceListOfTaskDefinition> ListTaskDefinitionsWithHttpInfo(DateTimeOffset? asAt = default(DateTimeOffset?), string? filter = default(string?), int? limit = default(int?), string? page = default(string?));
         /// <summary>
         /// [EXPERIMENTAL] ListTasksForTaskDefinition: List Tasks for a Task Definition
         /// </summary>
@@ -242,11 +244,12 @@ namespace Finbourne.Workflow.Sdk.Api
         /// </remarks>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="asAt">The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified. (optional)</param>
+        /// <param name="filter">Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional)</param>
         /// <param name="limit">When paginating, limit the number of returned results to this many. (optional, default to 10)</param>
         /// <param name="page">The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PagedResourceListOfTaskDefinition</returns>
-        System.Threading.Tasks.Task<PagedResourceListOfTaskDefinition> ListTaskDefinitionsAsync(DateTimeOffset? asAt = default(DateTimeOffset?), int? limit = default(int?), string? page = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<PagedResourceListOfTaskDefinition> ListTaskDefinitionsAsync(DateTimeOffset? asAt = default(DateTimeOffset?), string? filter = default(string?), int? limit = default(int?), string? page = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// [EXPERIMENTAL] ListTaskDefinitions: List Task Definitions
@@ -256,11 +259,12 @@ namespace Finbourne.Workflow.Sdk.Api
         /// </remarks>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="asAt">The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified. (optional)</param>
+        /// <param name="filter">Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional)</param>
         /// <param name="limit">When paginating, limit the number of returned results to this many. (optional, default to 10)</param>
         /// <param name="page">The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PagedResourceListOfTaskDefinition)</returns>
-        System.Threading.Tasks.Task<ApiResponse<PagedResourceListOfTaskDefinition>> ListTaskDefinitionsWithHttpInfoAsync(DateTimeOffset? asAt = default(DateTimeOffset?), int? limit = default(int?), string? page = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<PagedResourceListOfTaskDefinition>> ListTaskDefinitionsWithHttpInfoAsync(DateTimeOffset? asAt = default(DateTimeOffset?), string? filter = default(string?), int? limit = default(int?), string? page = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// [EXPERIMENTAL] ListTasksForTaskDefinition: List Tasks for a Task Definition
         /// </summary>
@@ -962,12 +966,13 @@ namespace Finbourne.Workflow.Sdk.Api
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="asAt">The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified. (optional)</param>
+        /// <param name="filter">Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional)</param>
         /// <param name="limit">When paginating, limit the number of returned results to this many. (optional, default to 10)</param>
         /// <param name="page">The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional)</param>
         /// <returns>PagedResourceListOfTaskDefinition</returns>
-        public PagedResourceListOfTaskDefinition ListTaskDefinitions(DateTimeOffset? asAt = default(DateTimeOffset?), int? limit = default(int?), string? page = default(string?))
+        public PagedResourceListOfTaskDefinition ListTaskDefinitions(DateTimeOffset? asAt = default(DateTimeOffset?), string? filter = default(string?), int? limit = default(int?), string? page = default(string?))
         {
-            Finbourne.Workflow.Sdk.Client.ApiResponse<PagedResourceListOfTaskDefinition> localVarResponse = ListTaskDefinitionsWithHttpInfo(asAt, limit, page);
+            Finbourne.Workflow.Sdk.Client.ApiResponse<PagedResourceListOfTaskDefinition> localVarResponse = ListTaskDefinitionsWithHttpInfo(asAt, filter, limit, page);
             return localVarResponse.Data;
         }
 
@@ -976,10 +981,11 @@ namespace Finbourne.Workflow.Sdk.Api
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="asAt">The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified. (optional)</param>
+        /// <param name="filter">Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional)</param>
         /// <param name="limit">When paginating, limit the number of returned results to this many. (optional, default to 10)</param>
         /// <param name="page">The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional)</param>
         /// <returns>ApiResponse of PagedResourceListOfTaskDefinition</returns>
-        public Finbourne.Workflow.Sdk.Client.ApiResponse<PagedResourceListOfTaskDefinition> ListTaskDefinitionsWithHttpInfo(DateTimeOffset? asAt = default(DateTimeOffset?), int? limit = default(int?), string? page = default(string?))
+        public Finbourne.Workflow.Sdk.Client.ApiResponse<PagedResourceListOfTaskDefinition> ListTaskDefinitionsWithHttpInfo(DateTimeOffset? asAt = default(DateTimeOffset?), string? filter = default(string?), int? limit = default(int?), string? page = default(string?))
         {
             Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
 
@@ -1000,6 +1006,10 @@ namespace Finbourne.Workflow.Sdk.Api
             if (asAt != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToMultiMap("", "asAt", asAt));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
             }
             if (limit != null)
             {
@@ -1034,13 +1044,14 @@ namespace Finbourne.Workflow.Sdk.Api
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="asAt">The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified. (optional)</param>
+        /// <param name="filter">Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional)</param>
         /// <param name="limit">When paginating, limit the number of returned results to this many. (optional, default to 10)</param>
         /// <param name="page">The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of PagedResourceListOfTaskDefinition</returns>
-        public async System.Threading.Tasks.Task<PagedResourceListOfTaskDefinition> ListTaskDefinitionsAsync(DateTimeOffset? asAt = default(DateTimeOffset?), int? limit = default(int?), string? page = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<PagedResourceListOfTaskDefinition> ListTaskDefinitionsAsync(DateTimeOffset? asAt = default(DateTimeOffset?), string? filter = default(string?), int? limit = default(int?), string? page = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
-            Finbourne.Workflow.Sdk.Client.ApiResponse<PagedResourceListOfTaskDefinition> localVarResponse = await ListTaskDefinitionsWithHttpInfoAsync(asAt, limit, page, cancellationToken).ConfigureAwait(false);
+            Finbourne.Workflow.Sdk.Client.ApiResponse<PagedResourceListOfTaskDefinition> localVarResponse = await ListTaskDefinitionsWithHttpInfoAsync(asAt, filter, limit, page, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
         }
 
@@ -1049,11 +1060,12 @@ namespace Finbourne.Workflow.Sdk.Api
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="asAt">The asAt datetime at which to list the Task Definitions. Defaults to return the latest version of each Task Definition if not specified. (optional)</param>
+        /// <param name="filter">Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional)</param>
         /// <param name="limit">When paginating, limit the number of returned results to this many. (optional, default to 10)</param>
         /// <param name="page">The pagination token to use to continue listing task definitions from a previous call to list task definitions. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional)</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (PagedResourceListOfTaskDefinition)</returns>
-        public async System.Threading.Tasks.Task<Finbourne.Workflow.Sdk.Client.ApiResponse<PagedResourceListOfTaskDefinition>> ListTaskDefinitionsWithHttpInfoAsync(DateTimeOffset? asAt = default(DateTimeOffset?), int? limit = default(int?), string? page = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Finbourne.Workflow.Sdk.Client.ApiResponse<PagedResourceListOfTaskDefinition>> ListTaskDefinitionsWithHttpInfoAsync(DateTimeOffset? asAt = default(DateTimeOffset?), string? filter = default(string?), int? limit = default(int?), string? page = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
@@ -1076,6 +1088,10 @@ namespace Finbourne.Workflow.Sdk.Api
             if (asAt != null)
             {
                 localVarRequestOptions.QueryParameters.Add(Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToMultiMap("", "asAt", asAt));
+            }
+            if (filter != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToMultiMap("", "filter", filter));
             }
             if (limit != null)
             {
