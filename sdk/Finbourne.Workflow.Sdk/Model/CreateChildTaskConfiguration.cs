@@ -40,7 +40,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="taskDefinitionId">taskDefinitionId (required).</param>
         /// <param name="taskDefinitionAsAt">TaskDefinition AsAt timestamp.</param>
         /// <param name="initialTrigger">The Initial Trigger for automatic start.</param>
-        /// <param name="childTaskFields">Field Mappings (required).</param>
+        /// <param name="childTaskFields">Field Mappings.</param>
         public CreateChildTaskConfiguration(ResourceId taskDefinitionId = default(ResourceId), DateTimeOffset? taskDefinitionAsAt = default(DateTimeOffset?), string initialTrigger = default(string), Dictionary<string, FieldMapping> childTaskFields = default(Dictionary<string, FieldMapping>))
         {
             // to ensure "taskDefinitionId" is required (not null)
@@ -49,14 +49,9 @@ namespace Finbourne.Workflow.Sdk.Model
                 throw new ArgumentNullException("taskDefinitionId is a required property for CreateChildTaskConfiguration and cannot be null");
             }
             this.TaskDefinitionId = taskDefinitionId;
-            // to ensure "childTaskFields" is required (not null)
-            if (childTaskFields == null)
-            {
-                throw new ArgumentNullException("childTaskFields is a required property for CreateChildTaskConfiguration and cannot be null");
-            }
-            this.ChildTaskFields = childTaskFields;
             this.TaskDefinitionAsAt = taskDefinitionAsAt;
             this.InitialTrigger = initialTrigger;
+            this.ChildTaskFields = childTaskFields;
         }
 
         /// <summary>
@@ -83,7 +78,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Field Mappings
         /// </summary>
         /// <value>Field Mappings</value>
-        [DataMember(Name = "childTaskFields", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "childTaskFields", EmitDefaultValue = true)]
         public Dictionary<string, FieldMapping> ChildTaskFields { get; set; }
 
         /// <summary>

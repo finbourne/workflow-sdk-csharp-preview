@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.481",
+    "version": "0.1.486",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1611,7 +1611,6 @@
       },
       "CreateChildTaskConfiguration": {
         "required": [
-          "childTaskFields",
           "taskDefinitionId"
         ],
         "type": "object",
@@ -1637,7 +1636,8 @@
             "additionalProperties": {
               "$ref": "#/components/schemas/FieldMapping"
             },
-            "description": "Field Mappings"
+            "description": "Field Mappings",
+            "nullable": true
           }
         },
         "additionalProperties": false,
@@ -1645,6 +1645,7 @@
       },
       "CreateChildTasksAction": {
         "required": [
+          "childTaskConfigurations",
           "type"
         ],
         "type": "object",
@@ -1662,8 +1663,7 @@
             "items": {
               "$ref": "#/components/schemas/CreateChildTaskConfiguration"
             },
-            "description": "The Child Task Configurations",
-            "nullable": true
+            "description": "The Child Task Configurations"
           }
         },
         "additionalProperties": false,

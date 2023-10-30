@@ -60,10 +60,15 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Initializes a new instance of the <see cref="CreateChildTasksAction" /> class.
         /// </summary>
         /// <param name="type">Type name for this Action (required).</param>
-        /// <param name="childTaskConfigurations">The Child Task Configurations.</param>
+        /// <param name="childTaskConfigurations">The Child Task Configurations (required).</param>
         public CreateChildTasksAction(TypeEnum type = default(TypeEnum), List<CreateChildTaskConfiguration> childTaskConfigurations = default(List<CreateChildTaskConfiguration>))
         {
             this.Type = type;
+            // to ensure "childTaskConfigurations" is required (not null)
+            if (childTaskConfigurations == null)
+            {
+                throw new ArgumentNullException("childTaskConfigurations is a required property for CreateChildTasksAction and cannot be null");
+            }
             this.ChildTaskConfigurations = childTaskConfigurations;
         }
 
@@ -71,7 +76,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// The Child Task Configurations
         /// </summary>
         /// <value>The Child Task Configurations</value>
-        [DataMember(Name = "childTaskConfigurations", EmitDefaultValue = true)]
+        [DataMember(Name = "childTaskConfigurations", IsRequired = true, EmitDefaultValue = true)]
         public List<CreateChildTaskConfiguration> ChildTaskConfigurations { get; set; }
 
         /// <summary>
