@@ -24,7 +24,7 @@ using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
-    /// Defines a Worker Action
+    /// Defines a Create Child Tasks Action
     /// </summary>
     [DataContract(Name = "CreateChildTasksAction")]
     public partial class CreateChildTasksAction : IEquatable<CreateChildTasksAction>, IValidatableObject

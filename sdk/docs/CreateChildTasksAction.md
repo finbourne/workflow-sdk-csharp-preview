@@ -1,5 +1,5 @@
 # Finbourne.Workflow.Sdk.Model.CreateChildTasksAction
-Defines a Worker Action
+Defines a Create Child Tasks Action
 
 ## Properties
 

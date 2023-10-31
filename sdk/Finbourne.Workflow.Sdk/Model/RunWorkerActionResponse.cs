@@ -24,10 +24,10 @@ using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
-    /// Defines a Run Worker Action
+    /// Defines a read-only Run Worker Action
     /// </summary>
-    [DataContract(Name = "RunWorkerAction")]
-    public partial class RunWorkerAction : IEquatable<RunWorkerAction>, IValidatableObject
+    [DataContract(Name = "RunWorkerActionResponse")]
+    public partial class RunWorkerActionResponse : IEquatable<RunWorkerActionResponse>, IValidatableObject
     {
         /// <summary>
         /// Type name for this Action
@@ -49,30 +49,20 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Type name for this Action
         /// </summary>
         /// <value>Type name for this Action</value>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public TypeEnum Type { get; set; }
+        [DataMember(Name = "type", EmitDefaultValue = true)]
+        public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="RunWorkerAction" /> class.
+        /// Initializes a new instance of the <see cref="RunWorkerActionResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected RunWorkerAction() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="RunWorkerAction" /> class.
-        /// </summary>
-        /// <param name="type">Type name for this Action (required).</param>
-        /// <param name="workerId">workerId (required).</param>
+        /// <param name="type">Type name for this Action.</param>
+        /// <param name="workerId">workerId.</param>
         /// <param name="workerAsAt">Worker AsAt.</param>
         /// <param name="workerParameters">Parameters for this Worker.</param>
         /// <param name="workerStatusTriggers">workerStatusTriggers.</param>
         /// <param name="childTaskConfigurations">Tasks can be generated from run worker results; this is the configuration.</param>
-        public RunWorkerAction(TypeEnum type = default(TypeEnum), ResourceId workerId = default(ResourceId), DateTimeOffset? workerAsAt = default(DateTimeOffset?), Dictionary<string, FieldMapping> workerParameters = default(Dictionary<string, FieldMapping>), WorkerStatusTriggers workerStatusTriggers = default(WorkerStatusTriggers), List<ResultantChildTaskConfiguration> childTaskConfigurations = default(List<ResultantChildTaskConfiguration>))
+        public RunWorkerActionResponse(TypeEnum? type = default(TypeEnum?), ResourceId workerId = default(ResourceId), DateTimeOffset? workerAsAt = default(DateTimeOffset?), Dictionary<string, FieldMapping> workerParameters = default(Dictionary<string, FieldMapping>), WorkerStatusTriggers workerStatusTriggers = default(WorkerStatusTriggers), List<ResultantChildTaskConfiguration> childTaskConfigurations = default(List<ResultantChildTaskConfiguration>))
         {
             this.Type = type;
-            // to ensure "workerId" is required (not null)
-            if (workerId == null)
-            {
-                throw new ArgumentNullException("workerId is a required property for RunWorkerAction and cannot be null");
-            }
             this.WorkerId = workerId;
             this.WorkerAsAt = workerAsAt;
             this.WorkerParameters = workerParameters;
@@ -83,7 +73,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <summary>
         /// Gets or Sets WorkerId
         /// </summary>
-        [DataMember(Name = "workerId", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "workerId", EmitDefaultValue = false)]
         public ResourceId WorkerId { get; set; }
 
         /// <summary>
@@ -120,7 +110,7 @@ namespace Finbourne.Workflow.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class RunWorkerAction {\n");
+            sb.Append("class RunWorkerActionResponse {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  WorkerId: ").Append(WorkerId).Append("\n");
             sb.Append("  WorkerAsAt: ").Append(WorkerAsAt).Append("\n");
@@ -147,15 +137,15 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as RunWorkerAction);
+            return this.Equals(input as RunWorkerActionResponse);
         }
 
         /// <summary>
-        /// Returns true if RunWorkerAction instances are equal
+        /// Returns true if RunWorkerActionResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of RunWorkerAction to be compared</param>
+        /// <param name="input">Instance of RunWorkerActionResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(RunWorkerAction input)
+        public bool Equals(RunWorkerActionResponse input)
         {
             if (input == null)
             {

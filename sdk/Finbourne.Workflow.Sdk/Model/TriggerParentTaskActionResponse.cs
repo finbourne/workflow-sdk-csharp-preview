@@ -24,10 +24,10 @@ using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
-    /// Defines a Trigger Parent Task Action
+    /// Defines a read-only Trigger Parent Task Action
     /// </summary>
-    [DataContract(Name = "TriggerParentTaskAction")]
-    public partial class TriggerParentTaskAction : IEquatable<TriggerParentTaskAction>, IValidatableObject
+    [DataContract(Name = "TriggerParentTaskActionResponse")]
+    public partial class TriggerParentTaskActionResponse : IEquatable<TriggerParentTaskActionResponse>, IValidatableObject
     {
         /// <summary>
         /// Type name for this Action
@@ -49,26 +49,16 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Type name for this Action
         /// </summary>
         /// <value>Type name for this Action</value>
-        [DataMember(Name = "type", IsRequired = true, EmitDefaultValue = true)]
-        public TypeEnum Type { get; set; }
+        [DataMember(Name = "type", EmitDefaultValue = true)]
+        public TypeEnum? Type { get; set; }
         /// <summary>
-        /// Initializes a new instance of the <see cref="TriggerParentTaskAction" /> class.
+        /// Initializes a new instance of the <see cref="TriggerParentTaskActionResponse" /> class.
         /// </summary>
-        [JsonConstructorAttribute]
-        protected TriggerParentTaskAction() { }
-        /// <summary>
-        /// Initializes a new instance of the <see cref="TriggerParentTaskAction" /> class.
-        /// </summary>
-        /// <param name="type">Type name for this Action (required).</param>
-        /// <param name="trigger">Trigger on parent task to be invoked (required).</param>
-        public TriggerParentTaskAction(TypeEnum type = default(TypeEnum), string trigger = default(string))
+        /// <param name="type">Type name for this Action.</param>
+        /// <param name="trigger">Trigger on parent task to be invoked.</param>
+        public TriggerParentTaskActionResponse(TypeEnum? type = default(TypeEnum?), string trigger = default(string))
         {
             this.Type = type;
-            // to ensure "trigger" is required (not null)
-            if (trigger == null)
-            {
-                throw new ArgumentNullException("trigger is a required property for TriggerParentTaskAction and cannot be null");
-            }
             this.Trigger = trigger;
         }
 
@@ -76,7 +66,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Trigger on parent task to be invoked
         /// </summary>
         /// <value>Trigger on parent task to be invoked</value>
-        [DataMember(Name = "trigger", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "trigger", EmitDefaultValue = true)]
         public string Trigger { get; set; }
 
         /// <summary>
@@ -86,7 +76,7 @@ namespace Finbourne.Workflow.Sdk.Model
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("class TriggerParentTaskAction {\n");
+            sb.Append("class TriggerParentTaskActionResponse {\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  Trigger: ").Append(Trigger).Append("\n");
             sb.Append("}\n");
@@ -109,15 +99,15 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Boolean</returns>
         public override bool Equals(object input)
         {
-            return this.Equals(input as TriggerParentTaskAction);
+            return this.Equals(input as TriggerParentTaskActionResponse);
         }
 
         /// <summary>
-        /// Returns true if TriggerParentTaskAction instances are equal
+        /// Returns true if TriggerParentTaskActionResponse instances are equal
         /// </summary>
-        /// <param name="input">Instance of TriggerParentTaskAction to be compared</param>
+        /// <param name="input">Instance of TriggerParentTaskActionResponse to be compared</param>
         /// <returns>Boolean</returns>
-        public bool Equals(TriggerParentTaskAction input)
+        public bool Equals(TriggerParentTaskActionResponse input)
         {
             if (input == null)
             {
@@ -160,25 +150,6 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // Trigger (string) maxLength
-            if (this.Trigger != null && this.Trigger.Length > 1024)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Trigger, length must be less than 1024.", new [] { "Trigger" });
-            }
-
-            // Trigger (string) minLength
-            if (this.Trigger != null && this.Trigger.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Trigger, length must be greater than 1.", new [] { "Trigger" });
-            }
-
-            // Trigger (string) pattern
-            Regex regexTrigger = new Regex(@"^[a-zA-Z0-9\-_]+$", RegexOptions.CultureInvariant);
-            if (false == regexTrigger.Match(this.Trigger).Success)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Trigger, must match a pattern of " + regexTrigger, new [] { "Trigger" });
-            }
-
             yield break;
         }
     }

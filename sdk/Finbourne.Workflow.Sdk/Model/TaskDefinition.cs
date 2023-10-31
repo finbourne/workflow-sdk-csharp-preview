@@ -24,7 +24,7 @@ using OpenAPIDateConverter = Finbourne.Workflow.Sdk.Client.OpenAPIDateConverter;
 namespace Finbourne.Workflow.Sdk.Model
 {
     /// <summary>
-    /// TaskDefinition
+    /// Task Definition
     /// </summary>
     [DataContract(Name = "TaskDefinition")]
     public partial class TaskDefinition : IEquatable<TaskDefinition>, IValidatableObject
@@ -47,7 +47,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="triggers">The Triggers for State transition.</param>
         /// <param name="actions">The Actions of this Task - executed after a Transition completion.</param>
         /// <param name="transitions">The Transitions between States.</param>
-        public TaskDefinition(ResourceId id = default(ResourceId), VersionInfo version = default(VersionInfo), string displayName = default(string), string description = default(string), List<TaskStateDefinition> states = default(List<TaskStateDefinition>), List<TaskFieldDefinition> fieldSchema = default(List<TaskFieldDefinition>), InitialState initialState = default(InitialState), List<TransitionTriggerDefinition> triggers = default(List<TransitionTriggerDefinition>), List<ActionDefinition> actions = default(List<ActionDefinition>), List<TaskTransitionDefinition> transitions = default(List<TaskTransitionDefinition>))
+        public TaskDefinition(ResourceId id = default(ResourceId), VersionInfo version = default(VersionInfo), string displayName = default(string), string description = default(string), List<TaskStateDefinition> states = default(List<TaskStateDefinition>), List<TaskFieldDefinition> fieldSchema = default(List<TaskFieldDefinition>), InitialState initialState = default(InitialState), List<TransitionTriggerDefinition> triggers = default(List<TransitionTriggerDefinition>), List<ActionDefinitionResponse> actions = default(List<ActionDefinitionResponse>), List<TaskTransitionDefinition> transitions = default(List<TaskTransitionDefinition>))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -139,7 +139,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         /// <value>The Actions of this Task - executed after a Transition completion</value>
         [DataMember(Name = "actions", EmitDefaultValue = true)]
-        public List<ActionDefinition> Actions { get; set; }
+        public List<ActionDefinitionResponse> Actions { get; set; }
 
         /// <summary>
         /// The Transitions between States

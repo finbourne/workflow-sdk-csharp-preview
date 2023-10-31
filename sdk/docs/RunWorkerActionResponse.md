@@ -1,12 +1,12 @@
-# Finbourne.Workflow.Sdk.Model.RunWorkerAction
-Defines a Run Worker Action
+# Finbourne.Workflow.Sdk.Model.RunWorkerActionResponse
+Defines a read-only Run Worker Action
 
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**Type** | **string** | Type name for this Action | 
-**WorkerId** | [**ResourceId**](ResourceId.md) |  | 
+**Type** | **string** | Type name for this Action | [optional] 
+**WorkerId** | [**ResourceId**](ResourceId.md) |  | [optional] 
 **WorkerAsAt** | **DateTimeOffset?** | Worker AsAt | [optional] 
 **WorkerParameters** | [**Dictionary&lt;string, FieldMapping&gt;**](FieldMapping.md) | Parameters for this Worker | [optional] 
 **WorkerStatusTriggers** | [**WorkerStatusTriggers**](WorkerStatusTriggers.md) |  | [optional] 
