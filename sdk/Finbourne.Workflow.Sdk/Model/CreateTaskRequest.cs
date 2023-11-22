@@ -40,8 +40,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="taskDefinitionId">taskDefinitionId (required).</param>
         /// <param name="correlationIds">A set of guid identifiers that allow correlation across the application tier.</param>
         /// <param name="fields">Fields and their initial values - should correspond with the Task Definition field schema.</param>
-        /// <param name="stackingKey">The key for the Stack that this Task should be added to.</param>
-        public CreateTaskRequest(ResourceId taskDefinitionId = default(ResourceId), List<string> correlationIds = default(List<string>), List<TaskInstanceField> fields = default(List<TaskInstanceField>), string stackingKey = default(string))
+        public CreateTaskRequest(ResourceId taskDefinitionId = default(ResourceId), List<string> correlationIds = default(List<string>), List<TaskInstanceField> fields = default(List<TaskInstanceField>))
         {
             // to ensure "taskDefinitionId" is required (not null)
             if (taskDefinitionId == null)
@@ -51,7 +50,6 @@ namespace Finbourne.Workflow.Sdk.Model
             this.TaskDefinitionId = taskDefinitionId;
             this.CorrelationIds = correlationIds;
             this.Fields = fields;
-            this.StackingKey = stackingKey;
         }
 
         /// <summary>
@@ -75,13 +73,6 @@ namespace Finbourne.Workflow.Sdk.Model
         public List<TaskInstanceField> Fields { get; set; }
 
         /// <summary>
-        /// The key for the Stack that this Task should be added to
-        /// </summary>
-        /// <value>The key for the Stack that this Task should be added to</value>
-        [DataMember(Name = "stackingKey", EmitDefaultValue = true)]
-        public string StackingKey { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -92,7 +83,6 @@ namespace Finbourne.Workflow.Sdk.Model
             sb.Append("  TaskDefinitionId: ").Append(TaskDefinitionId).Append("\n");
             sb.Append("  CorrelationIds: ").Append(CorrelationIds).Append("\n");
             sb.Append("  Fields: ").Append(Fields).Append("\n");
-            sb.Append("  StackingKey: ").Append(StackingKey).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -144,11 +134,6 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.Fields != null &&
                     input.Fields != null &&
                     this.Fields.SequenceEqual(input.Fields)
-                ) && 
-                (
-                    this.StackingKey == input.StackingKey ||
-                    (this.StackingKey != null &&
-                    this.StackingKey.Equals(input.StackingKey))
                 );
         }
 
@@ -172,10 +157,6 @@ namespace Finbourne.Workflow.Sdk.Model
                 if (this.Fields != null)
                 {
                     hashCode = (hashCode * 59) + this.Fields.GetHashCode();
-                }
-                if (this.StackingKey != null)
-                {
-                    hashCode = (hashCode * 59) + this.StackingKey.GetHashCode();
                 }
                 return hashCode;
             }

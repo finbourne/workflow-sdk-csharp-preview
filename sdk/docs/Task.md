@@ -18,8 +18,6 @@ Name | Type | Description | Notes
 **TerminalState** | **bool** | True if no onward transitions are possible | 
 **AsAtLastTransition** | **DateTimeOffset?** | Last Transition timestamp | [optional] 
 **Fields** | [**List&lt;TaskInstanceField&gt;**](TaskInstanceField.md) | Fields and their latest values - should correspond with the Task Definition field schema | [optional] 
-**StackingKey** | **string** | The key used to determine which stack to add the Task to | [optional] 
-**Stack** | [**Stack**](Stack.md) |  | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

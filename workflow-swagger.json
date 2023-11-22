@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.601",
+    "version": "0.1.609",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -16,7 +16,7 @@
   },
   "servers": [
     {
-      "url": "https://www.lusid.com/workflow"
+      "url": "https://fbn-devel.lusid.com/workflow"
     }
   ],
   "paths": {
@@ -1149,6 +1149,17 @@
             "x-nullable": true
           },
           {
+            "name": "filter",
+            "in": "query",
+            "description": "Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid.",
+            "schema": {
+              "maxLength": 16384,
+              "minLength": 0,
+              "pattern": "^[\\s\\S]*$",
+              "type": "string"
+            }
+          },
+          {
             "name": "limit",
             "in": "query",
             "description": "When paginating, limit the number of returned results to this many.",
@@ -1822,11 +1833,6 @@
               "$ref": "#/components/schemas/TaskInstanceField"
             },
             "description": "Fields and their initial values - should correspond with the Task Definition field schema",
-            "nullable": true
-          },
-          "stackingKey": {
-            "type": "string",
-            "description": "The key for the Stack that this Task should be added to",
             "nullable": true
           }
         },
@@ -2696,54 +2702,6 @@
         "additionalProperties": false,
         "description": "Configuration for a Worker that Sleeps for a user-defined amount of time"
       },
-      "Stack": {
-        "type": "object",
-        "properties": {
-          "memberAddedAsAt": {
-            "type": "string",
-            "description": "When the Task was added to the Stack",
-            "format": "date-time"
-          },
-          "stackOpenedAsAt": {
-            "type": "string",
-            "description": "When the Stack was opened",
-            "format": "date-time"
-          },
-          "stackClosedAsAt": {
-            "type": "string",
-            "description": "When the Stack was closed",
-            "format": "date-time",
-            "nullable": true
-          },
-          "stackMembershipType": {
-            "type": "string",
-            "description": "Whether the task is the Lead task of the Stack or a Member within the Stack",
-            "nullable": true
-          },
-          "stackStatus": {
-            "type": "string",
-            "description": "Status of the Stack (Open/Closed)",
-            "nullable": true
-          },
-          "leadTaskId": {
-            "type": "string",
-            "description": "ID of the Lead Task",
-            "format": "uuid"
-          },
-          "leadTaskState": {
-            "type": "string",
-            "description": "State of the Lead Task",
-            "nullable": true
-          },
-          "tasksInStack": {
-            "type": "integer",
-            "description": "Number of Tasks in the Stack",
-            "format": "int32"
-          }
-        },
-        "additionalProperties": false,
-        "description": "Information pertaining to the Tasks Stack if one is present"
-      },
       "Task": {
         "required": [
           "id",
@@ -2819,14 +2777,6 @@
             },
             "description": "Fields and their latest values - should correspond with the Task Definition field schema",
             "nullable": true
-          },
-          "stackingKey": {
-            "type": "string",
-            "description": "The key used to determine which stack to add the Task to",
-            "nullable": true
-          },
-          "stack": {
-            "$ref": "#/components/schemas/Stack"
           }
         },
         "additionalProperties": false,
@@ -3223,11 +3173,6 @@
               "$ref": "#/components/schemas/TaskInstanceField"
             },
             "description": "Defines the fields associated with the update",
-            "nullable": true
-          },
-          "stackingKey": {
-            "type": "string",
-            "description": "The key for the Stack that this Task should be added to",
             "nullable": true
           }
         },

@@ -50,9 +50,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="terminalState">True if no onward transitions are possible (required).</param>
         /// <param name="asAtLastTransition">Last Transition timestamp.</param>
         /// <param name="fields">Fields and their latest values - should correspond with the Task Definition field schema.</param>
-        /// <param name="stackingKey">The key used to determine which stack to add the Task to.</param>
-        /// <param name="stack">stack.</param>
-        public Task(Guid id = default(Guid), ResourceId taskDefinitionId = default(ResourceId), TaskDefinitionVersion taskDefinitionVersion = default(TaskDefinitionVersion), string taskDefinitionDisplayName = default(string), string state = default(string), TaskSummary ultimateParentTask = default(TaskSummary), TaskSummary parentTask = default(TaskSummary), List<TaskSummary> childTasks = default(List<TaskSummary>), List<string> correlationIds = default(List<string>), VersionInfo version = default(VersionInfo), bool terminalState = default(bool), DateTimeOffset? asAtLastTransition = default(DateTimeOffset?), List<TaskInstanceField> fields = default(List<TaskInstanceField>), string stackingKey = default(string), Stack stack = default(Stack))
+        public Task(Guid id = default(Guid), ResourceId taskDefinitionId = default(ResourceId), TaskDefinitionVersion taskDefinitionVersion = default(TaskDefinitionVersion), string taskDefinitionDisplayName = default(string), string state = default(string), TaskSummary ultimateParentTask = default(TaskSummary), TaskSummary parentTask = default(TaskSummary), List<TaskSummary> childTasks = default(List<TaskSummary>), List<string> correlationIds = default(List<string>), VersionInfo version = default(VersionInfo), bool terminalState = default(bool), DateTimeOffset? asAtLastTransition = default(DateTimeOffset?), List<TaskInstanceField> fields = default(List<TaskInstanceField>))
         {
             this.Id = id;
             // to ensure "taskDefinitionId" is required (not null)
@@ -92,8 +90,6 @@ namespace Finbourne.Workflow.Sdk.Model
             this._Version = version;
             this.AsAtLastTransition = asAtLastTransition;
             this.Fields = fields;
-            this.StackingKey = stackingKey;
-            this.Stack = stack;
         }
 
         /// <summary>
@@ -183,19 +179,6 @@ namespace Finbourne.Workflow.Sdk.Model
         public List<TaskInstanceField> Fields { get; set; }
 
         /// <summary>
-        /// The key used to determine which stack to add the Task to
-        /// </summary>
-        /// <value>The key used to determine which stack to add the Task to</value>
-        [DataMember(Name = "stackingKey", EmitDefaultValue = true)]
-        public string StackingKey { get; set; }
-
-        /// <summary>
-        /// Gets or Sets Stack
-        /// </summary>
-        [DataMember(Name = "stack", EmitDefaultValue = false)]
-        public Stack Stack { get; set; }
-
-        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -216,8 +199,6 @@ namespace Finbourne.Workflow.Sdk.Model
             sb.Append("  TerminalState: ").Append(TerminalState).Append("\n");
             sb.Append("  AsAtLastTransition: ").Append(AsAtLastTransition).Append("\n");
             sb.Append("  Fields: ").Append(Fields).Append("\n");
-            sb.Append("  StackingKey: ").Append(StackingKey).Append("\n");
-            sb.Append("  Stack: ").Append(Stack).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -319,16 +300,6 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.Fields != null &&
                     input.Fields != null &&
                     this.Fields.SequenceEqual(input.Fields)
-                ) && 
-                (
-                    this.StackingKey == input.StackingKey ||
-                    (this.StackingKey != null &&
-                    this.StackingKey.Equals(input.StackingKey))
-                ) && 
-                (
-                    this.Stack == input.Stack ||
-                    (this.Stack != null &&
-                    this.Stack.Equals(input.Stack))
                 );
         }
 
@@ -389,14 +360,6 @@ namespace Finbourne.Workflow.Sdk.Model
                 if (this.Fields != null)
                 {
                     hashCode = (hashCode * 59) + this.Fields.GetHashCode();
-                }
-                if (this.StackingKey != null)
-                {
-                    hashCode = (hashCode * 59) + this.StackingKey.GetHashCode();
-                }
-                if (this.Stack != null)
-                {
-                    hashCode = (hashCode * 59) + this.Stack.GetHashCode();
                 }
                 return hashCode;
             }
