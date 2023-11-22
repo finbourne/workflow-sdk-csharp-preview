@@ -34,10 +34,12 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         /// <param name="correlationIds">A set of guid identifiers that allow correlation across the application tier.</param>
         /// <param name="fields">Defines the fields associated with the update.</param>
-        public UpdateTaskRequest(List<string> correlationIds = default(List<string>), List<TaskInstanceField> fields = default(List<TaskInstanceField>))
+        /// <param name="stackingKey">The key for the Stack that this Task should be added to.</param>
+        public UpdateTaskRequest(List<string> correlationIds = default(List<string>), List<TaskInstanceField> fields = default(List<TaskInstanceField>), string stackingKey = default(string))
         {
             this.CorrelationIds = correlationIds;
             this.Fields = fields;
+            this.StackingKey = stackingKey;
         }
 
         /// <summary>
@@ -55,6 +57,13 @@ namespace Finbourne.Workflow.Sdk.Model
         public List<TaskInstanceField> Fields { get; set; }
 
         /// <summary>
+        /// The key for the Stack that this Task should be added to
+        /// </summary>
+        /// <value>The key for the Stack that this Task should be added to</value>
+        [DataMember(Name = "stackingKey", EmitDefaultValue = true)]
+        public string StackingKey { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -64,6 +73,7 @@ namespace Finbourne.Workflow.Sdk.Model
             sb.Append("class UpdateTaskRequest {\n");
             sb.Append("  CorrelationIds: ").Append(CorrelationIds).Append("\n");
             sb.Append("  Fields: ").Append(Fields).Append("\n");
+            sb.Append("  StackingKey: ").Append(StackingKey).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -110,6 +120,11 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.Fields != null &&
                     input.Fields != null &&
                     this.Fields.SequenceEqual(input.Fields)
+                ) && 
+                (
+                    this.StackingKey == input.StackingKey ||
+                    (this.StackingKey != null &&
+                    this.StackingKey.Equals(input.StackingKey))
                 );
         }
 
@@ -129,6 +144,10 @@ namespace Finbourne.Workflow.Sdk.Model
                 if (this.Fields != null)
                 {
                     hashCode = (hashCode * 59) + this.Fields.GetHashCode();
+                }
+                if (this.StackingKey != null)
+                {
+                    hashCode = (hashCode * 59) + this.StackingKey.GetHashCode();
                 }
                 return hashCode;
             }
