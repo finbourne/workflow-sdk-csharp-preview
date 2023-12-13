@@ -41,7 +41,8 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="taskDefinitionAsAt">TaskDefinition AsAt timestamp.</param>
         /// <param name="initialTrigger">The Initial Trigger for automatic start.</param>
         /// <param name="childTaskFields">Field Mappings.</param>
-        public CreateChildTaskConfiguration(ResourceId taskDefinitionId = default(ResourceId), DateTimeOffset? taskDefinitionAsAt = default(DateTimeOffset?), string initialTrigger = default(string), Dictionary<string, FieldMapping> childTaskFields = default(Dictionary<string, FieldMapping>))
+        /// <param name="mapStackingKeyFrom">If present, the value of this field on the parent task will be the Stacking Key on any created child tasks.</param>
+        public CreateChildTaskConfiguration(ResourceId taskDefinitionId = default(ResourceId), DateTimeOffset? taskDefinitionAsAt = default(DateTimeOffset?), string initialTrigger = default(string), Dictionary<string, FieldMapping> childTaskFields = default(Dictionary<string, FieldMapping>), string mapStackingKeyFrom = default(string))
         {
             // to ensure "taskDefinitionId" is required (not null)
             if (taskDefinitionId == null)
@@ -52,6 +53,7 @@ namespace Finbourne.Workflow.Sdk.Model
             this.TaskDefinitionAsAt = taskDefinitionAsAt;
             this.InitialTrigger = initialTrigger;
             this.ChildTaskFields = childTaskFields;
+            this.MapStackingKeyFrom = mapStackingKeyFrom;
         }
 
         /// <summary>
@@ -82,6 +84,13 @@ namespace Finbourne.Workflow.Sdk.Model
         public Dictionary<string, FieldMapping> ChildTaskFields { get; set; }
 
         /// <summary>
+        /// If present, the value of this field on the parent task will be the Stacking Key on any created child tasks
+        /// </summary>
+        /// <value>If present, the value of this field on the parent task will be the Stacking Key on any created child tasks</value>
+        [DataMember(Name = "mapStackingKeyFrom", EmitDefaultValue = true)]
+        public string MapStackingKeyFrom { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -93,6 +102,7 @@ namespace Finbourne.Workflow.Sdk.Model
             sb.Append("  TaskDefinitionAsAt: ").Append(TaskDefinitionAsAt).Append("\n");
             sb.Append("  InitialTrigger: ").Append(InitialTrigger).Append("\n");
             sb.Append("  ChildTaskFields: ").Append(ChildTaskFields).Append("\n");
+            sb.Append("  MapStackingKeyFrom: ").Append(MapStackingKeyFrom).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -148,6 +158,11 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.ChildTaskFields != null &&
                     input.ChildTaskFields != null &&
                     this.ChildTaskFields.SequenceEqual(input.ChildTaskFields)
+                ) && 
+                (
+                    this.MapStackingKeyFrom == input.MapStackingKeyFrom ||
+                    (this.MapStackingKeyFrom != null &&
+                    this.MapStackingKeyFrom.Equals(input.MapStackingKeyFrom))
                 );
         }
 
@@ -175,6 +190,10 @@ namespace Finbourne.Workflow.Sdk.Model
                 if (this.ChildTaskFields != null)
                 {
                     hashCode = (hashCode * 59) + this.ChildTaskFields.GetHashCode();
+                }
+                if (this.MapStackingKeyFrom != null)
+                {
+                    hashCode = (hashCode * 59) + this.MapStackingKeyFrom.GetHashCode();
                 }
                 return hashCode;
             }
