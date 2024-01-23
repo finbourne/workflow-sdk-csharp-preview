@@ -46,6 +46,29 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <returns>ApiResponse of Worker</returns>
         ApiResponse<Worker> CreateWorkerWithHttpInfo(CreateWorkerRequest createWorkerRequest);
         /// <summary>
+        /// [EXPERIMENTAL] DeleteWorker: Delete a Worker
+        /// </summary>
+        /// <remarks>
+        /// If the Worker does not exist a failure will be returned
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be deleted</param>
+        /// <param name="code">Code of the worker to be deleted</param>
+        /// <returns>DeletedEntityResponse</returns>
+        DeletedEntityResponse DeleteWorker(string scope, string code);
+
+        /// <summary>
+        /// [EXPERIMENTAL] DeleteWorker: Delete a Worker
+        /// </summary>
+        /// <remarks>
+        /// If the Worker does not exist a failure will be returned
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be deleted</param>
+        /// <param name="code">Code of the worker to be deleted</param>
+        /// <returns>ApiResponse of DeletedEntityResponse</returns>
+        ApiResponse<DeletedEntityResponse> DeleteWorkerWithHttpInfo(string scope, string code);
+        /// <summary>
         /// [EXPERIMENTAL] GetWorker: Get a Worker
         /// </summary>
         /// <remarks>
@@ -134,6 +157,31 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <param name="asAt">The asAt datetime at which to retrieve the Worker. Defaults to returning the latest version of the Worker if not specified. (optional)</param>
         /// <returns>ApiResponse of RunWorkerResponse</returns>
         ApiResponse<RunWorkerResponse> RunWorkerWithHttpInfo(string scope, string code, RunWorkerRequest runWorkerRequest, DateTimeOffset? asAt = default(DateTimeOffset?));
+        /// <summary>
+        /// [EXPERIMENTAL] UpdateWorker: Update a Worker
+        /// </summary>
+        /// <remarks>
+        /// If the Worker does not exist a failure will be returned
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be updated</param>
+        /// <param name="code">Code of the worker to be updated</param>
+        /// <param name="updateWorkerRequest">State of the updated worker</param>
+        /// <returns>Worker</returns>
+        Worker UpdateWorker(string scope, string code, UpdateWorkerRequest updateWorkerRequest);
+
+        /// <summary>
+        /// [EXPERIMENTAL] UpdateWorker: Update a Worker
+        /// </summary>
+        /// <remarks>
+        /// If the Worker does not exist a failure will be returned
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be updated</param>
+        /// <param name="code">Code of the worker to be updated</param>
+        /// <param name="updateWorkerRequest">State of the updated worker</param>
+        /// <returns>ApiResponse of Worker</returns>
+        ApiResponse<Worker> UpdateWorkerWithHttpInfo(string scope, string code, UpdateWorkerRequest updateWorkerRequest);
         #endregion Synchronous Operations
     }
 
@@ -166,6 +214,31 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Worker)</returns>
         System.Threading.Tasks.Task<ApiResponse<Worker>> CreateWorkerWithHttpInfoAsync(CreateWorkerRequest createWorkerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// [EXPERIMENTAL] DeleteWorker: Delete a Worker
+        /// </summary>
+        /// <remarks>
+        /// If the Worker does not exist a failure will be returned
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be deleted</param>
+        /// <param name="code">Code of the worker to be deleted</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeletedEntityResponse</returns>
+        System.Threading.Tasks.Task<DeletedEntityResponse> DeleteWorkerAsync(string scope, string code, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// [EXPERIMENTAL] DeleteWorker: Delete a Worker
+        /// </summary>
+        /// <remarks>
+        /// If the Worker does not exist a failure will be returned
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be deleted</param>
+        /// <param name="code">Code of the worker to be deleted</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeletedEntityResponse)</returns>
+        System.Threading.Tasks.Task<ApiResponse<DeletedEntityResponse>> DeleteWorkerWithHttpInfoAsync(string scope, string code, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// [EXPERIMENTAL] GetWorker: Get a Worker
         /// </summary>
@@ -272,6 +345,33 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (RunWorkerResponse)</returns>
         System.Threading.Tasks.Task<ApiResponse<RunWorkerResponse>> RunWorkerWithHttpInfoAsync(string scope, string code, RunWorkerRequest runWorkerRequest, DateTimeOffset? asAt = default(DateTimeOffset?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// [EXPERIMENTAL] UpdateWorker: Update a Worker
+        /// </summary>
+        /// <remarks>
+        /// If the Worker does not exist a failure will be returned
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be updated</param>
+        /// <param name="code">Code of the worker to be updated</param>
+        /// <param name="updateWorkerRequest">State of the updated worker</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of Worker</returns>
+        System.Threading.Tasks.Task<Worker> UpdateWorkerAsync(string scope, string code, UpdateWorkerRequest updateWorkerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// [EXPERIMENTAL] UpdateWorker: Update a Worker
+        /// </summary>
+        /// <remarks>
+        /// If the Worker does not exist a failure will be returned
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be updated</param>
+        /// <param name="code">Code of the worker to be updated</param>
+        /// <param name="updateWorkerRequest">State of the updated worker</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (Worker)</returns>
+        System.Threading.Tasks.Task<ApiResponse<Worker>> UpdateWorkerWithHttpInfoAsync(string scope, string code, UpdateWorkerRequest updateWorkerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         #endregion Asynchronous Operations
     }
 
@@ -618,6 +718,151 @@ namespace Finbourne.Workflow.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("CreateWorker", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] DeleteWorker: Delete a Worker If the Worker does not exist a failure will be returned
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be deleted</param>
+        /// <param name="code">Code of the worker to be deleted</param>
+        /// <returns>DeletedEntityResponse</returns>
+        public DeletedEntityResponse DeleteWorker(string scope, string code)
+        {
+            Finbourne.Workflow.Sdk.Client.ApiResponse<DeletedEntityResponse> localVarResponse = DeleteWorkerWithHttpInfo(scope, code);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] DeleteWorker: Delete a Worker If the Worker does not exist a failure will be returned
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be deleted</param>
+        /// <param name="code">Code of the worker to be deleted</param>
+        /// <returns>ApiResponse of DeletedEntityResponse</returns>
+        public Finbourne.Workflow.Sdk.Client.ApiResponse<DeletedEntityResponse> DeleteWorkerWithHttpInfo(string scope, string code)
+        {
+            // verify the required parameter 'scope' is set
+            if (scope == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'scope' when calling WorkersApi->DeleteWorker");
+
+            // verify the required parameter 'code' is set
+            if (code == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'code' when calling WorkersApi->DeleteWorker");
+
+            Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("scope", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(scope)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(code)); // path parameter
+
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Delete<DeletedEntityResponse>("/api/workers/{scope}/{code}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteWorker", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] DeleteWorker: Delete a Worker If the Worker does not exist a failure will be returned
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be deleted</param>
+        /// <param name="code">Code of the worker to be deleted</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of DeletedEntityResponse</returns>
+        public async System.Threading.Tasks.Task<DeletedEntityResponse> DeleteWorkerAsync(string scope, string code, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Finbourne.Workflow.Sdk.Client.ApiResponse<DeletedEntityResponse> localVarResponse = await DeleteWorkerWithHttpInfoAsync(scope, code, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] DeleteWorker: Delete a Worker If the Worker does not exist a failure will be returned
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be deleted</param>
+        /// <param name="code">Code of the worker to be deleted</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (DeletedEntityResponse)</returns>
+        public async System.Threading.Tasks.Task<Finbourne.Workflow.Sdk.Client.ApiResponse<DeletedEntityResponse>> DeleteWorkerWithHttpInfoAsync(string scope, string code, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'scope' is set
+            if (scope == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'scope' when calling WorkersApi->DeleteWorker");
+
+            // verify the required parameter 'code' is set
+            if (code == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'code' when calling WorkersApi->DeleteWorker");
+
+
+            Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+
+            var localVarContentType = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("scope", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(scope)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(code)); // path parameter
+
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.DeleteAsync<DeletedEntityResponse>("/api/workers/{scope}/{code}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("DeleteWorker", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
@@ -1230,6 +1475,173 @@ namespace Finbourne.Workflow.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("RunWorker", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] UpdateWorker: Update a Worker If the Worker does not exist a failure will be returned
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be updated</param>
+        /// <param name="code">Code of the worker to be updated</param>
+        /// <param name="updateWorkerRequest">State of the updated worker</param>
+        /// <returns>Worker</returns>
+        public Worker UpdateWorker(string scope, string code, UpdateWorkerRequest updateWorkerRequest)
+        {
+            Finbourne.Workflow.Sdk.Client.ApiResponse<Worker> localVarResponse = UpdateWorkerWithHttpInfo(scope, code, updateWorkerRequest);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] UpdateWorker: Update a Worker If the Worker does not exist a failure will be returned
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be updated</param>
+        /// <param name="code">Code of the worker to be updated</param>
+        /// <param name="updateWorkerRequest">State of the updated worker</param>
+        /// <returns>ApiResponse of Worker</returns>
+        public Finbourne.Workflow.Sdk.Client.ApiResponse<Worker> UpdateWorkerWithHttpInfo(string scope, string code, UpdateWorkerRequest updateWorkerRequest)
+        {
+            // verify the required parameter 'scope' is set
+            if (scope == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'scope' when calling WorkersApi->UpdateWorker");
+
+            // verify the required parameter 'code' is set
+            if (code == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'code' when calling WorkersApi->UpdateWorker");
+
+            // verify the required parameter 'updateWorkerRequest' is set
+            if (updateWorkerRequest == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'updateWorkerRequest' when calling WorkersApi->UpdateWorker");
+
+            Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json-patch+json",
+                "application/json",
+                "text/json",
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+            var localVarContentType = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("scope", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(scope)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.Data = updateWorkerRequest;
+
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Put<Worker>("/api/workers/{scope}/{code}", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateWorker", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] UpdateWorker: Update a Worker If the Worker does not exist a failure will be returned
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be updated</param>
+        /// <param name="code">Code of the worker to be updated</param>
+        /// <param name="updateWorkerRequest">State of the updated worker</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of Worker</returns>
+        public async System.Threading.Tasks.Task<Worker> UpdateWorkerAsync(string scope, string code, UpdateWorkerRequest updateWorkerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Finbourne.Workflow.Sdk.Client.ApiResponse<Worker> localVarResponse = await UpdateWorkerWithHttpInfoAsync(scope, code, updateWorkerRequest, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] UpdateWorker: Update a Worker If the Worker does not exist a failure will be returned
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="scope">Scope of the worker to be updated</param>
+        /// <param name="code">Code of the worker to be updated</param>
+        /// <param name="updateWorkerRequest">State of the updated worker</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (Worker)</returns>
+        public async System.Threading.Tasks.Task<Finbourne.Workflow.Sdk.Client.ApiResponse<Worker>> UpdateWorkerWithHttpInfoAsync(string scope, string code, UpdateWorkerRequest updateWorkerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'scope' is set
+            if (scope == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'scope' when calling WorkersApi->UpdateWorker");
+
+            // verify the required parameter 'code' is set
+            if (code == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'code' when calling WorkersApi->UpdateWorker");
+
+            // verify the required parameter 'updateWorkerRequest' is set
+            if (updateWorkerRequest == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'updateWorkerRequest' when calling WorkersApi->UpdateWorker");
+
+
+            Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+                "application/json-patch+json", 
+                "application/json", 
+                "text/json", 
+                "application/*+json"
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "text/plain",
+                "application/json",
+                "text/json"
+            };
+
+
+            var localVarContentType = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("scope", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(scope)); // path parameter
+            localVarRequestOptions.PathParameters.Add("code", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(code)); // path parameter
+            localVarRequestOptions.Data = updateWorkerRequest;
+
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.PutAsync<Worker>("/api/workers/{scope}/{code}", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("UpdateWorker", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 

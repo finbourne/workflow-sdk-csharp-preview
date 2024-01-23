@@ -5,10 +5,12 @@ All URIs are relative to *https://www.lusid.com/workflow*
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
 | [**CreateWorker**](WorkersApi.md#createworker) | **POST** /api/workers | [EXPERIMENTAL] CreateWorker: Create a new Worker |
+| [**DeleteWorker**](WorkersApi.md#deleteworker) | **DELETE** /api/workers/{scope}/{code} | [EXPERIMENTAL] DeleteWorker: Delete a Worker |
 | [**GetWorker**](WorkersApi.md#getworker) | **GET** /api/workers/{scope}/{code} | [EXPERIMENTAL] GetWorker: Get a Worker |
 | [**GetWorkerResult**](WorkersApi.md#getworkerresult) | **GET** /api/workers/{runId}/$result | [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results |
 | [**ListWorkers**](WorkersApi.md#listworkers) | **GET** /api/workers | [EXPERIMENTAL] ListWorkers: List Workers |
 | [**RunWorker**](WorkersApi.md#runworker) | **POST** /api/workers/{scope}/{code}/$run | [EXPERIMENTAL] RunWorker: Run a Worker |
+| [**UpdateWorker**](WorkersApi.md#updateworker) | **PUT** /api/workers/{scope}/{code} | [EXPERIMENTAL] UpdateWorker: Update a Worker |
 
 <a id="createworker"></a>
 # **CreateWorker**
@@ -106,6 +108,109 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **201** | Created |  -  |
 | **400** | The details of the input related failure |  -  |
+| **0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="deleteworker"></a>
+# **DeleteWorker**
+> DeletedEntityResponse DeleteWorker (string scope, string code)
+
+[EXPERIMENTAL] DeleteWorker: Delete a Worker
+
+If the Worker does not exist a failure will be returned
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Finbourne.Workflow.Sdk.Api;
+using Finbourne.Workflow.Sdk.Client;
+using Finbourne.Workflow.Sdk.Model;
+
+namespace Example
+{
+    public class DeleteWorkerExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://www.lusid.com/workflow";
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WorkersApi(httpClient, config, httpClientHandler);
+            var scope = "scope_example";  // string | Scope of the worker to be deleted
+            var code = "code_example";  // string | Code of the worker to be deleted
+
+            try
+            {
+                // [EXPERIMENTAL] DeleteWorker: Delete a Worker
+                DeletedEntityResponse result = apiInstance.DeleteWorker(scope, code);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WorkersApi.DeleteWorker: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the DeleteWorkerWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // [EXPERIMENTAL] DeleteWorker: Delete a Worker
+    ApiResponse<DeletedEntityResponse> response = apiInstance.DeleteWorkerWithHttpInfo(scope, code);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WorkersApi.DeleteWorkerWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **scope** | **string** | Scope of the worker to be deleted |  |
+| **code** | **string** | Code of the worker to be deleted |  |
+
+### Return type
+
+[**DeletedEntityResponse**](DeletedEntityResponse.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | The details of the input related failure |  -  |
+| **404** | Worker not found. |  -  |
 | **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
@@ -514,6 +619,111 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | The details of the input related failure |  -  |
+| **0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="updateworker"></a>
+# **UpdateWorker**
+> Worker UpdateWorker (string scope, string code, UpdateWorkerRequest updateWorkerRequest)
+
+[EXPERIMENTAL] UpdateWorker: Update a Worker
+
+If the Worker does not exist a failure will be returned
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Finbourne.Workflow.Sdk.Api;
+using Finbourne.Workflow.Sdk.Client;
+using Finbourne.Workflow.Sdk.Model;
+
+namespace Example
+{
+    public class UpdateWorkerExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://www.lusid.com/workflow";
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new WorkersApi(httpClient, config, httpClientHandler);
+            var scope = "scope_example";  // string | Scope of the worker to be updated
+            var code = "code_example";  // string | Code of the worker to be updated
+            var updateWorkerRequest = new UpdateWorkerRequest(); // UpdateWorkerRequest | State of the updated worker
+
+            try
+            {
+                // [EXPERIMENTAL] UpdateWorker: Update a Worker
+                Worker result = apiInstance.UpdateWorker(scope, code, updateWorkerRequest);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling WorkersApi.UpdateWorker: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the UpdateWorkerWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // [EXPERIMENTAL] UpdateWorker: Update a Worker
+    ApiResponse<Worker> response = apiInstance.UpdateWorkerWithHttpInfo(scope, code, updateWorkerRequest);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling WorkersApi.UpdateWorkerWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **scope** | **string** | Scope of the worker to be updated |  |
+| **code** | **string** | Code of the worker to be updated |  |
+| **updateWorkerRequest** | [**UpdateWorkerRequest**](UpdateWorkerRequest.md) | State of the updated worker |  |
+
+### Return type
+
+[**Worker**](Worker.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json-patch+json, application/json, text/json, application/*+json
+ - **Accept**: text/plain, application/json, text/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | The details of the input related failure |  -  |
+| **404** | Worker not found. |  -  |
 | **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
