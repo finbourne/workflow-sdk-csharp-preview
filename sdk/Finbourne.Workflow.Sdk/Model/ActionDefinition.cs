@@ -38,8 +38,9 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Initializes a new instance of the <see cref="ActionDefinition" /> class.
         /// </summary>
         /// <param name="name">The Name of this Action (required).</param>
+        /// <param name="runAsUserId">The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \&quot;current user\&quot;..</param>
         /// <param name="actionDetails">actionDetails (required).</param>
-        public ActionDefinition(string name = default(string), ActionDetails actionDetails = default(ActionDetails))
+        public ActionDefinition(string name = default(string), string runAsUserId = default(string), ActionDetails actionDetails = default(ActionDetails))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -53,6 +54,7 @@ namespace Finbourne.Workflow.Sdk.Model
                 throw new ArgumentNullException("actionDetails is a required property for ActionDefinition and cannot be null");
             }
             this.ActionDetails = actionDetails;
+            this.RunAsUserId = runAsUserId;
         }
 
         /// <summary>
@@ -61,6 +63,13 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <value>The Name of this Action</value>
         [DataMember(Name = "name", IsRequired = true, EmitDefaultValue = true)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \&quot;current user\&quot;.
+        /// </summary>
+        /// <value>The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \&quot;current user\&quot;.</value>
+        [DataMember(Name = "runAsUserId", EmitDefaultValue = true)]
+        public string RunAsUserId { get; set; }
 
         /// <summary>
         /// Gets or Sets ActionDetails
@@ -77,6 +86,7 @@ namespace Finbourne.Workflow.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ActionDefinition {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  RunAsUserId: ").Append(RunAsUserId).Append("\n");
             sb.Append("  ActionDetails: ").Append(ActionDetails).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -119,6 +129,11 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
+                    this.RunAsUserId == input.RunAsUserId ||
+                    (this.RunAsUserId != null &&
+                    this.RunAsUserId.Equals(input.RunAsUserId))
+                ) && 
+                (
                     this.ActionDetails == input.ActionDetails ||
                     (this.ActionDetails != null &&
                     this.ActionDetails.Equals(input.ActionDetails))
@@ -137,6 +152,10 @@ namespace Finbourne.Workflow.Sdk.Model
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
+                if (this.RunAsUserId != null)
+                {
+                    hashCode = (hashCode * 59) + this.RunAsUserId.GetHashCode();
                 }
                 if (this.ActionDetails != null)
                 {
@@ -170,6 +189,25 @@ namespace Finbourne.Workflow.Sdk.Model
             if (false == regexName.Match(this.Name).Success)
             {
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for Name, must match a pattern of " + regexName, new [] { "Name" });
+            }
+
+            // RunAsUserId (string) maxLength
+            if (this.RunAsUserId != null && this.RunAsUserId.Length > 1024)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RunAsUserId, length must be less than 1024.", new [] { "RunAsUserId" });
+            }
+
+            // RunAsUserId (string) minLength
+            if (this.RunAsUserId != null && this.RunAsUserId.Length < 0)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RunAsUserId, length must be greater than 0.", new [] { "RunAsUserId" });
+            }
+
+            // RunAsUserId (string) pattern
+            Regex regexRunAsUserId = new Regex(@"^[a-zA-Z0-9\-_]+$", RegexOptions.CultureInvariant);
+            if (false == regexRunAsUserId.Match(this.RunAsUserId).Success)
+            {
+                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RunAsUserId, must match a pattern of " + regexRunAsUserId, new [] { "RunAsUserId" });
             }
 
             yield break;

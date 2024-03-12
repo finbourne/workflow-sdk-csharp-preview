@@ -33,10 +33,12 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Initializes a new instance of the <see cref="ActionDefinitionResponse" /> class.
         /// </summary>
         /// <param name="name">The Name of this Action.</param>
+        /// <param name="runAsUserId">The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \&quot;current user\&quot;..</param>
         /// <param name="actionDetails">actionDetails.</param>
-        public ActionDefinitionResponse(string name = default(string), ActionDetailsResponse actionDetails = default(ActionDetailsResponse))
+        public ActionDefinitionResponse(string name = default(string), string runAsUserId = default(string), ActionDetailsResponse actionDetails = default(ActionDetailsResponse))
         {
             this.Name = name;
+            this.RunAsUserId = runAsUserId;
             this.ActionDetails = actionDetails;
         }
 
@@ -46,6 +48,13 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <value>The Name of this Action</value>
         [DataMember(Name = "name", EmitDefaultValue = true)]
         public string Name { get; set; }
+
+        /// <summary>
+        /// The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \&quot;current user\&quot;.
+        /// </summary>
+        /// <value>The ID of the user that this action will be performed by. If not specified, the actions will be performed by the \&quot;current user\&quot;.</value>
+        [DataMember(Name = "runAsUserId", EmitDefaultValue = true)]
+        public string RunAsUserId { get; set; }
 
         /// <summary>
         /// Gets or Sets ActionDetails
@@ -62,6 +71,7 @@ namespace Finbourne.Workflow.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class ActionDefinitionResponse {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
+            sb.Append("  RunAsUserId: ").Append(RunAsUserId).Append("\n");
             sb.Append("  ActionDetails: ").Append(ActionDetails).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
@@ -104,6 +114,11 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.Name.Equals(input.Name))
                 ) && 
                 (
+                    this.RunAsUserId == input.RunAsUserId ||
+                    (this.RunAsUserId != null &&
+                    this.RunAsUserId.Equals(input.RunAsUserId))
+                ) && 
+                (
                     this.ActionDetails == input.ActionDetails ||
                     (this.ActionDetails != null &&
                     this.ActionDetails.Equals(input.ActionDetails))
@@ -122,6 +137,10 @@ namespace Finbourne.Workflow.Sdk.Model
                 if (this.Name != null)
                 {
                     hashCode = (hashCode * 59) + this.Name.GetHashCode();
+                }
+                if (this.RunAsUserId != null)
+                {
+                    hashCode = (hashCode * 59) + this.RunAsUserId.GetHashCode();
                 }
                 if (this.ActionDetails != null)
                 {
