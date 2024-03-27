@@ -69,6 +69,18 @@ namespace Finbourne.Workflow.Sdk.Model
 
         /// <summary>
         /// Initializes a new instance of the <see cref="WorkerConfigurationResponse" /> class
+        /// with the <see cref="SchedulerJobResponse" /> class
+        /// </summary>
+        /// <param name="actualInstance">An instance of SchedulerJobResponse.</param>
+        public WorkerConfigurationResponse(SchedulerJobResponse actualInstance)
+        {
+            this.IsNullable = false;
+            this.SchemaType= "oneOf";
+            this.ActualInstance = actualInstance ?? throw new ArgumentException("Invalid instance found. Must not be null.");
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="WorkerConfigurationResponse" /> class
         /// with the <see cref="SleepResponse" /> class
         /// </summary>
         /// <param name="actualInstance">An instance of SleepResponse.</param>
@@ -105,13 +117,17 @@ namespace Finbourne.Workflow.Sdk.Model
                 {
                     this._actualInstance = value;
                 }
+                else if (value.GetType() == typeof(SchedulerJobResponse))
+                {
+                    this._actualInstance = value;
+                }
                 else if (value.GetType() == typeof(SleepResponse))
                 {
                     this._actualInstance = value;
                 }
                 else
                 {
-                    throw new ArgumentException("Invalid instance found. Must be the following types: FailResponse, HealthCheckResponse, LuminesceViewResponse, SleepResponse");
+                    throw new ArgumentException("Invalid instance found. Must be the following types: FailResponse, HealthCheckResponse, LuminesceViewResponse, SchedulerJobResponse, SleepResponse");
                 }
             }
         }
@@ -144,6 +160,16 @@ namespace Finbourne.Workflow.Sdk.Model
         public LuminesceViewResponse GetLuminesceViewResponse()
         {
             return (LuminesceViewResponse)this.ActualInstance;
+        }
+
+        /// <summary>
+        /// Get the actual instance of `SchedulerJobResponse`. If the actual instance is not `SchedulerJobResponse`,
+        /// the InvalidClassException will be thrown
+        /// </summary>
+        /// <returns>An instance of SchedulerJobResponse</returns>
+        public SchedulerJobResponse GetSchedulerJobResponse()
+        {
+            return (SchedulerJobResponse)this.ActualInstance;
         }
 
         /// <summary>
@@ -252,6 +278,26 @@ namespace Finbourne.Workflow.Sdk.Model
             {
                 // deserialization failed, try the next one
                 System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into LuminesceViewResponse: {1}", jsonString, exception.ToString()));
+            }
+
+            try
+            {
+                // if it does not contains "AdditionalProperties", use SerializerSettings to deserialize
+                if (typeof(SchedulerJobResponse).GetProperty("AdditionalProperties") == null)
+                {
+                    newWorkerConfigurationResponse = new WorkerConfigurationResponse(JsonConvert.DeserializeObject<SchedulerJobResponse>(jsonString, WorkerConfigurationResponse.SerializerSettings));
+                }
+                else
+                {
+                    newWorkerConfigurationResponse = new WorkerConfigurationResponse(JsonConvert.DeserializeObject<SchedulerJobResponse>(jsonString, WorkerConfigurationResponse.AdditionalPropertiesSerializerSettings));
+                }
+                matchedTypes.Add("SchedulerJobResponse");
+                match++;
+            }
+            catch (Exception exception)
+            {
+                // deserialization failed, try the next one
+                System.Diagnostics.Debug.WriteLine(string.Format("Failed to deserialize `{0}` into SchedulerJobResponse: {1}", jsonString, exception.ToString()));
             }
 
             try
