@@ -45,8 +45,8 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="runAsUserId">runAsUserId (required).</param>
         /// <param name="taskDefinitionId">taskDefinitionId (required).</param>
         /// <param name="taskDefinitionAsAt">AsAt of the required task definition.</param>
-        /// <param name="taskActivity">Defines what the event handler should do after being triggered (required).</param>
-        public CreateEventHandlerRequest(ResourceId id = default(ResourceId), string displayName = default(string), string description = default(string), string status = default(string), EventMatchingPattern eventMatchingPattern = default(EventMatchingPattern), EventHandlerMapping runAsUserId = default(EventHandlerMapping), ResourceId taskDefinitionId = default(ResourceId), DateTimeOffset? taskDefinitionAsAt = default(DateTimeOffset?), Object taskActivity = default(Object))
+        /// <param name="taskActivity">taskActivity (required).</param>
+        public CreateEventHandlerRequest(ResourceId id = default(ResourceId), string displayName = default(string), string description = default(string), string status = default(string), EventMatchingPattern eventMatchingPattern = default(EventMatchingPattern), EventHandlerMapping runAsUserId = default(EventHandlerMapping), ResourceId taskDefinitionId = default(ResourceId), DateTimeOffset? taskDefinitionAsAt = default(DateTimeOffset?), TaskActivity taskActivity = default(TaskActivity))
         {
             // to ensure "id" is required (not null)
             if (id == null)
@@ -147,11 +147,10 @@ namespace Finbourne.Workflow.Sdk.Model
         public DateTimeOffset? TaskDefinitionAsAt { get; set; }
 
         /// <summary>
-        /// Defines what the event handler should do after being triggered
+        /// Gets or Sets TaskActivity
         /// </summary>
-        /// <value>Defines what the event handler should do after being triggered</value>
         [DataMember(Name = "taskActivity", IsRequired = true, EmitDefaultValue = true)]
-        public Object TaskActivity { get; set; }
+        public TaskActivity TaskActivity { get; set; }
 
         /// <summary>
         /// Returns the string presentation of the object

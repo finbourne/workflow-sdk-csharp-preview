@@ -12,7 +12,7 @@ Name | Type | Description | Notes
 **RunAsUserId** | [**EventHandlerMapping**](EventHandlerMapping.md) |  | 
 **TaskDefinitionId** | [**ResourceId**](ResourceId.md) |  | 
 **TaskDefinitionAsAt** | **DateTimeOffset?** | AsAt of the required task definition | [optional] 
-**TaskActivity** | **Object** | Defines what the event handler should do after being triggered | 
+**TaskActivity** | [**TaskActivity**](TaskActivity.md) |  | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
