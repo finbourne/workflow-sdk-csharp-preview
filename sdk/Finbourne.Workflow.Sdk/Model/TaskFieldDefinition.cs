@@ -39,7 +39,8 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         /// <param name="name">The name of this Field (required).</param>
         /// <param name="type">The value type for the field. Available values are: \&quot;String\&quot;, \&quot;Decimal\&quot;, \&quot;DateTime\&quot;, \&quot;Boolean\&quot;) (required).</param>
-        public TaskFieldDefinition(string name = default(string), string type = default(string))
+        /// <param name="readOnlyStates">readOnlyStates.</param>
+        public TaskFieldDefinition(string name = default(string), string type = default(string), ReadOnlyStates readOnlyStates = default(ReadOnlyStates))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -53,6 +54,7 @@ namespace Finbourne.Workflow.Sdk.Model
                 throw new ArgumentNullException("type is a required property for TaskFieldDefinition and cannot be null");
             }
             this.Type = type;
+            this.ReadOnlyStates = readOnlyStates;
         }
 
         /// <summary>
@@ -70,6 +72,12 @@ namespace Finbourne.Workflow.Sdk.Model
         public string Type { get; set; }
 
         /// <summary>
+        /// Gets or Sets ReadOnlyStates
+        /// </summary>
+        [DataMember(Name = "readOnlyStates", EmitDefaultValue = false)]
+        public ReadOnlyStates ReadOnlyStates { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -79,6 +87,7 @@ namespace Finbourne.Workflow.Sdk.Model
             sb.Append("class TaskFieldDefinition {\n");
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
+            sb.Append("  ReadOnlyStates: ").Append(ReadOnlyStates).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -123,6 +132,11 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.Type == input.Type ||
                     (this.Type != null &&
                     this.Type.Equals(input.Type))
+                ) && 
+                (
+                    this.ReadOnlyStates == input.ReadOnlyStates ||
+                    (this.ReadOnlyStates != null &&
+                    this.ReadOnlyStates.Equals(input.ReadOnlyStates))
                 );
         }
 
@@ -142,6 +156,10 @@ namespace Finbourne.Workflow.Sdk.Model
                 if (this.Type != null)
                 {
                     hashCode = (hashCode * 59) + this.Type.GetHashCode();
+                }
+                if (this.ReadOnlyStates != null)
+                {
+                    hashCode = (hashCode * 59) + this.ReadOnlyStates.GetHashCode();
                 }
                 return hashCode;
             }
