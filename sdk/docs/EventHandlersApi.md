@@ -8,7 +8,7 @@ All URIs are relative to *https://www.lusid.com/workflow*
 | [**DeleteEventHandler**](EventHandlersApi.md#deleteeventhandler) | **DELETE** /api/eventhandlers/{scope}/{code} | [EXPERIMENTAL] DeleteEventHandler: Delete an Event Handler |
 | [**GetEventHandler**](EventHandlersApi.md#geteventhandler) | **GET** /api/eventhandlers/{scope}/{code} | [EXPERIMENTAL] GetEventHandler: Get an Event Handler |
 | [**ListEventHandlers**](EventHandlersApi.md#listeventhandlers) | **GET** /api/eventhandlers | [EXPERIMENTAL] ListEventHandlers: List Event Handlers |
-| [**UpdateEventHandler**](EventHandlersApi.md#updateeventhandler) | **PUT** /api/eventhandlers/{scope}/{code} | [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition |
+| [**UpdateEventHandler**](EventHandlersApi.md#updateeventhandler) | **PUT** /api/eventhandlers/{scope}/{code} | [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler |
 
 <a id="createeventhandler"></a>
 # **CreateEventHandler**
@@ -423,7 +423,7 @@ catch (ApiException e)
 # **UpdateEventHandler**
 > EventHandler UpdateEventHandler (string scope, string code, UpdateEventHandlerRequest updateEventHandlerRequest)
 
-[EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition
+[EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
 
 ### Example
 ```csharp
@@ -449,13 +449,13 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new EventHandlersApi(httpClient, config, httpClientHandler);
-            var scope = "scope_example";  // string | The scope that identifies a Task Definition
-            var code = "code_example";  // string | The code that identifies a Task Definition
-            var updateEventHandlerRequest = new UpdateEventHandlerRequest(); // UpdateEventHandlerRequest | The data to update a Task Definition
+            var scope = "scope_example";  // string | The scope that identifies an Event Handler
+            var code = "code_example";  // string | The code that identifies an Event Handler
+            var updateEventHandlerRequest = new UpdateEventHandlerRequest(); // UpdateEventHandlerRequest | The data to update an Event Handler
 
             try
             {
-                // [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition
+                // [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
                 EventHandler result = apiInstance.UpdateEventHandler(scope, code, updateEventHandlerRequest);
                 Debug.WriteLine(result);
             }
@@ -476,7 +476,7 @@ This returns an ApiResponse object which contains the response data, status code
 ```csharp
 try
 {
-    // [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition
+    // [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
     ApiResponse<EventHandler> response = apiInstance.UpdateEventHandlerWithHttpInfo(scope, code, updateEventHandlerRequest);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
@@ -494,9 +494,9 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **scope** | **string** | The scope that identifies a Task Definition |  |
-| **code** | **string** | The code that identifies a Task Definition |  |
-| **updateEventHandlerRequest** | [**UpdateEventHandlerRequest**](UpdateEventHandlerRequest.md) | The data to update a Task Definition |  |
+| **scope** | **string** | The scope that identifies an Event Handler |  |
+| **code** | **string** | The code that identifies an Event Handler |  |
+| **updateEventHandlerRequest** | [**UpdateEventHandlerRequest**](UpdateEventHandlerRequest.md) | The data to update an Event Handler |  |
 
 ### Return type
 
@@ -517,7 +517,7 @@ catch (ApiException e)
 |-------------|-------------|------------------|
 | **200** | Success |  -  |
 | **400** | The details of the input related failure |  -  |
-| **404** | Task Definition not found. |  -  |
+| **404** | Event Handler not found. |  -  |
 | **0** | Error response |  -  |
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)

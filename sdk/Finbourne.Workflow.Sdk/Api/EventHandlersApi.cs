@@ -116,25 +116,25 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <returns>ApiResponse of PagedResourceListOfEventHandler</returns>
         ApiResponse<PagedResourceListOfEventHandler> ListEventHandlersWithHttpInfo(DateTimeOffset? asAt = default(DateTimeOffset?), string? filter = default(string?), int? limit = default(int?), string? page = default(string?));
         /// <summary>
-        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition
+        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scope">The scope that identifies a Task Definition</param>
-        /// <param name="code">The code that identifies a Task Definition</param>
-        /// <param name="updateEventHandlerRequest">The data to update a Task Definition</param>
+        /// <param name="scope">The scope that identifies an Event Handler</param>
+        /// <param name="code">The code that identifies an Event Handler</param>
+        /// <param name="updateEventHandlerRequest">The data to update an Event Handler</param>
         /// <returns>EventHandler</returns>
         EventHandler UpdateEventHandler(string scope, string code, UpdateEventHandlerRequest updateEventHandlerRequest);
 
         /// <summary>
-        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition
+        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scope">The scope that identifies a Task Definition</param>
-        /// <param name="code">The code that identifies a Task Definition</param>
-        /// <param name="updateEventHandlerRequest">The data to update a Task Definition</param>
+        /// <param name="scope">The scope that identifies an Event Handler</param>
+        /// <param name="code">The code that identifies an Event Handler</param>
+        /// <param name="updateEventHandlerRequest">The data to update an Event Handler</param>
         /// <returns>ApiResponse of EventHandler</returns>
         ApiResponse<EventHandler> UpdateEventHandlerWithHttpInfo(string scope, string code, UpdateEventHandlerRequest updateEventHandlerRequest);
         #endregion Synchronous Operations
@@ -251,29 +251,29 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <returns>Task of ApiResponse (PagedResourceListOfEventHandler)</returns>
         System.Threading.Tasks.Task<ApiResponse<PagedResourceListOfEventHandler>> ListEventHandlersWithHttpInfoAsync(DateTimeOffset? asAt = default(DateTimeOffset?), string? filter = default(string?), int? limit = default(int?), string? page = default(string?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
-        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition
+        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scope">The scope that identifies a Task Definition</param>
-        /// <param name="code">The code that identifies a Task Definition</param>
-        /// <param name="updateEventHandlerRequest">The data to update a Task Definition</param>
+        /// <param name="scope">The scope that identifies an Event Handler</param>
+        /// <param name="code">The code that identifies an Event Handler</param>
+        /// <param name="updateEventHandlerRequest">The data to update an Event Handler</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EventHandler</returns>
         System.Threading.Tasks.Task<EventHandler> UpdateEventHandlerAsync(string scope, string code, UpdateEventHandlerRequest updateEventHandlerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
-        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition
+        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler
         /// </summary>
         /// <remarks>
         /// 
         /// </remarks>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scope">The scope that identifies a Task Definition</param>
-        /// <param name="code">The code that identifies a Task Definition</param>
-        /// <param name="updateEventHandlerRequest">The data to update a Task Definition</param>
+        /// <param name="scope">The scope that identifies an Event Handler</param>
+        /// <param name="code">The code that identifies an Event Handler</param>
+        /// <param name="updateEventHandlerRequest">The data to update an Event Handler</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EventHandler)</returns>
         System.Threading.Tasks.Task<ApiResponse<EventHandler>> UpdateEventHandlerWithHttpInfoAsync(string scope, string code, UpdateEventHandlerRequest updateEventHandlerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
@@ -1081,12 +1081,12 @@ namespace Finbourne.Workflow.Sdk.Api
         }
 
         /// <summary>
-        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition 
+        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler 
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scope">The scope that identifies a Task Definition</param>
-        /// <param name="code">The code that identifies a Task Definition</param>
-        /// <param name="updateEventHandlerRequest">The data to update a Task Definition</param>
+        /// <param name="scope">The scope that identifies an Event Handler</param>
+        /// <param name="code">The code that identifies an Event Handler</param>
+        /// <param name="updateEventHandlerRequest">The data to update an Event Handler</param>
         /// <returns>EventHandler</returns>
         public EventHandler UpdateEventHandler(string scope, string code, UpdateEventHandlerRequest updateEventHandlerRequest)
         {
@@ -1095,12 +1095,12 @@ namespace Finbourne.Workflow.Sdk.Api
         }
 
         /// <summary>
-        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition 
+        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler 
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scope">The scope that identifies a Task Definition</param>
-        /// <param name="code">The code that identifies a Task Definition</param>
-        /// <param name="updateEventHandlerRequest">The data to update a Task Definition</param>
+        /// <param name="scope">The scope that identifies an Event Handler</param>
+        /// <param name="code">The code that identifies an Event Handler</param>
+        /// <param name="updateEventHandlerRequest">The data to update an Event Handler</param>
         /// <returns>ApiResponse of EventHandler</returns>
         public Finbourne.Workflow.Sdk.Client.ApiResponse<EventHandler> UpdateEventHandlerWithHttpInfo(string scope, string code, UpdateEventHandlerRequest updateEventHandlerRequest)
         {
@@ -1160,12 +1160,12 @@ namespace Finbourne.Workflow.Sdk.Api
         }
 
         /// <summary>
-        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition 
+        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler 
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scope">The scope that identifies a Task Definition</param>
-        /// <param name="code">The code that identifies a Task Definition</param>
-        /// <param name="updateEventHandlerRequest">The data to update a Task Definition</param>
+        /// <param name="scope">The scope that identifies an Event Handler</param>
+        /// <param name="code">The code that identifies an Event Handler</param>
+        /// <param name="updateEventHandlerRequest">The data to update an Event Handler</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of EventHandler</returns>
         public async System.Threading.Tasks.Task<EventHandler> UpdateEventHandlerAsync(string scope, string code, UpdateEventHandlerRequest updateEventHandlerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
@@ -1175,12 +1175,12 @@ namespace Finbourne.Workflow.Sdk.Api
         }
 
         /// <summary>
-        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Task Definition 
+        /// [EXPERIMENTAL] UpdateEventHandler: Update an existing Event handler 
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
-        /// <param name="scope">The scope that identifies a Task Definition</param>
-        /// <param name="code">The code that identifies a Task Definition</param>
-        /// <param name="updateEventHandlerRequest">The data to update a Task Definition</param>
+        /// <param name="scope">The scope that identifies an Event Handler</param>
+        /// <param name="code">The code that identifies an Event Handler</param>
+        /// <param name="updateEventHandlerRequest">The data to update an Event Handler</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (EventHandler)</returns>
         public async System.Threading.Tasks.Task<Finbourne.Workflow.Sdk.Client.ApiResponse<EventHandler>> UpdateEventHandlerWithHttpInfoAsync(string scope, string code, UpdateEventHandlerRequest updateEventHandlerRequest, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
