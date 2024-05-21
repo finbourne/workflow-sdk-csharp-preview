@@ -37,8 +37,8 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ReadOnlyStates" /> class.
         /// </summary>
-        /// <param name="stateType">The State Type (e.g. InitialState, AllStates, SelectedStates) (required).</param>
-        /// <param name="selectedStates">Named states for which the field will be readonly - This field can only be populated if StateType &#x3D; SelectedStates (required).</param>
+        /// <param name="stateType">The State Type (e.g. InitialState, AllStates, TerminalState, SelectedStates) (required).</param>
+        /// <param name="selectedStates">Named states for which the field will be readonly - This field can only be populated if StateType &#x3D; SelectedStates.</param>
         public ReadOnlyStates(string stateType = default(string), List<string> selectedStates = default(List<string>))
         {
             // to ensure "stateType" is required (not null)
@@ -47,18 +47,13 @@ namespace Finbourne.Workflow.Sdk.Model
                 throw new ArgumentNullException("stateType is a required property for ReadOnlyStates and cannot be null");
             }
             this.StateType = stateType;
-            // to ensure "selectedStates" is required (not null)
-            if (selectedStates == null)
-            {
-                throw new ArgumentNullException("selectedStates is a required property for ReadOnlyStates and cannot be null");
-            }
             this.SelectedStates = selectedStates;
         }
 
         /// <summary>
-        /// The State Type (e.g. InitialState, AllStates, SelectedStates)
+        /// The State Type (e.g. InitialState, AllStates, TerminalState, SelectedStates)
         /// </summary>
-        /// <value>The State Type (e.g. InitialState, AllStates, SelectedStates)</value>
+        /// <value>The State Type (e.g. InitialState, AllStates, TerminalState, SelectedStates)</value>
         [DataMember(Name = "stateType", IsRequired = true, EmitDefaultValue = true)]
         public string StateType { get; set; }
 
@@ -66,7 +61,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Named states for which the field will be readonly - This field can only be populated if StateType &#x3D; SelectedStates
         /// </summary>
         /// <value>Named states for which the field will be readonly - This field can only be populated if StateType &#x3D; SelectedStates</value>
-        [DataMember(Name = "selectedStates", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "selectedStates", EmitDefaultValue = true)]
         public List<string> SelectedStates { get; set; }
 
         /// <summary>
