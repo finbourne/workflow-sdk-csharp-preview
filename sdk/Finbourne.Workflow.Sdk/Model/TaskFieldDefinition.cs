@@ -40,7 +40,8 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="name">The name of this Field (required).</param>
         /// <param name="type">The value type for the field. Available values are: \&quot;String\&quot;, \&quot;Decimal\&quot;, \&quot;DateTime\&quot;, \&quot;Boolean\&quot;) (required).</param>
         /// <param name="readOnlyStates">readOnlyStates.</param>
-        public TaskFieldDefinition(string name = default(string), string type = default(string), ReadOnlyStates readOnlyStates = default(ReadOnlyStates))
+        /// <param name="valueConstraints">valueConstraints.</param>
+        public TaskFieldDefinition(string name = default(string), string type = default(string), ReadOnlyStates readOnlyStates = default(ReadOnlyStates), ValueConstraints valueConstraints = default(ValueConstraints))
         {
             // to ensure "name" is required (not null)
             if (name == null)
@@ -55,6 +56,7 @@ namespace Finbourne.Workflow.Sdk.Model
             }
             this.Type = type;
             this.ReadOnlyStates = readOnlyStates;
+            this.ValueConstraints = valueConstraints;
         }
 
         /// <summary>
@@ -78,6 +80,12 @@ namespace Finbourne.Workflow.Sdk.Model
         public ReadOnlyStates ReadOnlyStates { get; set; }
 
         /// <summary>
+        /// Gets or Sets ValueConstraints
+        /// </summary>
+        [DataMember(Name = "valueConstraints", EmitDefaultValue = false)]
+        public ValueConstraints ValueConstraints { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -88,6 +96,7 @@ namespace Finbourne.Workflow.Sdk.Model
             sb.Append("  Name: ").Append(Name).Append("\n");
             sb.Append("  Type: ").Append(Type).Append("\n");
             sb.Append("  ReadOnlyStates: ").Append(ReadOnlyStates).Append("\n");
+            sb.Append("  ValueConstraints: ").Append(ValueConstraints).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -137,6 +146,11 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.ReadOnlyStates == input.ReadOnlyStates ||
                     (this.ReadOnlyStates != null &&
                     this.ReadOnlyStates.Equals(input.ReadOnlyStates))
+                ) && 
+                (
+                    this.ValueConstraints == input.ValueConstraints ||
+                    (this.ValueConstraints != null &&
+                    this.ValueConstraints.Equals(input.ValueConstraints))
                 );
         }
 
@@ -160,6 +174,10 @@ namespace Finbourne.Workflow.Sdk.Model
                 if (this.ReadOnlyStates != null)
                 {
                     hashCode = (hashCode * 59) + this.ReadOnlyStates.GetHashCode();
+                }
+                if (this.ValueConstraints != null)
+                {
+                    hashCode = (hashCode * 59) + this.ValueConstraints.GetHashCode();
                 }
                 return hashCode;
             }
