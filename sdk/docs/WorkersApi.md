@@ -419,7 +419,7 @@ catch (ApiException e)
 
 <a id="listworkers"></a>
 # **ListWorkers**
-> PagedResourceListOfWorker ListWorkers (DateTimeOffset? asAt = null, string? filter = null, int? limit = null, string? page = null)
+> PagedResourceListOfWorker ListWorkers (DateTimeOffset? asAt = null, string? filter = null, List<string>? sortBy = null, int? limit = null, string? page = null)
 
 [EXPERIMENTAL] ListWorkers: List Workers
 
@@ -449,13 +449,14 @@ namespace Example
             var apiInstance = new WorkersApi(httpClient, config, httpClientHandler);
             var asAt = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTimeOffset? | The asAt datetime at which to list the Workers. Defaults to return the latest version of each Worker if not specified. (optional) 
             var filter = "filter_example";  // string? | Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. (optional) 
+            var sortBy = new List<string>?(); // List<string>? | A list of field names or properties to sort by, each optionally suffixed by \" ASC\" or \" DESC\" (optional) 
             var limit = 10;  // int? | When paginating, limit the number of returned results to this many. (optional)  (default to 10)
             var page = "page_example";  // string? | The pagination token to use to continue listing workers from a previous call to list workers. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. (optional) 
 
             try
             {
                 // [EXPERIMENTAL] ListWorkers: List Workers
-                PagedResourceListOfWorker result = apiInstance.ListWorkers(asAt, filter, limit, page);
+                PagedResourceListOfWorker result = apiInstance.ListWorkers(asAt, filter, sortBy, limit, page);
                 Debug.WriteLine(result);
             }
             catch (ApiException  e)
@@ -476,7 +477,7 @@ This returns an ApiResponse object which contains the response data, status code
 try
 {
     // [EXPERIMENTAL] ListWorkers: List Workers
-    ApiResponse<PagedResourceListOfWorker> response = apiInstance.ListWorkersWithHttpInfo(asAt, filter, limit, page);
+    ApiResponse<PagedResourceListOfWorker> response = apiInstance.ListWorkersWithHttpInfo(asAt, filter, sortBy, limit, page);
     Debug.Write("Status Code: " + response.StatusCode);
     Debug.Write("Response Headers: " + response.Headers);
     Debug.Write("Response Body: " + response.Data);
@@ -495,6 +496,7 @@ catch (ApiException e)
 |------|------|-------------|-------|
 | **asAt** | **DateTimeOffset?** | The asAt datetime at which to list the Workers. Defaults to return the latest version of each Worker if not specified. | [optional]  |
 | **filter** | **string?** | Expression to filter the result set. Read more about filtering results from LUSID here: https://support.lusid.com/filtering-results-from-lusid. | [optional]  |
+| **sortBy** | [**List&lt;string&gt;?**](string.md) | A list of field names or properties to sort by, each optionally suffixed by \&quot; ASC\&quot; or \&quot; DESC\&quot; | [optional]  |
 | **limit** | **int?** | When paginating, limit the number of returned results to this many. | [optional] [default to 10] |
 | **page** | **string?** | The pagination token to use to continue listing workers from a previous call to list workers. This value is returned from the previous call. If a pagination token is provided the sortBy, filter, effectiveAt, and asAt fields must not have changed since the original request. | [optional]  |
 
