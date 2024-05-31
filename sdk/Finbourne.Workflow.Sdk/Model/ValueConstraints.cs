@@ -37,8 +37,8 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="ValueConstraints" /> class.
         /// </summary>
-        /// <param name="constraintType">Whether the constraint is a suggestion or should be enforced via validation (required).</param>
-        /// <param name="valueSourceType">The source of the acceptable values (required).</param>
+        /// <param name="constraintType">Whether the constraint is a suggestion or should be enforced via validation (e.g. Suggested, Validated) (required).</param>
+        /// <param name="valueSourceType">The source of the acceptable values (e.g. AcceptableValues) (required).</param>
         /// <param name="acceptableValues">The acceptable values for the field (required).</param>
         public ValueConstraints(string constraintType = default(string), string valueSourceType = default(string), List<Object> acceptableValues = default(List<Object>))
         {
@@ -63,16 +63,16 @@ namespace Finbourne.Workflow.Sdk.Model
         }
 
         /// <summary>
-        /// Whether the constraint is a suggestion or should be enforced via validation
+        /// Whether the constraint is a suggestion or should be enforced via validation (e.g. Suggested, Validated)
         /// </summary>
-        /// <value>Whether the constraint is a suggestion or should be enforced via validation</value>
+        /// <value>Whether the constraint is a suggestion or should be enforced via validation (e.g. Suggested, Validated)</value>
         [DataMember(Name = "constraintType", IsRequired = true, EmitDefaultValue = true)]
         public string ConstraintType { get; set; }
 
         /// <summary>
-        /// The source of the acceptable values
+        /// The source of the acceptable values (e.g. AcceptableValues)
         /// </summary>
-        /// <value>The source of the acceptable values</value>
+        /// <value>The source of the acceptable values (e.g. AcceptableValues)</value>
         [DataMember(Name = "valueSourceType", IsRequired = true, EmitDefaultValue = true)]
         public string ValueSourceType { get; set; }
 
