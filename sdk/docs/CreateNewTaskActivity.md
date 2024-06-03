@@ -5,7 +5,7 @@ Define a Task Activity that creates a new task
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**InitialTrigger** | **string** | Trigger to supply to all tasks to be made | 
+**InitialTrigger** | **string** | Trigger to supply to all tasks to be made | [optional] 
 **Type** | **string** | The type of task activity | 
 **CorrelationIds** | [**List&lt;EventHandlerMapping&gt;**](EventHandlerMapping.md) | The event to correlation ID mappings | [optional] 
 **TaskFields** | [**Dictionary&lt;string, FieldMapping&gt;**](FieldMapping.md) | The event to task field mappings | [optional] 

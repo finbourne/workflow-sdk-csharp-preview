@@ -59,19 +59,14 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <summary>
         /// Initializes a new instance of the <see cref="CreateNewTaskActivity" /> class.
         /// </summary>
-        /// <param name="initialTrigger">Trigger to supply to all tasks to be made (required).</param>
+        /// <param name="initialTrigger">Trigger to supply to all tasks to be made.</param>
         /// <param name="type">The type of task activity (required).</param>
         /// <param name="correlationIds">The event to correlation ID mappings.</param>
         /// <param name="taskFields">The event to task field mappings.</param>
         public CreateNewTaskActivity(string initialTrigger = default(string), TypeEnum type = default(TypeEnum), List<EventHandlerMapping> correlationIds = default(List<EventHandlerMapping>), Dictionary<string, FieldMapping> taskFields = default(Dictionary<string, FieldMapping>))
         {
-            // to ensure "initialTrigger" is required (not null)
-            if (initialTrigger == null)
-            {
-                throw new ArgumentNullException("initialTrigger is a required property for CreateNewTaskActivity and cannot be null");
-            }
-            this.InitialTrigger = initialTrigger;
             this.Type = type;
+            this.InitialTrigger = initialTrigger;
             this.CorrelationIds = correlationIds;
             this.TaskFields = taskFields;
         }
@@ -80,7 +75,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Trigger to supply to all tasks to be made
         /// </summary>
         /// <value>Trigger to supply to all tasks to be made</value>
-        [DataMember(Name = "initialTrigger", IsRequired = true, EmitDefaultValue = true)]
+        [DataMember(Name = "initialTrigger", EmitDefaultValue = true)]
         public string InitialTrigger { get; set; }
 
         /// <summary>
@@ -200,12 +195,6 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <returns>Validation Result</returns>
         IEnumerable<System.ComponentModel.DataAnnotations.ValidationResult> IValidatableObject.Validate(ValidationContext validationContext)
         {
-            // InitialTrigger (string) minLength
-            if (this.InitialTrigger != null && this.InitialTrigger.Length < 1)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for InitialTrigger, length must be greater than 1.", new [] { "InitialTrigger" });
-            }
-
             yield break;
         }
     }
