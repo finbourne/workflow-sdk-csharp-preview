@@ -12,7 +12,7 @@
     <Description>A library generated from a OpenAPI doc</Description>
     <Copyright>FINBOURNE Technology Ltd</Copyright>
     <RootNamespace>Finbourne.Workflow.Sdk</RootNamespace>
-    <Version>0.1.1090</Version>
+    <Version>0.1.1091</Version>
     <DocumentationFile>bin\$(Configuration)\$(TargetFramework)\Finbourne.Workflow.Sdk.xml</DocumentationFile>
     <RepositoryUrl>https://github.com/finbourne/workflow-sdk-csharp-preview.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
