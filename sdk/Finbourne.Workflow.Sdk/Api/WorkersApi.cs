@@ -99,7 +99,7 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runId">The ID returned when calling Run Worker</param>
         /// <returns>GetWorkerResultResponse</returns>
-        GetWorkerResultResponse GetWorkerResult(long runId);
+        GetWorkerResultResponse GetWorkerResult(Guid runId);
 
         /// <summary>
         /// [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results
@@ -110,7 +110,7 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runId">The ID returned when calling Run Worker</param>
         /// <returns>ApiResponse of GetWorkerResultResponse</returns>
-        ApiResponse<GetWorkerResultResponse> GetWorkerResultWithHttpInfo(long runId);
+        ApiResponse<GetWorkerResultResponse> GetWorkerResultWithHttpInfo(Guid runId);
         /// <summary>
         /// [EXPERIMENTAL] ListWorkers: List Workers
         /// </summary>
@@ -280,7 +280,7 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <param name="runId">The ID returned when calling Run Worker</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWorkerResultResponse</returns>
-        System.Threading.Tasks.Task<GetWorkerResultResponse> GetWorkerResultAsync(long runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<GetWorkerResultResponse> GetWorkerResultAsync(Guid runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
 
         /// <summary>
         /// [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results
@@ -292,7 +292,7 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <param name="runId">The ID returned when calling Run Worker</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWorkerResultResponse)</returns>
-        System.Threading.Tasks.Task<ApiResponse<GetWorkerResultResponse>> GetWorkerResultWithHttpInfoAsync(long runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        System.Threading.Tasks.Task<ApiResponse<GetWorkerResultResponse>> GetWorkerResultWithHttpInfoAsync(Guid runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// [EXPERIMENTAL] ListWorkers: List Workers
         /// </summary>
@@ -1040,7 +1040,7 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runId">The ID returned when calling Run Worker</param>
         /// <returns>GetWorkerResultResponse</returns>
-        public GetWorkerResultResponse GetWorkerResult(long runId)
+        public GetWorkerResultResponse GetWorkerResult(Guid runId)
         {
             Finbourne.Workflow.Sdk.Client.ApiResponse<GetWorkerResultResponse> localVarResponse = GetWorkerResultWithHttpInfo(runId);
             return localVarResponse.Data;
@@ -1052,7 +1052,7 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
         /// <param name="runId">The ID returned when calling Run Worker</param>
         /// <returns>ApiResponse of GetWorkerResultResponse</returns>
-        public Finbourne.Workflow.Sdk.Client.ApiResponse<GetWorkerResultResponse> GetWorkerResultWithHttpInfo(long runId)
+        public Finbourne.Workflow.Sdk.Client.ApiResponse<GetWorkerResultResponse> GetWorkerResultWithHttpInfo(Guid runId)
         {
             Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
 
@@ -1100,7 +1100,7 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <param name="runId">The ID returned when calling Run Worker</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of GetWorkerResultResponse</returns>
-        public async System.Threading.Tasks.Task<GetWorkerResultResponse> GetWorkerResultAsync(long runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<GetWorkerResultResponse> GetWorkerResultAsync(Guid runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
             Finbourne.Workflow.Sdk.Client.ApiResponse<GetWorkerResultResponse> localVarResponse = await GetWorkerResultWithHttpInfoAsync(runId, cancellationToken).ConfigureAwait(false);
             return localVarResponse.Data;
@@ -1113,7 +1113,7 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <param name="runId">The ID returned when calling Run Worker</param>
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (GetWorkerResultResponse)</returns>
-        public async System.Threading.Tasks.Task<Finbourne.Workflow.Sdk.Client.ApiResponse<GetWorkerResultResponse>> GetWorkerResultWithHttpInfoAsync(long runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        public async System.Threading.Tasks.Task<Finbourne.Workflow.Sdk.Client.ApiResponse<GetWorkerResultResponse>> GetWorkerResultWithHttpInfoAsync(Guid runId, System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
         {
 
             Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();

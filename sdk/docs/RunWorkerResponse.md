@@ -5,7 +5,7 @@ The RunWorker response
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**RunId** | **long** | Identifies a Worker run | 
+**RunId** | **Guid** | Identifies a Worker run | 
 **StatusDetail** | **string** | Detail on the final status | [optional] 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

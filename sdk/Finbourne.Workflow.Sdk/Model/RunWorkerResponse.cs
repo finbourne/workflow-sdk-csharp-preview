@@ -39,7 +39,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         /// <param name="runId">Identifies a Worker run (required).</param>
         /// <param name="statusDetail">Detail on the final status.</param>
-        public RunWorkerResponse(long runId = default(long), string statusDetail = default(string))
+        public RunWorkerResponse(Guid runId = default(Guid), string statusDetail = default(string))
         {
             this.RunId = runId;
             this.StatusDetail = statusDetail;
@@ -50,7 +50,7 @@ namespace Finbourne.Workflow.Sdk.Model
         /// </summary>
         /// <value>Identifies a Worker run</value>
         [DataMember(Name = "runId", IsRequired = true, EmitDefaultValue = true)]
-        public long RunId { get; set; }
+        public Guid RunId { get; set; }
 
         /// <summary>
         /// Detail on the final status
@@ -106,7 +106,8 @@ namespace Finbourne.Workflow.Sdk.Model
             return 
                 (
                     this.RunId == input.RunId ||
-                    this.RunId.Equals(input.RunId)
+                    (this.RunId != null &&
+                    this.RunId.Equals(input.RunId))
                 ) && 
                 (
                     this.StatusDetail == input.StatusDetail ||
@@ -124,7 +125,10 @@ namespace Finbourne.Workflow.Sdk.Model
             unchecked // Overflow is fine, just wrap
             {
                 int hashCode = 41;
-                hashCode = (hashCode * 59) + this.RunId.GetHashCode();
+                if (this.RunId != null)
+                {
+                    hashCode = (hashCode * 59) + this.RunId.GetHashCode();
+                }
                 if (this.StatusDetail != null)
                 {
                     hashCode = (hashCode * 59) + this.StatusDetail.GetHashCode();

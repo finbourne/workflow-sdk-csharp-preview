@@ -1,6 +1,6 @@
 # Finbourne.Workflow.Sdk.Api.WorkersApi
 
-All URIs are relative to *https://www.lusid.com/workflow*
+All URIs are relative to *https://fbn-devel.lusid.com/workflow*
 
 | Method | HTTP request | Description |
 |--------|--------------|-------------|
@@ -36,7 +36,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://www.lusid.com/workflow";
+            config.BasePath = "https://fbn-devel.lusid.com/workflow";
             // Configure OAuth2 access token for authorization: oauth2
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -136,7 +136,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://www.lusid.com/workflow";
+            config.BasePath = "https://fbn-devel.lusid.com/workflow";
             // Configure OAuth2 access token for authorization: oauth2
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -239,7 +239,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://www.lusid.com/workflow";
+            config.BasePath = "https://fbn-devel.lusid.com/workflow";
             // Configure OAuth2 access token for authorization: oauth2
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -321,7 +321,7 @@ catch (ApiException e)
 
 <a id="getworkerresult"></a>
 # **GetWorkerResult**
-> GetWorkerResultResponse GetWorkerResult (long runId)
+> GetWorkerResultResponse GetWorkerResult (Guid runId)
 
 [EXPERIMENTAL] GetWorkerResult: Get the status of a specific run of a worker with any relevant results
 
@@ -341,7 +341,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://www.lusid.com/workflow";
+            config.BasePath = "https://fbn-devel.lusid.com/workflow";
             // Configure OAuth2 access token for authorization: oauth2
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -349,7 +349,7 @@ namespace Example
             HttpClient httpClient = new HttpClient();
             HttpClientHandler httpClientHandler = new HttpClientHandler();
             var apiInstance = new WorkersApi(httpClient, config, httpClientHandler);
-            var runId = 789L;  // long | The ID returned when calling Run Worker
+            var runId = "runId_example";  // Guid | The ID returned when calling Run Worker
 
             try
             {
@@ -392,7 +392,7 @@ catch (ApiException e)
 
 | Name | Type | Description | Notes |
 |------|------|-------------|-------|
-| **runId** | **long** | The ID returned when calling Run Worker |  |
+| **runId** | **Guid** | The ID returned when calling Run Worker |  |
 
 ### Return type
 
@@ -439,7 +439,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://www.lusid.com/workflow";
+            config.BasePath = "https://fbn-devel.lusid.com/workflow";
             // Configure OAuth2 access token for authorization: oauth2
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -545,7 +545,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://www.lusid.com/workflow";
+            config.BasePath = "https://fbn-devel.lusid.com/workflow";
             // Configure OAuth2 access token for authorization: oauth2
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
@@ -651,7 +651,7 @@ namespace Example
         public static void Main()
         {
             Configuration config = new Configuration();
-            config.BasePath = "https://www.lusid.com/workflow";
+            config.BasePath = "https://fbn-devel.lusid.com/workflow";
             // Configure OAuth2 access token for authorization: oauth2
             config.AccessToken = "YOUR_ACCESS_TOKEN";
 
