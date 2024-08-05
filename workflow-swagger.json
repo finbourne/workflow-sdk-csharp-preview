@@ -8,7 +8,7 @@
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1181",
+    "version": "0.1.1182",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -34,25 +34,25 @@
               "schema": {
                 "$ref": "#/components/schemas/CreateEventHandlerRequest"
               },
-              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}}
+              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"initialTrigger":"InitialTrigger","type":"CreateNewTask","correlationIds":[],"taskFields":{}}}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateEventHandlerRequest"
               },
-              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}}
+              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"initialTrigger":"InitialTrigger","type":"CreateNewTask","correlationIds":[],"taskFields":{}}}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateEventHandlerRequest"
               },
-              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}}
+              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"initialTrigger":"InitialTrigger","type":"CreateNewTask","correlationIds":[],"taskFields":{}}}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/CreateEventHandlerRequest"
               },
-              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}}
+              "example": {"id":{"scope":"A1","code":"ZZZ"},"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"initialTrigger":"InitialTrigger","type":"CreateNewTask","correlationIds":[],"taskFields":{}}}
             }
           },
           "required": true
@@ -229,25 +229,25 @@
               "schema": {
                 "$ref": "#/components/schemas/UpdateEventHandlerRequest"
               },
-              "example": {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}}
+              "example": {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"initialTrigger":"InitialTrigger","type":"CreateNewTask","correlationIds":[],"taskFields":{}}}
             },
             "application/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateEventHandlerRequest"
               },
-              "example": {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}}
+              "example": {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"initialTrigger":"InitialTrigger","type":"CreateNewTask","correlationIds":[],"taskFields":{}}}
             },
             "text/json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateEventHandlerRequest"
               },
-              "example": {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}}
+              "example": {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"initialTrigger":"InitialTrigger","type":"CreateNewTask","correlationIds":[],"taskFields":{}}}
             },
             "application/*+json": {
               "schema": {
                 "$ref": "#/components/schemas/UpdateEventHandlerRequest"
               },
-              "example": {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"InitialTrigger":"InitialTrigger","Type":"CreateNewTask","CorrelationIds":[],"TaskFields":{}}}
+              "example": {"displayName":"An example Event Handler","description":"Test","status":"Active","eventMatchingPattern":{"eventType":"PortfolioCreated","filter":"body.portfolioScope eq 'TestScope'"},"runAsUserId":{"setTo":"ExampleUserId"},"taskDefinitionId":{"scope":"A1","code":"YYY"},"taskDefinitionAsAt":"9999-12-31T23:59:59.9999999+00:00","taskActivity":{"initialTrigger":"InitialTrigger","type":"CreateNewTask","correlationIds":[],"taskFields":{}}}
             }
           },
           "required": true
@@ -1145,7 +1145,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/Task"
                 },
-                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionDisplayName":"Test Definition","state":"foo","ultimateParentTask":{"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionDisplayName":"Test Definition","state":"foo"},"correlationIds":["correlation-id"],"terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
+                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionVersion":{"asAtModified":"0001-01-01T00:00:00.0000000+00:00"},"taskDefinitionDisplayName":"Test Definition","state":"foo","ultimateParentTask":{"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionVersion":{"asAtModified":"0001-01-01T00:00:00.0000000+00:00"},"taskDefinitionDisplayName":"Test Definition","state":"foo"},"correlationIds":["correlation-id"],"terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
               }
             }
           },
@@ -1329,7 +1329,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/Task"
                 },
-                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionDisplayName":"Test Definition","state":"foo","ultimateParentTask":{"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionDisplayName":"Test Definition","state":"foo"},"correlationIds":["correlation-id"],"terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
+                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionVersion":{"asAtModified":"0001-01-01T00:00:00.0000000+00:00"},"taskDefinitionDisplayName":"Test Definition","state":"foo","ultimateParentTask":{"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionVersion":{"asAtModified":"0001-01-01T00:00:00.0000000+00:00"},"taskDefinitionDisplayName":"Test Definition","state":"foo"},"correlationIds":["correlation-id"],"terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
               }
             }
           },
@@ -1439,7 +1439,7 @@
                 "schema": {
                   "$ref": "#/components/schemas/Task"
                 },
-                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionDisplayName":"Test Definition","state":"foo","ultimateParentTask":{"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionDisplayName":"Test Definition","state":"foo"},"correlationIds":["correlation-id"],"terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
+                "example": {"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionVersion":{"asAtModified":"0001-01-01T00:00:00.0000000+00:00"},"taskDefinitionDisplayName":"Test Definition","state":"foo","ultimateParentTask":{"id":"4aa4b4e1-866a-493e-8d33-51f9e47a0843","taskDefinitionId":{"scope":"A1","code":"ZZZ"},"taskDefinitionVersion":{"asAtModified":"0001-01-01T00:00:00.0000000+00:00"},"taskDefinitionDisplayName":"Test Definition","state":"foo"},"correlationIds":["correlation-id"],"terminalState":false,"asAtLastTransition":"2022-01-01T01:02:03.0000000+00:00"}
               }
             }
           },
@@ -1804,19 +1804,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/GetWorkerResultResponse"
                 },
-                "example": {"workerStatus":"CompletedNoResults","results":[{"HttpStatusCode":"200"}]}
+                "example": {"workerStatus":"CompletedNoResults","results":[{"HttpStatusCode":"200"}],"statusDetail":"WorkerStatus"}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetWorkerResultResponse"
                 },
-                "example": {"workerStatus":"CompletedNoResults","results":[{"HttpStatusCode":"200"}]}
+                "example": {"workerStatus":"CompletedNoResults","results":[{"HttpStatusCode":"200"}],"statusDetail":"WorkerStatus"}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetWorkerResultResponse"
                 },
-                "example": {"workerStatus":"CompletedNoResults","results":[{"HttpStatusCode":"200"}]}
+                "example": {"workerStatus":"CompletedNoResults","results":[{"HttpStatusCode":"200"}],"statusDetail":"WorkerStatus"}
               }
             }
           },
@@ -2304,19 +2304,19 @@
                 "schema": {
                   "$ref": "#/components/schemas/RunWorkerResponse"
                 },
-                "example": {"runId":"00000000-0000-0000-0000-000000000000"}
+                "example": {"runId":"71beb2cb-be3a-4662-b8ee-e5ded63b957a"}
               },
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RunWorkerResponse"
                 },
-                "example": {"runId":"00000000-0000-0000-0000-000000000000"}
+                "example": {"runId":"71beb2cb-be3a-4662-b8ee-e5ded63b957a"}
               },
               "text/json": {
                 "schema": {
                   "$ref": "#/components/schemas/RunWorkerResponse"
                 },
-                "example": {"runId":"00000000-0000-0000-0000-000000000000"}
+                "example": {"runId":"71beb2cb-be3a-4662-b8ee-e5ded63b957a"}
               }
             }
           },
