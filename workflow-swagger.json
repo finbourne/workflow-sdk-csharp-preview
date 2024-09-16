@@ -2,13 +2,14 @@
   "openapi": "3.0.1",
   "info": {
     "title": "FINBOURNE Workflow API",
+    "description": "### Introduction \n\n# Error Codes\n\n | Code|Name|Description |\n| ---|---|--- |\n| <a name=\"-1\">-1</a>|Unknown error|An unexpected error was encountered on our side. |\n| <a name=\"144\">144</a>|Duplicate In Parameter Set|  |\n| <a name=\"151\">151</a>|Invalid Parameter Value|  |\n| <a name=\"689\">689</a>|The supplied pagination token is invalid|  |\n| <a name=\"692\">692</a>|This endpoint does not support impersonation|  |\n| <a name=\"743\">743</a>|Task Definition not found.|  |\n| <a name=\"744\">744</a>|Task not found.|  |\n| <a name=\"745\">745</a>|Task Definition could not be serialised.|  |\n| <a name=\"750\">750</a>|A Guard clause rejected the Transition of a Task.|  |\n| <a name=\"825\">825</a>|An Update operation on a Task failed.|  |\n| <a name=\"826\">826</a>|Task could not be created.|  |\n| <a name=\"827\">827</a>|Task could not raise onward Notifications.|  |\n| <a name=\"862\">862</a>|Worker not found.|  |\n| <a name=\"863\">863</a>|Illogical Task Definition.|  |\n| <a name=\"864\">864</a>|Invalid Task Definition.|  |\n| <a name=\"865\">865</a>|Action Queue failure.|  |\n| <a name=\"866\">866</a>|Luminesce Lookup failure.|  |\n| <a name=\"867\">867</a>|Worker failure.|  |\n| <a name=\"868\">868</a>|Worker creation failure.|  |\n| <a name=\"871\">871</a>|The specified impersonated user does not exist|  |\n| <a name=\"872\">872</a>|Worker Run not found.|  |\n| <a name=\"873\">873</a>|Action Queue item not found.|  |\n| <a name=\"893\">893</a>|Event Handler not found.|  |\n| <a name=\"894\">894</a>|Invalid Event Handler.|  |\n",
     "termsOfService": "https://www.finbourne.com/legal/terms-conditions",
     "contact": {
       "name": "FINBOURNE Technology",
       "url": "https://www.finbourne.com",
       "email": "info@finbourne.com"
     },
-    "version": "0.1.1203",
+    "version": "0.1.1218",
     "x-logo": {
       "url": "https://www.lusid.com/app/assets/logo_white.png",
       "backgroundColor": "#415464"
@@ -1551,6 +1552,87 @@
         "x-fbn-apistatus": "Experimental"
       }
     },
+    "/api/tasks/{id}/history": {
+      "get": {
+        "tags": [
+          "Tasks"
+        ],
+        "summary": "[EXPERIMENTAL] GetTaskHistory: Get the history of a Task",
+        "operationId": "GetTaskHistory",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "The Task Id for which to get the history",
+            "required": true,
+            "schema": {
+              "maxLength": 40,
+              "minLength": 30,
+              "pattern": "^[a-zA-Z0-9\\-]+$",
+              "type": "string"
+            }
+          },
+          {
+            "name": "asAt",
+            "in": "query",
+            "description": "The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified.",
+            "schema": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "x-nullable": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ResourceListOfChangeItem"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The details of the input related failure",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidValidationProblemDetails"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Task not found.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "default": {
+            "description": "Error response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LusidProblemDetails"
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "oauth2": [ ]
+          }
+        ],
+        "x-fbn-apistatus": "Experimental"
+      }
+    },
     "/api/workers": {
       "post": {
         "tags": [
@@ -2558,6 +2640,59 @@
           }
         },
         "additionalProperties": false
+      },
+      "ChangeItem": {
+        "required": [
+          "action",
+          "asAtModified",
+          "asAtVersionNumber",
+          "attributeName",
+          "newValue",
+          "requestIdModified",
+          "userIdModified"
+        ],
+        "type": "object",
+        "properties": {
+          "asAtModified": {
+            "type": "string",
+            "description": "The AsAt time of the change",
+            "format": "date-time"
+          },
+          "userIdModified": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The User ID that performed the change"
+          },
+          "requestIdModified": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The Request ID of the request that caused the change"
+          },
+          "asAtVersionNumber": {
+            "type": "integer",
+            "description": "The AsAt Version number",
+            "format": "int32"
+          },
+          "action": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The Action that resulted in the change"
+          },
+          "attributeName": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The name of the attribute that has been change"
+          },
+          "previousValue": {
+            "description": "The value of the attribute prior to the change",
+            "nullable": true
+          },
+          "newValue": {
+            "description": "The value of the attribute following the change"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Defines a change that occured to a Task"
       },
       "CreateChildTaskConfiguration": {
         "required": [
@@ -3694,6 +3829,41 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/AccessControlledResource"
+            }
+          },
+          "href": {
+            "type": "string",
+            "format": "uri",
+            "nullable": true
+          },
+          "links": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Link"
+            },
+            "nullable": true
+          },
+          "nextPage": {
+            "type": "string",
+            "nullable": true
+          },
+          "previousPage": {
+            "type": "string",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "ResourceListOfChangeItem": {
+        "required": [
+          "values"
+        ],
+        "type": "object",
+        "properties": {
+          "values": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ChangeItem"
             }
           },
           "href": {

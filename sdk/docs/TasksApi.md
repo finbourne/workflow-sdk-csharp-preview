@@ -7,6 +7,7 @@ All URIs are relative to *https://www.lusid.com/workflow*
 | [**CreateTask**](TasksApi.md#createtask) | **POST** /api/tasks | [EXPERIMENTAL] CreateTask: Create a new Task |
 | [**DeleteTask**](TasksApi.md#deletetask) | **DELETE** /api/tasks/{id} | [EXPERIMENTAL] DeleteTask: Delete a Task |
 | [**GetTask**](TasksApi.md#gettask) | **GET** /api/tasks/{id} | [EXPERIMENTAL] GetTask: Get a Task |
+| [**GetTaskHistory**](TasksApi.md#gettaskhistory) | **GET** /api/tasks/{id}/history | [EXPERIMENTAL] GetTaskHistory: Get the history of a Task |
 | [**ListTasks**](TasksApi.md#listtasks) | **GET** /api/tasks | ListTasks: List Tasks |
 | [**UpdateTask**](TasksApi.md#updatetask) | **POST** /api/tasks/{id} | [EXPERIMENTAL] UpdateTask: Update a Task |
 
@@ -289,6 +290,107 @@ catch (ApiException e)
 ### Return type
 
 [**Task**](Task.md)
+
+### Authorization
+
+[oauth2](../README.md#oauth2)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+| **200** | Success |  -  |
+| **400** | The details of the input related failure |  -  |
+| **404** | Task not found. |  -  |
+| **0** | Error response |  -  |
+
+[[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
+
+<a id="gettaskhistory"></a>
+# **GetTaskHistory**
+> ResourceListOfChangeItem GetTaskHistory (string id, DateTimeOffset? asAt = null)
+
+[EXPERIMENTAL] GetTaskHistory: Get the history of a Task
+
+### Example
+```csharp
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Net.Http;
+using Finbourne.Workflow.Sdk.Api;
+using Finbourne.Workflow.Sdk.Client;
+using Finbourne.Workflow.Sdk.Model;
+
+namespace Example
+{
+    public class GetTaskHistoryExample
+    {
+        public static void Main()
+        {
+            Configuration config = new Configuration();
+            config.BasePath = "https://www.lusid.com/workflow";
+            // Configure OAuth2 access token for authorization: oauth2
+            config.AccessToken = "YOUR_ACCESS_TOKEN";
+
+            // create instances of HttpClient, HttpClientHandler to be reused later with different Api classes
+            HttpClient httpClient = new HttpClient();
+            HttpClientHandler httpClientHandler = new HttpClientHandler();
+            var apiInstance = new TasksApi(httpClient, config, httpClientHandler);
+            var id = "id_example";  // string | The Task Id for which to get the history
+            var asAt = DateTime.Parse("2013-10-20T19:20:30+01:00");  // DateTimeOffset? | The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. (optional) 
+
+            try
+            {
+                // [EXPERIMENTAL] GetTaskHistory: Get the history of a Task
+                ResourceListOfChangeItem result = apiInstance.GetTaskHistory(id, asAt);
+                Debug.WriteLine(result);
+            }
+            catch (ApiException  e)
+            {
+                Debug.Print("Exception when calling TasksApi.GetTaskHistory: " + e.Message);
+                Debug.Print("Status Code: " + e.ErrorCode);
+                Debug.Print(e.StackTrace);
+            }
+        }
+    }
+}
+```
+
+#### Using the GetTaskHistoryWithHttpInfo variant
+This returns an ApiResponse object which contains the response data, status code and headers.
+
+```csharp
+try
+{
+    // [EXPERIMENTAL] GetTaskHistory: Get the history of a Task
+    ApiResponse<ResourceListOfChangeItem> response = apiInstance.GetTaskHistoryWithHttpInfo(id, asAt);
+    Debug.Write("Status Code: " + response.StatusCode);
+    Debug.Write("Response Headers: " + response.Headers);
+    Debug.Write("Response Body: " + response.Data);
+}
+catch (ApiException e)
+{
+    Debug.Print("Exception when calling TasksApi.GetTaskHistoryWithHttpInfo: " + e.Message);
+    Debug.Print("Status Code: " + e.ErrorCode);
+    Debug.Print(e.StackTrace);
+}
+```
+
+### Parameters
+
+| Name | Type | Description | Notes |
+|------|------|-------------|-------|
+| **id** | **string** | The Task Id for which to get the history |  |
+| **asAt** | **DateTimeOffset?** | The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. | [optional]  |
+
+### Return type
+
+[**ResourceListOfChangeItem**](ResourceListOfChangeItem.md)
 
 ### Authorization
 

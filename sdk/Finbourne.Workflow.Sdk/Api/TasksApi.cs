@@ -83,6 +83,26 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <returns>ApiResponse of Task</returns>
         ApiResponse<Task> GetTaskWithHttpInfo(string id, DateTimeOffset? asAt = default(DateTimeOffset?));
         /// <summary>
+        /// [EXPERIMENTAL] GetTaskHistory: Get the history of a Task
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The Task Id for which to get the history</param>
+        /// <param name="asAt">The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. (optional)</param>
+        /// <returns>ResourceListOfChangeItem</returns>
+        ResourceListOfChangeItem GetTaskHistory(string id, DateTimeOffset? asAt = default(DateTimeOffset?));
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetTaskHistory: Get the history of a Task
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The Task Id for which to get the history</param>
+        /// <param name="asAt">The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. (optional)</param>
+        /// <returns>ApiResponse of ResourceListOfChangeItem</returns>
+        ApiResponse<ResourceListOfChangeItem> GetTaskHistoryWithHttpInfo(string id, DateTimeOffset? asAt = default(DateTimeOffset?));
+        /// <summary>
         /// ListTasks: List Tasks
         /// </summary>
         /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
@@ -212,6 +232,31 @@ namespace Finbourne.Workflow.Sdk.Api
         /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
         /// <returns>Task of ApiResponse (Task)</returns>
         System.Threading.Tasks.Task<ApiResponse<Task>> GetTaskWithHttpInfoAsync(string id, DateTimeOffset? asAt = default(DateTimeOffset?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+        /// <summary>
+        /// [EXPERIMENTAL] GetTaskHistory: Get the history of a Task
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The Task Id for which to get the history</param>
+        /// <param name="asAt">The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ResourceListOfChangeItem</returns>
+        System.Threading.Tasks.Task<ResourceListOfChangeItem> GetTaskHistoryAsync(string id, DateTimeOffset? asAt = default(DateTimeOffset?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetTaskHistory: Get the history of a Task
+        /// </summary>
+        /// <remarks>
+        /// 
+        /// </remarks>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The Task Id for which to get the history</param>
+        /// <param name="asAt">The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ResourceListOfChangeItem)</returns>
+        System.Threading.Tasks.Task<ApiResponse<ResourceListOfChangeItem>> GetTaskHistoryWithHttpInfoAsync(string id, DateTimeOffset? asAt = default(DateTimeOffset?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken));
         /// <summary>
         /// ListTasks: List Tasks
         /// </summary>
@@ -890,6 +935,145 @@ namespace Finbourne.Workflow.Sdk.Api
             if (this.ExceptionFactory != null)
             {
                 Exception _exception = this.ExceptionFactory("GetTask", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetTaskHistory: Get the history of a Task 
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The Task Id for which to get the history</param>
+        /// <param name="asAt">The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. (optional)</param>
+        /// <returns>ResourceListOfChangeItem</returns>
+        public ResourceListOfChangeItem GetTaskHistory(string id, DateTimeOffset? asAt = default(DateTimeOffset?))
+        {
+            Finbourne.Workflow.Sdk.Client.ApiResponse<ResourceListOfChangeItem> localVarResponse = GetTaskHistoryWithHttpInfo(id, asAt);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetTaskHistory: Get the history of a Task 
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The Task Id for which to get the history</param>
+        /// <param name="asAt">The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. (optional)</param>
+        /// <returns>ApiResponse of ResourceListOfChangeItem</returns>
+        public Finbourne.Workflow.Sdk.Client.ApiResponse<ResourceListOfChangeItem> GetTaskHistoryWithHttpInfo(string id, DateTimeOffset? asAt = default(DateTimeOffset?))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'id' when calling TasksApi->GetTaskHistory");
+
+            Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+            var localVarContentType = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (asAt != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToMultiMap("", "asAt", asAt));
+            }
+
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+            var localVarResponse = this.Client.Get<ResourceListOfChangeItem>("/api/tasks/{id}/history", localVarRequestOptions, this.Configuration);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetTaskHistory", localVarResponse);
+                if (_exception != null) throw _exception;
+            }
+
+            return localVarResponse;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetTaskHistory: Get the history of a Task 
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The Task Id for which to get the history</param>
+        /// <param name="asAt">The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ResourceListOfChangeItem</returns>
+        public async System.Threading.Tasks.Task<ResourceListOfChangeItem> GetTaskHistoryAsync(string id, DateTimeOffset? asAt = default(DateTimeOffset?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            Finbourne.Workflow.Sdk.Client.ApiResponse<ResourceListOfChangeItem> localVarResponse = await GetTaskHistoryWithHttpInfoAsync(id, asAt, cancellationToken).ConfigureAwait(false);
+            return localVarResponse.Data;
+        }
+
+        /// <summary>
+        /// [EXPERIMENTAL] GetTaskHistory: Get the history of a Task 
+        /// </summary>
+        /// <exception cref="Finbourne.Workflow.Sdk.Client.ApiException">Thrown when fails to make API call</exception>
+        /// <param name="id">The Task Id for which to get the history</param>
+        /// <param name="asAt">The asAt datetime of the oldest change to retrieve. Defaults to returning the latest version of the Task if not specified. (optional)</param>
+        /// <param name="cancellationToken">Cancellation Token to cancel the request.</param>
+        /// <returns>Task of ApiResponse (ResourceListOfChangeItem)</returns>
+        public async System.Threading.Tasks.Task<Finbourne.Workflow.Sdk.Client.ApiResponse<ResourceListOfChangeItem>> GetTaskHistoryWithHttpInfoAsync(string id, DateTimeOffset? asAt = default(DateTimeOffset?), System.Threading.CancellationToken cancellationToken = default(System.Threading.CancellationToken))
+        {
+            // verify the required parameter 'id' is set
+            if (id == null)
+                throw new Finbourne.Workflow.Sdk.Client.ApiException(400, "Missing required parameter 'id' when calling TasksApi->GetTaskHistory");
+
+
+            Finbourne.Workflow.Sdk.Client.RequestOptions localVarRequestOptions = new Finbourne.Workflow.Sdk.Client.RequestOptions();
+
+            string[] _contentTypes = new string[] {
+            };
+
+            // to determine the Accept header
+            string[] _accepts = new string[] {
+                "application/json"
+            };
+
+
+            var localVarContentType = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderContentType(_contentTypes);
+            if (localVarContentType != null) localVarRequestOptions.HeaderParameters.Add("Content-Type", localVarContentType);
+
+            var localVarAccept = Finbourne.Workflow.Sdk.Client.ClientUtils.SelectHeaderAccept(_accepts);
+            if (localVarAccept != null) localVarRequestOptions.HeaderParameters.Add("Accept", localVarAccept);
+
+            localVarRequestOptions.PathParameters.Add("id", Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToString(id)); // path parameter
+            if (asAt != null)
+            {
+                localVarRequestOptions.QueryParameters.Add(Finbourne.Workflow.Sdk.Client.ClientUtils.ParameterToMultiMap("", "asAt", asAt));
+            }
+
+            // authentication (oauth2) required
+            // oauth required
+            if (!string.IsNullOrEmpty(this.Configuration.AccessToken) && !localVarRequestOptions.HeaderParameters.ContainsKey("Authorization"))
+            {
+                localVarRequestOptions.HeaderParameters.Add("Authorization", "Bearer " + this.Configuration.AccessToken);
+            }
+
+            // make the HTTP request
+
+            var localVarResponse = await this.AsynchronousClient.GetAsync<ResourceListOfChangeItem>("/api/tasks/{id}/history", localVarRequestOptions, this.Configuration, cancellationToken).ConfigureAwait(false);
+
+            if (this.ExceptionFactory != null)
+            {
+                Exception _exception = this.ExceptionFactory("GetTaskHistory", localVarResponse);
                 if (_exception != null) throw _exception;
             }
 
