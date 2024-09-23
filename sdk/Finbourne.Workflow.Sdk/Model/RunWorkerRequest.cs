@@ -38,7 +38,8 @@ namespace Finbourne.Workflow.Sdk.Model
         /// Initializes a new instance of the <see cref="RunWorkerRequest" /> class.
         /// </summary>
         /// <param name="parameters">The Parameter and their values. (required).</param>
-        public RunWorkerRequest(List<ParameterValue> parameters = default(List<ParameterValue>))
+        /// <param name="workerTimeout">The timeout in seconds for the worker.</param>
+        public RunWorkerRequest(List<ParameterValue> parameters = default(List<ParameterValue>), int? workerTimeout = default(int?))
         {
             // to ensure "parameters" is required (not null)
             if (parameters == null)
@@ -46,6 +47,7 @@ namespace Finbourne.Workflow.Sdk.Model
                 throw new ArgumentNullException("parameters is a required property for RunWorkerRequest and cannot be null");
             }
             this.Parameters = parameters;
+            this.WorkerTimeout = workerTimeout;
         }
 
         /// <summary>
@@ -56,6 +58,13 @@ namespace Finbourne.Workflow.Sdk.Model
         public List<ParameterValue> Parameters { get; set; }
 
         /// <summary>
+        /// The timeout in seconds for the worker
+        /// </summary>
+        /// <value>The timeout in seconds for the worker</value>
+        [DataMember(Name = "workerTimeout", EmitDefaultValue = true)]
+        public int? WorkerTimeout { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -64,6 +73,7 @@ namespace Finbourne.Workflow.Sdk.Model
             StringBuilder sb = new StringBuilder();
             sb.Append("class RunWorkerRequest {\n");
             sb.Append("  Parameters: ").Append(Parameters).Append("\n");
+            sb.Append("  WorkerTimeout: ").Append(WorkerTimeout).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -104,6 +114,11 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.Parameters != null &&
                     input.Parameters != null &&
                     this.Parameters.SequenceEqual(input.Parameters)
+                ) && 
+                (
+                    this.WorkerTimeout == input.WorkerTimeout ||
+                    (this.WorkerTimeout != null &&
+                    this.WorkerTimeout.Equals(input.WorkerTimeout))
                 );
         }
 
@@ -119,6 +134,10 @@ namespace Finbourne.Workflow.Sdk.Model
                 if (this.Parameters != null)
                 {
                     hashCode = (hashCode * 59) + this.Parameters.GetHashCode();
+                }
+                if (this.WorkerTimeout != null)
+                {
+                    hashCode = (hashCode * 59) + this.WorkerTimeout.GetHashCode();
                 }
                 return hashCode;
             }

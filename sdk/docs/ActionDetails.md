@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **WorkerAsAt** | **DateTimeOffset?** | Worker AsAt | [optional] 
 **WorkerParameters** | [**Dictionary&lt;string, FieldMapping&gt;**](FieldMapping.md) | Parameters for this Worker | [optional] 
 **WorkerStatusTriggers** | [**WorkerStatusTriggers**](WorkerStatusTriggers.md) |  | [optional] 
+**WorkerTimeout** | **int?** | Worker WorkerTimeout in seconds | [optional] 
 **Trigger** | **string** | Trigger on parent task to be invoked | 
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
