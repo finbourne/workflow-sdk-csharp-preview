@@ -52,7 +52,10 @@ namespace Finbourne.Workflow.Sdk.Model
         /// <param name="fields">Fields and their latest values - should correspond with the Task Definition field schema.</param>
         /// <param name="stackingKey">The key used to determine which stack to add the Task to.</param>
         /// <param name="stack">stack.</param>
-        public Task(Guid id = default(Guid), ResourceId taskDefinitionId = default(ResourceId), TaskDefinitionVersion taskDefinitionVersion = default(TaskDefinitionVersion), string taskDefinitionDisplayName = default(string), string state = default(string), TaskSummary ultimateParentTask = default(TaskSummary), TaskSummary parentTask = default(TaskSummary), List<TaskSummary> childTasks = default(List<TaskSummary>), List<string> correlationIds = default(List<string>), VersionInfo version = default(VersionInfo), bool terminalState = default(bool), DateTimeOffset? asAtLastTransition = default(DateTimeOffset?), List<TaskInstanceField> fields = default(List<TaskInstanceField>), string stackingKey = default(string), Stack stack = default(Stack))
+        /// <param name="actionLogIdCreated">The Id of the Action that created this Task.</param>
+        /// <param name="actionLogIdModified">The Id of the Action that last modified this Task.</param>
+        /// <param name="actionLogIdSubmitted">The Id of the last Action submitted by this Task.</param>
+        public Task(Guid id = default(Guid), ResourceId taskDefinitionId = default(ResourceId), TaskDefinitionVersion taskDefinitionVersion = default(TaskDefinitionVersion), string taskDefinitionDisplayName = default(string), string state = default(string), TaskSummary ultimateParentTask = default(TaskSummary), TaskSummary parentTask = default(TaskSummary), List<TaskSummary> childTasks = default(List<TaskSummary>), List<string> correlationIds = default(List<string>), VersionInfo version = default(VersionInfo), bool terminalState = default(bool), DateTimeOffset? asAtLastTransition = default(DateTimeOffset?), List<TaskInstanceField> fields = default(List<TaskInstanceField>), string stackingKey = default(string), Stack stack = default(Stack), Guid? actionLogIdCreated = default(Guid?), Guid? actionLogIdModified = default(Guid?), Guid? actionLogIdSubmitted = default(Guid?))
         {
             this.Id = id;
             // to ensure "taskDefinitionId" is required (not null)
@@ -94,6 +97,9 @@ namespace Finbourne.Workflow.Sdk.Model
             this.Fields = fields;
             this.StackingKey = stackingKey;
             this.Stack = stack;
+            this.ActionLogIdCreated = actionLogIdCreated;
+            this.ActionLogIdModified = actionLogIdModified;
+            this.ActionLogIdSubmitted = actionLogIdSubmitted;
         }
 
         /// <summary>
@@ -196,6 +202,27 @@ namespace Finbourne.Workflow.Sdk.Model
         public Stack Stack { get; set; }
 
         /// <summary>
+        /// The Id of the Action that created this Task
+        /// </summary>
+        /// <value>The Id of the Action that created this Task</value>
+        [DataMember(Name = "actionLogIdCreated", EmitDefaultValue = true)]
+        public Guid? ActionLogIdCreated { get; set; }
+
+        /// <summary>
+        /// The Id of the Action that last modified this Task
+        /// </summary>
+        /// <value>The Id of the Action that last modified this Task</value>
+        [DataMember(Name = "actionLogIdModified", EmitDefaultValue = true)]
+        public Guid? ActionLogIdModified { get; set; }
+
+        /// <summary>
+        /// The Id of the last Action submitted by this Task
+        /// </summary>
+        /// <value>The Id of the last Action submitted by this Task</value>
+        [DataMember(Name = "actionLogIdSubmitted", EmitDefaultValue = true)]
+        public Guid? ActionLogIdSubmitted { get; set; }
+
+        /// <summary>
         /// Returns the string presentation of the object
         /// </summary>
         /// <returns>String presentation of the object</returns>
@@ -218,6 +245,9 @@ namespace Finbourne.Workflow.Sdk.Model
             sb.Append("  Fields: ").Append(Fields).Append("\n");
             sb.Append("  StackingKey: ").Append(StackingKey).Append("\n");
             sb.Append("  Stack: ").Append(Stack).Append("\n");
+            sb.Append("  ActionLogIdCreated: ").Append(ActionLogIdCreated).Append("\n");
+            sb.Append("  ActionLogIdModified: ").Append(ActionLogIdModified).Append("\n");
+            sb.Append("  ActionLogIdSubmitted: ").Append(ActionLogIdSubmitted).Append("\n");
             sb.Append("}\n");
             return sb.ToString();
         }
@@ -329,6 +359,21 @@ namespace Finbourne.Workflow.Sdk.Model
                     this.Stack == input.Stack ||
                     (this.Stack != null &&
                     this.Stack.Equals(input.Stack))
+                ) && 
+                (
+                    this.ActionLogIdCreated == input.ActionLogIdCreated ||
+                    (this.ActionLogIdCreated != null &&
+                    this.ActionLogIdCreated.Equals(input.ActionLogIdCreated))
+                ) && 
+                (
+                    this.ActionLogIdModified == input.ActionLogIdModified ||
+                    (this.ActionLogIdModified != null &&
+                    this.ActionLogIdModified.Equals(input.ActionLogIdModified))
+                ) && 
+                (
+                    this.ActionLogIdSubmitted == input.ActionLogIdSubmitted ||
+                    (this.ActionLogIdSubmitted != null &&
+                    this.ActionLogIdSubmitted.Equals(input.ActionLogIdSubmitted))
                 );
         }
 
@@ -397,6 +442,18 @@ namespace Finbourne.Workflow.Sdk.Model
                 if (this.Stack != null)
                 {
                     hashCode = (hashCode * 59) + this.Stack.GetHashCode();
+                }
+                if (this.ActionLogIdCreated != null)
+                {
+                    hashCode = (hashCode * 59) + this.ActionLogIdCreated.GetHashCode();
+                }
+                if (this.ActionLogIdModified != null)
+                {
+                    hashCode = (hashCode * 59) + this.ActionLogIdModified.GetHashCode();
+                }
+                if (this.ActionLogIdSubmitted != null)
+                {
+                    hashCode = (hashCode * 59) + this.ActionLogIdSubmitted.GetHashCode();
                 }
                 return hashCode;
             }

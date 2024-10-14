@@ -197,12 +197,6 @@ namespace Finbourne.Workflow.Sdk.Model
                 yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RunAsUserId, length must be less than 1024.", new [] { "RunAsUserId" });
             }
 
-            // RunAsUserId (string) minLength
-            if (this.RunAsUserId != null && this.RunAsUserId.Length < 0)
-            {
-                yield return new System.ComponentModel.DataAnnotations.ValidationResult("Invalid value for RunAsUserId, length must be greater than 0.", new [] { "RunAsUserId" });
-            }
-
             // RunAsUserId (string) pattern
             Regex regexRunAsUserId = new Regex(@"^[a-zA-Z0-9\-_]+$", RegexOptions.CultureInvariant);
             if (false == regexRunAsUserId.Match(this.RunAsUserId).Success)
